@@ -14,7 +14,8 @@ import CoreData
 extension StatEvent {
     
     var isPointEvent: Bool {
-        guard let type = StatType(rawValue: statType) else { return false }
+        guard let statType = statType,
+              let type = StatType(rawValue: statType) else { return false }
         return type.pointValue > 0
     }
 }

@@ -15,15 +15,15 @@ extension Child {
     
     /// Fetch the most recently used child for smart defaults
     static func fetchLastUsed(context: NSManagedObjectContext) -> Child? {
-        let request = Child.fetchRequest()
+        let request: NSFetchRequest<Child> = NSFetchRequest(entityName: "Child")
         request.sortDescriptors = [NSSortDescriptor(key: "lastUsed", ascending: false)]
         request.fetchLimit = 1
-        return try? context.fetch(request).first
+        return (try? context.fetch(request))?.first
     }
     
     /// Fetch all children sorted by name
     static func fetchAll(context: NSManagedObjectContext) -> [Child] {
-        let request = Child.fetchRequest()
+        let request: NSFetchRequest<Child> = NSFetchRequest(entityName: "Child")
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         return (try? context.fetch(request)) ?? []
     }

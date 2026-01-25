@@ -15,11 +15,11 @@ extension Team {
     
     /// Find active team for a specific child
     static func fetchActive(forChildId childId: UUID, context: NSManagedObjectContext) -> Team? {
-        let playerRequest = Player.fetchRequest()
+        let playerRequest: NSFetchRequest<Player> = NSFetchRequest(entityName: "Player")
         playerRequest.predicate = NSPredicate(format: "childId == %@", childId as CVarArg)
-        
+
         guard let players = try? context.fetch(playerRequest) else { return nil }
-        
+
         return players.first { player in
             player.team?.isActive == true
         }?.team
@@ -27,8 +27,9 @@ extension Team {
     
     /// Deactivate all teams, activate this one
     func makeActive(context: NSManagedObjectContext) throws {
-        let allTeams = try context.fetch(Team.fetchRequest())
-        allTeams.forEach { $0.isActive = false }
+        let allTeamsRequest: NSFetchRequest<Team> = NSFetchRequest(entityName: "Team")
+        let allTeams = try context.fetch(allTeamsRequest)
+        allTeams.forEach { team in team.isActive = false }
         self.isActive = true
         try context.save()
     }

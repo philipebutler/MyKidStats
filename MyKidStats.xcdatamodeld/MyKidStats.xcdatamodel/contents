@@ -54,7 +54,7 @@
     <entity name="StatEvent" representedClassName="StatEvent" syncable="YES" codeGenerationType="class">
         <attribute name="gameId" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="isDeleted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isSoftDeleted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="playerId" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="statType" attributeType="String"/>
         <attribute name="timestamp" attributeType="Date" defaultDateTimeInterval="727995600" usesScalarValueType="NO"/>

@@ -33,7 +33,7 @@ extension Game {
     var teamScore: Int {
         guard let events = statEvents as? Set<StatEvent> else { return 0 }
         return events
-            .filter { $0.isPointEvent && !$0.isDeleted }
+            .filter { $0.isPointEvent && !$0.isSoftDeleted }
             .reduce(0) { $0 + Int($1.value) }
     }
     

@@ -15,20 +15,20 @@ extension Player {
     
     /// Fetch all player instances for a specific child
     static func fetchForChild(_ childId: UUID, context: NSManagedObjectContext) -> [Player] {
-        let request = Player.fetchRequest()
+        let request: NSFetchRequest<Player> = NSFetchRequest(entityName: "Player")
         request.predicate = NSPredicate(format: "childId == %@", childId as CVarArg)
         return (try? context.fetch(request)) ?? []
     }
     
     /// Fetch player instance for child on specific team
     static func fetch(childId: UUID, teamId: UUID, context: NSManagedObjectContext) -> Player? {
-        let request = Player.fetchRequest()
+        let request: NSFetchRequest<Player> = NSFetchRequest(entityName: "Player")
         request.predicate = NSPredicate(
             format: "childId == %@ AND teamId == %@",
             childId as CVarArg,
             teamId as CVarArg
         )
         request.fetchLimit = 1
-        return try? context.fetch(request).first
+        return (try? context.fetch(request))?.first
     }
 }
