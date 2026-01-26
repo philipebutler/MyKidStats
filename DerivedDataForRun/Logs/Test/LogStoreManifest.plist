@@ -5,6 +5,70 @@
 	<key>logFormatVersion</key>
 	<integer>12</integer>
 	<key>logs</key>
-	<dict/>
+	<dict>
+		<key>89F9B313-886B-4F71-9197-A74DFCCE94A1</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>AEA0C947-2506-4C2E-BA3D-E5FF78E66D12</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-MyKidStats-2026.01.25_21-16-29--0600.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalCodeCoverage</key>
+				<real>0.41112012987012986</real>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MyKidStats project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MyKidStats</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Test MyKidStats</string>
+			<key>timeStartedRecording</key>
+			<real>791090189.77125096</real>
+			<key>timeStoppedRecording</key>
+			<real>791090290.92108202</real>
+			<key>title</key>
+			<string>Test MyKidStats</string>
+			<key>uniqueIdentifier</key>
+			<string>89F9B313-886B-4F71-9197-A74DFCCE94A1</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

@@ -4,10 +4,42 @@
     "Localizable": [
       {
         "comment": "",
+        "key": "Home",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 21
+        }
+      },
+      {
+        "comment": "",
+        "key": "Live",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 26
+        }
+      },
+      {
+        "comment": "",
+        "key": "Teams",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 31
+        }
+      },
+      {
+        "comment": "",
+        "key": "Settings",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 36
+        }
+      },
+      {
+        "comment": "",
         "key": "MyKidStats",
         "location": {
           "startingColumn": 18,
-          "startingLine": 18
+          "startingLine": 51
         }
       },
       {
@@ -15,7 +47,7 @@
         "key": "Setup Complete!",
         "location": {
           "startingColumn": 18,
-          "startingLine": 22
+          "startingLine": 55
         }
       },
       {
@@ -23,7 +55,7 @@
         "key": "See PROJECT_SETUP_README.md for next steps",
         "location": {
           "startingColumn": 18,
-          "startingLine": 38
+          "startingLine": 71
         }
       },
       {
@@ -31,7 +63,7 @@
         "key": "✅ Directory structure created",
         "location": {
           "startingColumn": 22,
-          "startingLine": 27
+          "startingLine": 60
         }
       },
       {
@@ -39,7 +71,7 @@
         "key": "✅ Design system ready",
         "location": {
           "startingColumn": 22,
-          "startingLine": 28
+          "startingLine": 61
         }
       },
       {
@@ -47,7 +79,7 @@
         "key": "✅ Domain models ready",
         "location": {
           "startingColumn": 22,
-          "startingLine": 29
+          "startingLine": 62
         }
       },
       {
@@ -55,7 +87,55 @@
         "key": "⚠️ Core Data model needs setup",
         "location": {
           "startingColumn": 22,
-          "startingLine": 30
+          "startingLine": 63
+        }
+      },
+      {
+        "comment": "",
+        "key": "Live Game",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 87
+        }
+      },
+      {
+        "comment": "",
+        "key": "Implement live game UI here",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 89
+        }
+      },
+      {
+        "comment": "",
+        "key": "Teams",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 101
+        }
+      },
+      {
+        "comment": "",
+        "key": "List teams and players here",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 103
+        }
+      },
+      {
+        "comment": "",
+        "key": "Settings",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 115
+        }
+      },
+      {
+        "comment": "",
+        "key": "App settings and debug tools",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 117
         }
       }
     ]

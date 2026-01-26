@@ -27,7 +27,19 @@
 		DE93D54D2F24823E0023B597 /* MyKidStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyKidStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE93D55A2F2482400023B597 /* MyKidStatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyKidStatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE93D5642F2482400023B597 /* MyKidStatsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyKidStatsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1F1F1F1F1F1F1F1F1F1F1F1 /* MyKidStats.xcdatamodeld */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodeld; name = MyKidStats.xcdatamodeld; path = MyKidStats.xcdatamodeld; sourceTree = "<group>"; };
+				F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = MyKidStats.xcdatamodel; path = MyKidStats.xcdatamodeld/MyKidStats.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+/* Begin PBXVariantGroup section */
+		V1V1V1V1V1V1V1V1V1V1V1V1 /* MyKidStats.xcdatamodeld */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodel */,
+			);
+			name = MyKidStats.xcdatamodeld;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DE93D55D2F2482400023B597 /* MyKidStatsTests */ = {
@@ -43,6 +55,9 @@
 		DE93D6082F25DA540023B597 /* MyKidStats */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = MyKidStats;
+			children = (
+				F1F1F1F1F1F1F1F1F1F1F1F1 /* MyKidStats.xcdatamodeld */,
+			);
 			sourceTree = "<group>";
 		};
 		DE93D6312F25DA750023B597 /* Documentation 2 */ = {
@@ -378,6 +393,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1B1B1B1B1B1B1B1B1B1B1B1 /* MyKidStats.xcdatamodeld in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +447,10 @@
 			isa = PBXTargetDependency;
 			target = DE93D54C2F24823E0023B597 /* MyKidStats */;
 			targetProxy = DE93D5652F2482400023B597 /* PBXContainerItemProxy */;
+		};
+		B1B1B1B1B1B1B1B1B1B1B1B1 /* PBXBuildFile for MyKidStats.xcdatamodeld */ = {
+			isa = PBXBuildFile;
+			fileRef = V1V1V1V1V1V1V1V1V1V1V1V1 /* MyKidStats.xcdatamodeld */;
 		};
 /* End PBXTargetDependency section */
 

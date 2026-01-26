@@ -307,10 +307,10 @@ struct PrimaryButton_Previews: PreviewProvider {
 ```
 
 **Testing Checklist:**
-- [ ] Button fills width
-- [ ] Icon optional (works with/without)
-- [ ] 56pt height
-- [ ] Preview shows all variations
+ - [x] Button fills width
+ - [x] Icon optional (works with/without)
+ - [x] 56pt height
+ - [x] Preview shows all variations
 
 ---
 
@@ -393,11 +393,12 @@ struct TeamScoringRow_Previews: PreviewProvider {
 ```
 
 **Testing Checklist:**
-- [ ] Layout matches design
-- [ ] Long names truncate correctly
-- [ ] Buttons functional
-- [ ] Row height appropriate (44pt minimum)
-- [ ] Preview shows multiple variations
+**Testing Checklist:**
+- [x] Layout matches design
+- [x] Long names truncate correctly
+- [x] Buttons functional
+- [x] Row height appropriate (44pt minimum)
+- [x] Preview shows multiple variations
 
 ---
 
@@ -491,11 +492,12 @@ struct GameCard_Previews: PreviewProvider {
 ```
 
 **Testing Checklist:**
-- [ ] Card displays correctly
-- [ ] Date formatting works
-- [ ] Result emoji shows
-- [ ] Tap action works
-- [ ] Preview shows win/loss variations
+**Testing Checklist:**
+- [x] Card displays correctly
+- [x] Date formatting works
+- [x] Result emoji shows
+- [x] Tap action works
+- [x] Preview shows win/loss variations
 
 ---
 

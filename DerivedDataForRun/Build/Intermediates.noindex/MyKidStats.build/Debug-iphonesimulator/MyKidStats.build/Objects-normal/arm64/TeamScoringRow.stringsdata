@@ -1,0 +1,24 @@
+{
+  "source": "/Users/philipbutler/Documents/GitHub/MyKidStats/MyKidStats/DesignSystem/Components/TeamScoringRow.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "#%@",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 11
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 22
+        }
+      }
+    ]
+  },
+  "version": 1
+}

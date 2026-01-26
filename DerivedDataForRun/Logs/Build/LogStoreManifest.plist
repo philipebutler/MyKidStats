@@ -6,7 +6,7 @@
 	<integer>12</integer>
 	<key>logs</key>
 	<dict>
-		<key>2F55680E-E748-4750-8198-63A2483734D7</key>
+		<key>58089BB5-B7ED-47E3-AB04-243934F86887</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>2F55680E-E748-4750-8198-63A2483734D7.xcactivitylog</string>
+			<string>58089BB5-B7ED-47E3-AB04-243934F86887.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -40,15 +40,15 @@
 			<key>signature</key>
 			<string>Cleaning project MyKidStats with scheme MyKidStats</string>
 			<key>timeStartedRecording</key>
-			<real>791088080.46928298</real>
+			<real>791090748.10461903</real>
 			<key>timeStoppedRecording</key>
-			<real>791088080.80846</real>
+			<real>791090748.30016994</real>
 			<key>title</key>
 			<string>Cleaning project MyKidStats with scheme MyKidStats</string>
 			<key>uniqueIdentifier</key>
-			<string>2F55680E-E748-4750-8198-63A2483734D7</string>
+			<string>58089BB5-B7ED-47E3-AB04-243934F86887</string>
 		</dict>
-		<key>47DCFD5D-D07D-434C-8808-101C72BF2BB6</key>
+		<key>6246772A-D897-42C3-BF6D-AC07A137A190</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -57,7 +57,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>47DCFD5D-D07D-434C-8808-101C72BF2BB6.xcactivitylog</string>
+			<string>6246772A-D897-42C3-BF6D-AC07A137A190.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -82,15 +82,15 @@
 			<key>signature</key>
 			<string>Cleaning project MyKidStats with scheme MyKidStats</string>
 			<key>timeStartedRecording</key>
-			<real>791088125.15127695</real>
+			<real>791090423.11981297</real>
 			<key>timeStoppedRecording</key>
-			<real>791088125.43103898</real>
+			<real>791090423.39357698</real>
 			<key>title</key>
 			<string>Cleaning project MyKidStats with scheme MyKidStats</string>
 			<key>uniqueIdentifier</key>
-			<string>47DCFD5D-D07D-434C-8808-101C72BF2BB6</string>
+			<string>6246772A-D897-42C3-BF6D-AC07A137A190</string>
 		</dict>
-		<key>C40CE6E5-A7D3-45D3-B0F8-F909488428DB</key>
+		<key>666A0100-2334-4881-A657-27CE9FD25930</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -99,7 +99,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>C40CE6E5-A7D3-45D3-B0F8-F909488428DB.xcactivitylog</string>
+			<string>666A0100-2334-4881-A657-27CE9FD25930.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -124,13 +124,97 @@
 			<key>signature</key>
 			<string>Cleaning project MyKidStats with scheme MyKidStats</string>
 			<key>timeStartedRecording</key>
-			<real>791088491.88251698</real>
+			<real>791090727.18864202</real>
 			<key>timeStoppedRecording</key>
-			<real>791088492.11956799</real>
+			<real>791090727.42708397</real>
 			<key>title</key>
 			<string>Cleaning project MyKidStats with scheme MyKidStats</string>
 			<key>uniqueIdentifier</key>
-			<string>C40CE6E5-A7D3-45D3-B0F8-F909488428DB</string>
+			<string>666A0100-2334-4881-A657-27CE9FD25930</string>
+		</dict>
+		<key>AEA0C947-2506-4C2E-BA3D-E5FF78E66D12</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>AEA0C947-2506-4C2E-BA3D-E5FF78E66D12.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MyKidStats project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MyKidStats</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Testing project MyKidStats with scheme MyKidStats</string>
+			<key>timeStartedRecording</key>
+			<real>791090189.77071404</real>
+			<key>timeStoppedRecording</key>
+			<real>791090190.97377098</real>
+			<key>title</key>
+			<string>Testing project MyKidStats with scheme MyKidStats</string>
+			<key>uniqueIdentifier</key>
+			<string>AEA0C947-2506-4C2E-BA3D-E5FF78E66D12</string>
+		</dict>
+		<key>AED09F71-714B-4DC7-9CD7-027181F615E1</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>AED09F71-714B-4DC7-9CD7-027181F615E1.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MyKidStats project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MyKidStats</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Cleaning project MyKidStats with scheme MyKidStats</string>
+			<key>timeStartedRecording</key>
+			<real>791090764.52950597</real>
+			<key>timeStoppedRecording</key>
+			<real>791090764.69733906</real>
+			<key>title</key>
+			<string>Cleaning project MyKidStats with scheme MyKidStats</string>
+			<key>uniqueIdentifier</key>
+			<string>AED09F71-714B-4DC7-9CD7-027181F615E1</string>
 		</dict>
 	</dict>
 </dict>
