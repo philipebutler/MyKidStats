@@ -7,29 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B211111111111111111111111 /* MyKidStats/Features/LiveGame/LiveGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F211111111111111111111111 /* MyKidStats/Features/LiveGame/LiveGameViewModel.swift */; };
-		B211111111111111111111112 /* MyKidStats/Features/LiveGame/LiveGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F211111111111111111111112 /* MyKidStats/Features/LiveGame/LiveGameView.swift */; };
-		B211111111111111111111113 /* Core/Domain/UseCases/CalculateCareerStatsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F211111111111111111111113 /* Core/Domain/UseCases/CalculateCareerStatsUseCase.swift */; };
-		B211111111111111111111114 /* Core/Domain/UseCases/ExportGameCSVUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F211111111111111111111114 /* Core/Domain/UseCases/ExportGameCSVUseCase.swift */; };
-		B211111111111111111111115 /* Core/Domain/UseCases/GenerateTextSummaryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F211111111111111111111115 /* Core/Domain/UseCases/GenerateTextSummaryUseCase.swift */; };
-		B311111111111111111111111 /* CoreDataEntities+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111111 /* CoreDataEntities+CoreDataClass.swift */; };
-		B311111111111111111111112 /* CoreDataCoreDataCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111112 /* CoreDataCoreDataCoreDataStack.swift */; };
-		B311111111111111111111113 /* CoreDataCoreDataExtensionsChild+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111113 /* CoreDataCoreDataExtensionsChild+Extensions.swift */; };
-		B311111111111111111111114 /* CoreDataCoreDataExtensionsPlayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111114 /* CoreDataCoreDataExtensionsPlayer+Extensions.swift */; };
-		B311111111111111111111115 /* CoreDataCoreDataExtensionsTeam+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111115 /* CoreDataCoreDataExtensionsTeam+Extensions.swift */; };
-		B311111111111111111111116 /* CoreDataCoreDataExtensionsGame+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111116 /* CoreDataCoreDataExtensionsGame+Extensions.swift */; };
-		B311111111111111111111117 /* CoreDataCoreDataExtensionsStatEvent+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111117 /* CoreDataCoreDataExtensionsStatEvent+Extensions.swift */; };
-		B311111111111111111111118 /* CoreDomainModelsLiveStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111118 /* CoreDomainModelsLiveStats.swift */; };
-		B311111111111111111111119 /* CoreDomainModelsCareerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111119 /* CoreDomainModelsCareerStats.swift */; };
-		B311111111111111111111120 /* CoreDomainEnumsStatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111120 /* CoreDomainEnumsStatType.swift */; };
-		B311111111111111111111121 /* CoreUtilitiesDateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111121 /* CoreUtilitiesDateFormatter+Extensions.swift */; };
-		B311111111111111111111122 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111122 /* ContentView.swift */; };
-		B311111111111111111111123 /* MyKidStatsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111123 /* MyKidStatsApp.swift */; };
-		B311111111111111111111124 /* DesignSystemColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111124 /* DesignSystemColors.swift */; };
-		B311111111111111111111125 /* DesignSystemFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111125 /* DesignSystemFonts.swift */; };
-		B311111111111111111111126 /* DesignSystemSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111126 /* DesignSystemSpacing.swift */; };
-		B311111111111111111111127 /* DesignSystemDesignSystemPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111127 /* DesignSystemDesignSystemPreview.swift */; };
-		DE93DF0A2F2725300023B597 /* MyKidStats.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodeld */; };
+		B1B1B1B1B1B1B1B1B1B1B1B1 /* MyKidStats.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = V1V1V1V1V1V1V1V1V1V1V1V1 /* MyKidStats.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,29 +31,7 @@
 		DE93D54D2F24823E0023B597 /* MyKidStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyKidStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE93D55A2F2482400023B597 /* MyKidStatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyKidStatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE93D5642F2482400023B597 /* MyKidStatsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyKidStatsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F211111111111111111111111 /* MyKidStats/Features/LiveGame/LiveGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/Features/LiveGame/LiveGameViewModel.swift; sourceTree = "<group>"; };
-		F211111111111111111111112 /* MyKidStats/Features/LiveGame/LiveGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/Features/LiveGame/LiveGameView.swift; sourceTree = "<group>"; };
-		F211111111111111111111113 /* MyKidStats/Core/Domain/UseCases/CalculateCareerStatsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/Core/Domain/UseCases/CalculateCareerStatsUseCase.swift; sourceTree = "<group>"; };
-		F211111111111111111111114 /* MyKidStats/Core/Domain/UseCases/ExportGameCSVUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/Core/Domain/UseCases/ExportGameCSVUseCase.swift; sourceTree = "<group>"; };
-		F211111111111111111111115 /* MyKidStats/Core/Domain/UseCases/GenerateTextSummaryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/Core/Domain/UseCases/GenerateTextSummaryUseCase.swift; sourceTree = "<group>"; };
-		F311111111111111111111111 /* MyKidStats/CoreDataEntities+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDataEntities+CoreDataClass.swift; sourceTree = "<group>"; };
-		F311111111111111111111112 /* MyKidStats/CoreDataCoreDataCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDataCoreDataCoreDataStack.swift; sourceTree = "<group>"; };
-		F311111111111111111111113 /* MyKidStats/CoreDataCoreDataExtensionsChild+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDataCoreDataExtensionsChild+Extensions.swift; sourceTree = "<group>"; };
-		F311111111111111111111114 /* MyKidStats/CoreDataCoreDataExtensionsPlayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDataCoreDataExtensionsPlayer+Extensions.swift; sourceTree = "<group>"; };
-		F311111111111111111111115 /* MyKidStats/CoreDataCoreDataExtensionsTeam+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDataCoreDataExtensionsTeam+Extensions.swift; sourceTree = "<group>"; };
-		F311111111111111111111116 /* MyKidStats/CoreDataCoreDataExtensionsGame+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDataCoreDataExtensionsGame+Extensions.swift; sourceTree = "<group>"; };
-		F311111111111111111111117 /* MyKidStats/CoreDataCoreDataExtensionsStatEvent+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDataCoreDataExtensionsStatEvent+Extensions.swift; sourceTree = "<group>"; };
-		F311111111111111111111118 /* MyKidStats/CoreDomainModelsLiveStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDomainModelsLiveStats.swift; sourceTree = "<group>"; };
-		F311111111111111111111119 /* MyKidStats/CoreDomainModelsCareerStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDomainModelsCareerStats.swift; sourceTree = "<group>"; };
-		F311111111111111111111120 /* MyKidStats/CoreDomainEnumsStatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDomainEnumsStatType.swift; sourceTree = "<group>"; };
-		F311111111111111111111121 /* MyKidStats/CoreUtilitiesDateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreUtilitiesDateFormatter+Extensions.swift; sourceTree = "<group>"; };
-		F311111111111111111111122 /* MyKidStats/ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/ContentView.swift; sourceTree = "<group>"; };
-		F311111111111111111111123 /* MyKidStats/MyKidStatsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/MyKidStatsApp.swift; sourceTree = "<group>"; };
-		F311111111111111111111124 /* MyKidStats/DesignSystemColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/DesignSystemColors.swift; sourceTree = "<group>"; };
-		F311111111111111111111125 /* MyKidStats/DesignSystemFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/DesignSystemFonts.swift; sourceTree = "<group>"; };
-		F311111111111111111111126 /* MyKidStats/DesignSystemSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/DesignSystemSpacing.swift; sourceTree = "<group>"; };
-		F311111111111111111111127 /* MyKidStats/DesignSystemDesignSystemPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/DesignSystemDesignSystemPreview.swift; sourceTree = "<group>"; };
-		F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodeld */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = MyKidStats.xcdatamodeld; path = MyKidStats.xcdatamodeld/MyKidStats.xcdatamodel; sourceTree = "<group>"; };
+		F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = MyKidStats.xcdatamodel; path = MyKidStats.xcdatamodeld/MyKidStats.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -309,29 +265,7 @@
 		DE93DBCC2F2716A70023B597 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodeld */,
-				F211111111111111111111111 /* MyKidStats/Features/LiveGame/LiveGameViewModel.swift */,
-				F211111111111111111111112 /* MyKidStats/Features/LiveGame/LiveGameView.swift */,
-				F211111111111111111111113 /* Core/Domain/UseCases/CalculateCareerStatsUseCase.swift */,
-				F211111111111111111111114 /* Core/Domain/UseCases/ExportGameCSVUseCase.swift */,
-				F211111111111111111111115 /* Core/Domain/UseCases/GenerateTextSummaryUseCase.swift */,
-				F311111111111111111111111 /* MyKidStats/CoreDataEntities+CoreDataClass.swift */,
-				F311111111111111111111112 /* MyKidStats/CoreDataCoreDataCoreDataStack.swift */,
-				F311111111111111111111113 /* MyKidStats/CoreDataCoreDataExtensionsChild+Extensions.swift */,
-				F311111111111111111111114 /* MyKidStats/CoreDataCoreDataExtensionsPlayer+Extensions.swift */,
-				F311111111111111111111115 /* MyKidStats/CoreDataCoreDataExtensionsTeam+Extensions.swift */,
-				F311111111111111111111116 /* MyKidStats/CoreDataCoreDataExtensionsGame+Extensions.swift */,
-				F311111111111111111111117 /* MyKidStats/CoreDataCoreDataExtensionsStatEvent+Extensions.swift */,
-				F311111111111111111111118 /* MyKidStats/CoreDomainModelsLiveStats.swift */,
-				F311111111111111111111119 /* MyKidStats/CoreDomainModelsCareerStats.swift */,
-				F311111111111111111111120 /* MyKidStats/CoreDomainEnumsStatType.swift */,
-				F311111111111111111111121 /* MyKidStats/CoreUtilitiesDateFormatter+Extensions.swift */,
-				F311111111111111111111122 /* MyKidStats/ContentView.swift */,
-				F311111111111111111111123 /* MyKidStats/MyKidStatsApp.swift */,
-				F311111111111111111111124 /* MyKidStats/DesignSystemColors.swift */,
-				F311111111111111111111125 /* MyKidStats/DesignSystemFonts.swift */,
-				F311111111111111111111126 /* MyKidStats/DesignSystemSpacing.swift */,
-				F311111111111111111111127 /* MyKidStats/DesignSystemDesignSystemPreview.swift */,
+				V1V1V1V1V1V1V1V1V1V1V1V1 /* MyKidStats.xcdatamodeld */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -350,6 +284,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			/* removed fileSystemSynchronizedGroups to avoid copying project files into app bundle */
+			fileSystemSynchronizedGroups = (
 			);
 			name = MyKidStats;
 			packageProductDependencies = (
@@ -454,7 +391,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE93DF0A2F2725300023B597 /* MyKidStats.xcdatamodeld in Resources */,
+				B1B1B1B1B1B1B1B1B1B1B1B1 /* MyKidStats.xcdatamodeld in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,28 +416,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B211111111111111111111111 /* MyKidStats/Features/LiveGame/LiveGameViewModel.swift in Sources */,
-				B211111111111111111111112 /* MyKidStats/Features/LiveGame/LiveGameView.swift in Sources */,
-				B211111111111111111111113 /* Core/Domain/UseCases/CalculateCareerStatsUseCase.swift in Sources */,
-				B211111111111111111111114 /* Core/Domain/UseCases/ExportGameCSVUseCase.swift in Sources */,
-				B211111111111111111111115 /* Core/Domain/UseCases/GenerateTextSummaryUseCase.swift in Sources */,
-				B311111111111111111111111 /* CoreDataEntities+CoreDataClass.swift in Sources */,
-				B311111111111111111111112 /* CoreDataCoreDataCoreDataStack.swift in Sources */,
-				B311111111111111111111113 /* CoreDataCoreDataExtensionsChild+Extensions.swift in Sources */,
-				B311111111111111111111114 /* CoreDataCoreDataExtensionsPlayer+Extensions.swift in Sources */,
-				B311111111111111111111115 /* CoreDataCoreDataExtensionsTeam+Extensions.swift in Sources */,
-				B311111111111111111111116 /* CoreDataCoreDataExtensionsGame+Extensions.swift in Sources */,
-				B311111111111111111111117 /* CoreDataCoreDataExtensionsStatEvent+Extensions.swift in Sources */,
-				B311111111111111111111118 /* CoreDomainModelsLiveStats.swift in Sources */,
-				B311111111111111111111119 /* CoreDomainModelsCareerStats.swift in Sources */,
-				B311111111111111111111120 /* CoreDomainEnumsStatType.swift in Sources */,
-				B311111111111111111111121 /* CoreUtilitiesDateFormatter+Extensions.swift in Sources */,
-				B311111111111111111111122 /* ContentView.swift in Sources */,
-				B311111111111111111111123 /* MyKidStatsApp.swift in Sources */,
-				B311111111111111111111124 /* DesignSystemColors.swift in Sources */,
-				B311111111111111111111125 /* DesignSystemFonts.swift in Sources */,
-				B311111111111111111111126 /* DesignSystemSpacing.swift in Sources */,
-				B311111111111111111111127 /* DesignSystemDesignSystemPreview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +447,17 @@
 			targetProxy = DE93D5652F2482400023B597 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		V1V1V1V1V1V1V1V1V1V1V1V1 /* MyKidStats.xcdatamodeld */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodel */,
+			);
+			name = MyKidStats.xcdatamodeld;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		DE93D56C2F2482400023B597 /* Debug */ = {
