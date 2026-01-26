@@ -29,7 +29,7 @@ struct LiveGameView: View {
                     .transition(.scale.combined(with: .opacity))
             }
         }
-        .navigationTitle("\(viewModel.game.team?.name ?? \"Team\") vs \(viewModel.game.opponentName)")
+        .navigationTitle("\(viewModel.game.team?.name ?? "Team") vs \(viewModel.game.opponentName)")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -56,7 +56,7 @@ struct LiveGameView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             HStack {
-                Text("\(viewModel.game.team?.name ?? \"Team\") \(viewModel.teamScore)")
+                Text("\(viewModel.game.team?.name ?? "Team") \(viewModel.teamScore)")
                     .font(.scoreLarge)
                 Text("•")
                     .foregroundColor(.secondaryText)
@@ -89,7 +89,7 @@ struct LiveGameView: View {
                 Text(viewModel.focusPlayer.child?.name ?? "")
                     .font(.playerName)
                 Spacer()
-                Text("#\(viewModel.focusPlayer.jerseyNumber ?? \"\")")
+                Text("#\(viewModel.focusPlayer.jerseyNumber ?? "")")
                     .font(.title3)
                     .foregroundColor(.secondaryText)
             }

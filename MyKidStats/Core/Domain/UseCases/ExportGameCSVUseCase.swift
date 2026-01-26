@@ -20,7 +20,7 @@ class ExportGameCSVUseCase {
 
             csv += "\(formatDate(game.gameDate)),"
             csv += "\(escape(game.opponentName)),"
-            csv += "\(escape(player?.child?.name ?? \"Unknown\")),"
+               csv += "\(player?.child?.name ?? "Unknown"),"
             csv += "\(stats.points),"
             csv += "\(stats.fgMade),\(stats.fgAttempted),\(format(stats.fgPercentage)),"
             csv += "\(stats.rebounds),\(stats.assists)\n"

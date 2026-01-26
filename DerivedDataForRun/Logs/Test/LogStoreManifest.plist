@@ -6,22 +6,22 @@
 	<integer>12</integer>
 	<key>logs</key>
 	<dict>
-		<key>3F8A28B2-2B81-48B7-9ECA-1A0D40D10352</key>
+		<key>292FD5B9-B9BE-4D4F-B9BE-D45325897CA5</key>
 		<dict>
 			<key>auxiliaryLogUniqueIdentifier</key>
-			<string>D200CE39-A586-4016-87D8-36DC9A3ABCE1</string>
+			<string>99A3D930-14EC-4BA3-9E0E-A2FDECDF7F42</string>
 			<key>auxiliaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>W</string>
+				<string>E</string>
 				<key>totalNumberOfAnalyzerIssues</key>
 				<integer>0</integer>
 				<key>totalNumberOfErrors</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>totalNumberOfTestFailures</key>
 				<integer>0</integer>
 				<key>totalNumberOfWarnings</key>
-				<integer>11</integer>
+				<integer>0</integer>
 			</dict>
 			<key>className</key>
 			<string>IDESchemeActionsInvocationRecord</string>
@@ -30,7 +30,7 @@
 			<key>domainType</key>
 			<string>com.apple.dt.unit.cocoaUnitTest</string>
 			<key>fileName</key>
-			<string>Test-MyKidStats-2026.01.25_21-45-57--0600.xcresult</string>
+			<string>Test-MyKidStats-2026.01.25_22-14-52--0600.xcresult</string>
 			<key>hasAuxiliaryLog</key>
 			<true/>
 			<key>hasCoverageData</key>
@@ -40,17 +40,15 @@
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>W</string>
-				<key>totalCodeCoverage</key>
-				<real>0.4596167008898015</real>
+				<string>E</string>
 				<key>totalNumberOfAnalyzerIssues</key>
 				<integer>0</integer>
 				<key>totalNumberOfErrors</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>totalNumberOfTestFailures</key>
 				<integer>0</integer>
 				<key>totalNumberOfWarnings</key>
-				<integer>11</integer>
+				<integer>0</integer>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>MyKidStats project</string>
@@ -61,13 +59,13 @@
 			<key>signature</key>
 			<string>Test MyKidStats</string>
 			<key>timeStartedRecording</key>
-			<real>791091957.61945403</real>
+			<real>791093692.44813502</real>
 			<key>timeStoppedRecording</key>
-			<real>791092029.82260895</real>
+			<real>791093693.18033302</real>
 			<key>title</key>
 			<string>Test MyKidStats</string>
 			<key>uniqueIdentifier</key>
-			<string>3F8A28B2-2B81-48B7-9ECA-1A0D40D10352</string>
+			<string>292FD5B9-B9BE-4D4F-B9BE-D45325897CA5</string>
 		</dict>
 	</dict>
 </dict>
