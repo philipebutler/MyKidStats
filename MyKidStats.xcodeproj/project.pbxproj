@@ -12,6 +12,23 @@
 		B211111111111111111111113 /* Core/Domain/UseCases/CalculateCareerStatsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F211111111111111111111113 /* Core/Domain/UseCases/CalculateCareerStatsUseCase.swift */; };
 		B211111111111111111111114 /* Core/Domain/UseCases/ExportGameCSVUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F211111111111111111111114 /* Core/Domain/UseCases/ExportGameCSVUseCase.swift */; };
 		B211111111111111111111115 /* Core/Domain/UseCases/GenerateTextSummaryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F211111111111111111111115 /* Core/Domain/UseCases/GenerateTextSummaryUseCase.swift */; };
+		B311111111111111111111111 /* CoreDataEntities+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111111 /* CoreDataEntities+CoreDataClass.swift */; };
+		B311111111111111111111112 /* CoreDataCoreDataCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111112 /* CoreDataCoreDataCoreDataStack.swift */; };
+		B311111111111111111111113 /* CoreDataCoreDataExtensionsChild+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111113 /* CoreDataCoreDataExtensionsChild+Extensions.swift */; };
+		B311111111111111111111114 /* CoreDataCoreDataExtensionsPlayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111114 /* CoreDataCoreDataExtensionsPlayer+Extensions.swift */; };
+		B311111111111111111111115 /* CoreDataCoreDataExtensionsTeam+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111115 /* CoreDataCoreDataExtensionsTeam+Extensions.swift */; };
+		B311111111111111111111116 /* CoreDataCoreDataExtensionsGame+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111116 /* CoreDataCoreDataExtensionsGame+Extensions.swift */; };
+		B311111111111111111111117 /* CoreDataCoreDataExtensionsStatEvent+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111117 /* CoreDataCoreDataExtensionsStatEvent+Extensions.swift */; };
+		B311111111111111111111118 /* CoreDomainModelsLiveStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111118 /* CoreDomainModelsLiveStats.swift */; };
+		B311111111111111111111119 /* CoreDomainModelsCareerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111119 /* CoreDomainModelsCareerStats.swift */; };
+		B311111111111111111111120 /* CoreDomainEnumsStatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111120 /* CoreDomainEnumsStatType.swift */; };
+		B311111111111111111111121 /* CoreUtilitiesDateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111121 /* CoreUtilitiesDateFormatter+Extensions.swift */; };
+		B311111111111111111111122 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111122 /* ContentView.swift */; };
+		B311111111111111111111123 /* MyKidStatsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111123 /* MyKidStatsApp.swift */; };
+		B311111111111111111111124 /* DesignSystemColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111124 /* DesignSystemColors.swift */; };
+		B311111111111111111111125 /* DesignSystemFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111125 /* DesignSystemFonts.swift */; };
+		B311111111111111111111126 /* DesignSystemSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111126 /* DesignSystemSpacing.swift */; };
+		B311111111111111111111127 /* DesignSystemDesignSystemPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311111111111111111111127 /* DesignSystemDesignSystemPreview.swift */; };
 		DE93DF0A2F2725300023B597 /* MyKidStats.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -38,9 +55,26 @@
 		DE93D5642F2482400023B597 /* MyKidStatsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyKidStatsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F211111111111111111111111 /* MyKidStats/Features/LiveGame/LiveGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/Features/LiveGame/LiveGameViewModel.swift; sourceTree = "<group>"; };
 		F211111111111111111111112 /* MyKidStats/Features/LiveGame/LiveGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/Features/LiveGame/LiveGameView.swift; sourceTree = "<group>"; };
-		F211111111111111111111113 /* Core/Domain/UseCases/CalculateCareerStatsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Domain/UseCases/CalculateCareerStatsUseCase.swift; sourceTree = "<group>"; };
-		F211111111111111111111114 /* Core/Domain/UseCases/ExportGameCSVUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Domain/UseCases/ExportGameCSVUseCase.swift; sourceTree = "<group>"; };
-		F211111111111111111111115 /* Core/Domain/UseCases/GenerateTextSummaryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Domain/UseCases/GenerateTextSummaryUseCase.swift; sourceTree = "<group>"; };
+		F211111111111111111111113 /* MyKidStats/Core/Domain/UseCases/CalculateCareerStatsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/Core/Domain/UseCases/CalculateCareerStatsUseCase.swift; sourceTree = "<group>"; };
+		F211111111111111111111114 /* MyKidStats/Core/Domain/UseCases/ExportGameCSVUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/Core/Domain/UseCases/ExportGameCSVUseCase.swift; sourceTree = "<group>"; };
+		F211111111111111111111115 /* MyKidStats/Core/Domain/UseCases/GenerateTextSummaryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/Core/Domain/UseCases/GenerateTextSummaryUseCase.swift; sourceTree = "<group>"; };
+		F311111111111111111111111 /* MyKidStats/CoreDataEntities+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDataEntities+CoreDataClass.swift; sourceTree = "<group>"; };
+		F311111111111111111111112 /* MyKidStats/CoreDataCoreDataCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDataCoreDataCoreDataStack.swift; sourceTree = "<group>"; };
+		F311111111111111111111113 /* MyKidStats/CoreDataCoreDataExtensionsChild+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDataCoreDataExtensionsChild+Extensions.swift; sourceTree = "<group>"; };
+		F311111111111111111111114 /* MyKidStats/CoreDataCoreDataExtensionsPlayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDataCoreDataExtensionsPlayer+Extensions.swift; sourceTree = "<group>"; };
+		F311111111111111111111115 /* MyKidStats/CoreDataCoreDataExtensionsTeam+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDataCoreDataExtensionsTeam+Extensions.swift; sourceTree = "<group>"; };
+		F311111111111111111111116 /* MyKidStats/CoreDataCoreDataExtensionsGame+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDataCoreDataExtensionsGame+Extensions.swift; sourceTree = "<group>"; };
+		F311111111111111111111117 /* MyKidStats/CoreDataCoreDataExtensionsStatEvent+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDataCoreDataExtensionsStatEvent+Extensions.swift; sourceTree = "<group>"; };
+		F311111111111111111111118 /* MyKidStats/CoreDomainModelsLiveStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDomainModelsLiveStats.swift; sourceTree = "<group>"; };
+		F311111111111111111111119 /* MyKidStats/CoreDomainModelsCareerStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDomainModelsCareerStats.swift; sourceTree = "<group>"; };
+		F311111111111111111111120 /* MyKidStats/CoreDomainEnumsStatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreDomainEnumsStatType.swift; sourceTree = "<group>"; };
+		F311111111111111111111121 /* MyKidStats/CoreUtilitiesDateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/CoreUtilitiesDateFormatter+Extensions.swift; sourceTree = "<group>"; };
+		F311111111111111111111122 /* MyKidStats/ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/ContentView.swift; sourceTree = "<group>"; };
+		F311111111111111111111123 /* MyKidStats/MyKidStatsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/MyKidStatsApp.swift; sourceTree = "<group>"; };
+		F311111111111111111111124 /* MyKidStats/DesignSystemColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/DesignSystemColors.swift; sourceTree = "<group>"; };
+		F311111111111111111111125 /* MyKidStats/DesignSystemFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/DesignSystemFonts.swift; sourceTree = "<group>"; };
+		F311111111111111111111126 /* MyKidStats/DesignSystemSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/DesignSystemSpacing.swift; sourceTree = "<group>"; };
+		F311111111111111111111127 /* MyKidStats/DesignSystemDesignSystemPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/DesignSystemDesignSystemPreview.swift; sourceTree = "<group>"; };
 		F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodeld */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = MyKidStats.xcdatamodeld; path = MyKidStats.xcdatamodeld/MyKidStats.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -281,6 +315,23 @@
 				F211111111111111111111113 /* Core/Domain/UseCases/CalculateCareerStatsUseCase.swift */,
 				F211111111111111111111114 /* Core/Domain/UseCases/ExportGameCSVUseCase.swift */,
 				F211111111111111111111115 /* Core/Domain/UseCases/GenerateTextSummaryUseCase.swift */,
+				F311111111111111111111111 /* MyKidStats/CoreDataEntities+CoreDataClass.swift */,
+				F311111111111111111111112 /* MyKidStats/CoreDataCoreDataCoreDataStack.swift */,
+				F311111111111111111111113 /* MyKidStats/CoreDataCoreDataExtensionsChild+Extensions.swift */,
+				F311111111111111111111114 /* MyKidStats/CoreDataCoreDataExtensionsPlayer+Extensions.swift */,
+				F311111111111111111111115 /* MyKidStats/CoreDataCoreDataExtensionsTeam+Extensions.swift */,
+				F311111111111111111111116 /* MyKidStats/CoreDataCoreDataExtensionsGame+Extensions.swift */,
+				F311111111111111111111117 /* MyKidStats/CoreDataCoreDataExtensionsStatEvent+Extensions.swift */,
+				F311111111111111111111118 /* MyKidStats/CoreDomainModelsLiveStats.swift */,
+				F311111111111111111111119 /* MyKidStats/CoreDomainModelsCareerStats.swift */,
+				F311111111111111111111120 /* MyKidStats/CoreDomainEnumsStatType.swift */,
+				F311111111111111111111121 /* MyKidStats/CoreUtilitiesDateFormatter+Extensions.swift */,
+				F311111111111111111111122 /* MyKidStats/ContentView.swift */,
+				F311111111111111111111123 /* MyKidStats/MyKidStatsApp.swift */,
+				F311111111111111111111124 /* MyKidStats/DesignSystemColors.swift */,
+				F311111111111111111111125 /* MyKidStats/DesignSystemFonts.swift */,
+				F311111111111111111111126 /* MyKidStats/DesignSystemSpacing.swift */,
+				F311111111111111111111127 /* MyKidStats/DesignSystemDesignSystemPreview.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -433,6 +484,23 @@
 				B211111111111111111111113 /* Core/Domain/UseCases/CalculateCareerStatsUseCase.swift in Sources */,
 				B211111111111111111111114 /* Core/Domain/UseCases/ExportGameCSVUseCase.swift in Sources */,
 				B211111111111111111111115 /* Core/Domain/UseCases/GenerateTextSummaryUseCase.swift in Sources */,
+				B311111111111111111111111 /* CoreDataEntities+CoreDataClass.swift in Sources */,
+				B311111111111111111111112 /* CoreDataCoreDataCoreDataStack.swift in Sources */,
+				B311111111111111111111113 /* CoreDataCoreDataExtensionsChild+Extensions.swift in Sources */,
+				B311111111111111111111114 /* CoreDataCoreDataExtensionsPlayer+Extensions.swift in Sources */,
+				B311111111111111111111115 /* CoreDataCoreDataExtensionsTeam+Extensions.swift in Sources */,
+				B311111111111111111111116 /* CoreDataCoreDataExtensionsGame+Extensions.swift in Sources */,
+				B311111111111111111111117 /* CoreDataCoreDataExtensionsStatEvent+Extensions.swift in Sources */,
+				B311111111111111111111118 /* CoreDomainModelsLiveStats.swift in Sources */,
+				B311111111111111111111119 /* CoreDomainModelsCareerStats.swift in Sources */,
+				B311111111111111111111120 /* CoreDomainEnumsStatType.swift in Sources */,
+				B311111111111111111111121 /* CoreUtilitiesDateFormatter+Extensions.swift in Sources */,
+				B311111111111111111111122 /* ContentView.swift in Sources */,
+				B311111111111111111111123 /* MyKidStatsApp.swift in Sources */,
+				B311111111111111111111124 /* DesignSystemColors.swift in Sources */,
+				B311111111111111111111125 /* DesignSystemFonts.swift in Sources */,
+				B311111111111111111111126 /* DesignSystemSpacing.swift in Sources */,
+				B311111111111111111111127 /* DesignSystemDesignSystemPreview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
