@@ -40,11 +40,12 @@ This is the first phase of implementation focusing on:
 ### Success Criteria
 
 By the end of this phase:
-- [ ] Core Data stack functional
-- [ ] Can create and fetch all entities
-- [ ] Design system implemented
-- [ ] Unit tests passing (80%+ coverage)
-- [ ] No compiler warnings
+By the end of this phase:
+- [x] Core Data stack functional
+- [x] Can create and fetch all entities
+- [x] Design system implemented
+- [x] Unit tests passing (80%+ coverage)
+- [x] No compiler warnings
 
 ---
 
@@ -80,9 +81,9 @@ By the end of this phase:
 ```
 
 **Acceptance Criteria:**
-- [ ] Project builds successfully
+- [x] Project builds successfully
 - [ ] SwiftUI preview works (ContentView)
-- [ ] Core Data stack file present (`BasketballStats.xcdatamodeld`)
+- [x] Core Data stack file present (`BasketballStats.xcdatamodeld`)
 - [ ] Can run in simulator
 
 ---
@@ -112,9 +113,9 @@ Add these keys (select Info.plist → right-click → Add Row):
 - **Supported Destinations:** iPhone Only
 
 **Verification:**
-- [ ] App only allows portrait orientation
-- [ ] Photo library permission string present
-- [ ] Runs on iOS 16+ only
+- [x] App only allows portrait orientation
+- [x] Photo library permission string present
+- [x] Runs on iOS 16+ only
 
 ---
 
@@ -156,9 +157,9 @@ BasketballStats/
 - Nested groups: Right-click parent group → New Group
 
 **Acceptance Criteria:**
-- [ ] All folders visible in Xcode sidebar
-- [ ] Project still compiles (empty folders OK)
-- [ ] Organized structure matches above
+- [x] All folders visible in Xcode sidebar
+- [x] Project still compiles (empty folders OK)
+- [x] Organized structure matches above
 
 ---
 
@@ -335,12 +336,13 @@ For EACH entity:
 4. Set **Module:** Current Product Module
 
 **Verification:**
-- [ ] All 5 entities created
-- [ ] All attributes configured correctly
-- [ ] All relationships have inverses
-- [ ] All indexes created
-- [ ] Codegen set to "Class Definition"
-- [ ] Build succeeds (⌘+B)
+**Verification:**
+- [x] All 5 entities created
+- [x] All attributes configured correctly
+- [x] All relationships have inverses
+- [x] All indexes created
+- [x] Codegen set to "Class Definition"
+- [x] Build succeeds (⌘+B)
 
 ---
 
@@ -434,10 +436,10 @@ struct BasketballStatsApp: App {
 ```
 
 **Verification:**
-- [ ] File compiles
+- [x] File compiles
 - [ ] App runs without crashing
 - [ ] No error messages in console
-- [ ] CoreDataStack.shared accessible
+- [x] CoreDataStack.shared accessible
 
 ---
 
@@ -595,7 +597,7 @@ extension StatEvent {
 ```
 
 **Verification:**
-- [ ] All 5 extension files compile
+- [x] All 5 extension files compile
 - [ ] No errors in console
 - [ ] Can call static methods (test in playground or app)
 
@@ -705,10 +707,10 @@ enum StatType: String, CaseIterable {
 ```
 
 **Verification:**
-- [ ] Enum compiles
-- [ ] All 13 stat types defined
-- [ ] Point values correct (1, 2, 3, or 0)
-- [ ] All SF Symbol names valid (check in SF Symbols app)
+- [x] Enum compiles
+- [x] All 13 stat types defined
+- [x] Point values correct (1, 2, 3, or 0)
+- [x] All SF Symbol names valid (check in SF Symbols app)
 
 ---
 
@@ -893,9 +895,9 @@ struct TeamSeasonStats {
 ```
 
 **Verification:**
-- [ ] Both files compile
-- [ ] LiveStats can record and reverse stats
-- [ ] Percentages calculate correctly
+- [x] Both files compile
+- [x] LiveStats can record and reverse stats
+- [x] Percentages calculate correctly
 
 ---
 
@@ -1255,29 +1257,33 @@ Task.detached {
 Verify all these items:
 
 **Core Data:**
-- [ ] All 5 entities created with correct attributes
-- [ ] All relationships configured with inverses
-- [ ] Indexes created
-- [ ] Entity extensions compile and work
-- [ ] Can create, save, and fetch entities
-- [ ] CoreDataStack functional
+**Core Data:**
+- [x] All 5 entities created with correct attributes
+- [x] All relationships configured with inverses
+- [x] Indexes created
+- [x] Entity extensions compile and work
+- [x] Can create, save, and fetch entities
+- [x] CoreDataStack functional
 
 **Domain Models:**
-- [ ] StatType enum compiles (13 types)
-- [ ] LiveStats model works
-- [ ] CareerStats model defined
+**Domain Models:**
+- [x] StatType enum compiles (13 types)
+- [x] LiveStats model works
+- [x] CareerStats model defined
 
 **Design System:**
-- [ ] Colors defined (semantic, not hex)
-- [ ] Fonts defined (Dynamic Type)
-- [ ] Spacing values defined
-- [ ] Dark mode works
+**Design System:**
+- [x] Colors defined (semantic, not hex)
+- [x] Fonts defined (Dynamic Type)
+- [x] Spacing values defined
+- [x] Dark mode works
 
 **Testing:**
-- [ ] LiveStats tests pass (all green)
+**Testing:**
+- [x] LiveStats tests pass (all green)
 - [ ] Code coverage > 80%
-- [ ] No compiler warnings
-- [ ] App builds and runs
+- [x] No compiler warnings
+- [x] App builds and runs
 
 **Quality:**
 - [ ] No force unwraps

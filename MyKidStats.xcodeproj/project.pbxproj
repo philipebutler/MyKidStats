@@ -50,6 +50,11 @@
 			path = "Documentation 2";
 			sourceTree = "<group>";
 		};
+		DE93D7892F26E5E20023B597 /* Documentation */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Documentation;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +233,7 @@
 		DE93D5442F24823E0023B597 = {
 			isa = PBXGroup;
 			children = (
+				DE93D7892F26E5E20023B597 /* Documentation */,
 				DE93D6312F25DA750023B597 /* Documentation 2 */,
 				DE93D6082F25DA540023B597 /* MyKidStats */,
 				A111111111111111111111111 /* Core */,
@@ -267,6 +273,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				DE93D6082F25DA540023B597 /* MyKidStats */,
+				DE93D7892F26E5E20023B597 /* Documentation */,
 			);
 			name = MyKidStats;
 			packageProductDependencies = (
