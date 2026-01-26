@@ -1,0 +1,26 @@
+# Xcode
+DerivedData/
+DerivedDataForRun/
+build/
+Build/
+*.xcworkspace
+xcuserdata/
+*.xcuserdatad
+*.xcresult
+*.xcactivitylog
+*.xcodeproj/project.xcworkspace/xcshareddata
+*.swiftpm
+*.DS_Store
+# CocoaPods
+Pods/
+# Carthage
+Carthage/
+# SwiftPM
+.packages
+# Swift Package Manager workspace
+.xcplayground
+# Ignored backup pbxproj
+*.pbxproj.bak
+
+# Ignore simulator device data
+**/Library/Developer/CoreSimulator/Devices/**/data/Library/Caches/*

@@ -257,6 +257,8 @@ class LiveGameViewModel: ObservableObject {
 ```
 
 **Testing:**
+
+**Status:** ✓ Implemented — see `Features/LiveGame/LiveGameViewModel.swift` in the repository.
 - Create test game
 - Record stats
 - Verify counts update
@@ -497,6 +499,8 @@ struct LiveGameView: View {
 }
 ```
 
+**Status:** ✓ Implemented — see `Features/LiveGame/LiveGameView.swift` in the repository.
+
 **Testing Checklist:**
 - [ ] All 12 stat buttons work
 - [ ] Counters update immediately
@@ -607,6 +611,8 @@ class CalculateCareerStatsUseCase {
             default: break
             }
         }
+
+            **Status:** ✓ Implemented — see `Core/Domain/UseCases/CalculateCareerStatsUseCase.swift` in the repository.
         
         let gameCount = Double(allGames.count)
         
@@ -708,6 +714,8 @@ class ExportGameCSVUseCase {
         return fileURL
     }
 }
+
+    **Status:** ✓ Implemented — see `Core/Domain/UseCases/ExportGameCSVUseCase.swift` in the repository.
 ```
 
 ---
@@ -759,6 +767,8 @@ class GenerateTextSummaryUseCase {
         return formatter.string(from: date)
     }
 }
+
+    **Status:** ✓ Implemented — see `Core/Domain/UseCases/GenerateTextSummaryUseCase.swift` in the repository.
 ```
 
 ---
@@ -814,6 +824,8 @@ class GameFlowTests: XCTestCase {
         XCTAssertTrue(game.isComplete)
     }
 }
+
+    **Status:** ✓ Test file added — `MyKidStatsTests/GameFlowTests.swift` is present. (Note: full test-suite run / CI validation still pending.)
 ```
 
 ---
@@ -880,6 +892,21 @@ func testStatRecordingPerformance() {
 - [ ] No force unwraps
 - [ ] No TODO comments
 - [ ] All previews work
+
+**Status notes (update Jan 2026):**
+- **Can record all 12 stat types:** ✓ Implemented — `Features/LiveGame/LiveGameViewModel.swift` and `Features/LiveGame/LiveGameView.swift` implement recording for full stat set (functional code present; recommend runtime verification).
+- **Undo works for all actions:** ✓ Implemented — undo logic included in `LiveGameViewModel`; needs integration test verification.
+- **Can end game:** ✓ Implemented — `endGame()` implemented on `LiveGameViewModel` and `Game` flagging.
+- **Career stats calculate correctly:** ✓ Implemented — `Core/Domain/UseCases/CalculateCareerStatsUseCase.swift` added (logic present; verify with dataset).
+- **CSV export works:** ✓ Implemented — `Core/Domain/UseCases/ExportGameCSVUseCase.swift` added (saves CSV to temp file).
+- **Text export works:** ✓ Implemented — `Core/Domain/UseCases/GenerateTextSummaryUseCase.swift` added.
+- **Share sheet:** ⬜ Not implemented — UI share integration not added.
+
+**Testing & Verification:**
+- Integration test file added: ✓ `MyKidStatsTests/GameFlowTests.swift` present. Note: full test-suite execution currently pending (test-target/module linkage issue was being investigated).
+- Performance & profiling: ⬜ Not yet measured — recommend running the included performance test in Instruments / `XCTest` to confirm <50ms.
+
+Leave other checklist items unchecked until manual/CI verification completes.
 
 ---
 

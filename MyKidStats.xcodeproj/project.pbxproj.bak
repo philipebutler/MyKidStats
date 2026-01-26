@@ -7,12 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B211111111111111111111111 /* MyKidStats/Features/LiveGame/LiveGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F211111111111111111111111 /* MyKidStats/Features/LiveGame/LiveGameViewModel.swift */; };
-		B211111111111111111111112 /* MyKidStats/Features/LiveGame/LiveGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F211111111111111111111112 /* MyKidStats/Features/LiveGame/LiveGameView.swift */; };
-		B211111111111111111111113 /* Core/Domain/UseCases/CalculateCareerStatsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F211111111111111111111113 /* Core/Domain/UseCases/CalculateCareerStatsUseCase.swift */; };
-		B211111111111111111111114 /* Core/Domain/UseCases/ExportGameCSVUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F211111111111111111111114 /* Core/Domain/UseCases/ExportGameCSVUseCase.swift */; };
-		B211111111111111111111115 /* Core/Domain/UseCases/GenerateTextSummaryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F211111111111111111111115 /* Core/Domain/UseCases/GenerateTextSummaryUseCase.swift */; };
-		DE93DF0A2F2725300023B597 /* MyKidStats.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodeld */; };
+		B1B1B1B1B1B1B1B1B1B1B1B1 /* MyKidStats.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = V1V1V1V1V1V1V1V1V1V1V1V1 /* MyKidStats.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,12 +31,7 @@
 		DE93D54D2F24823E0023B597 /* MyKidStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyKidStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE93D55A2F2482400023B597 /* MyKidStatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyKidStatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE93D5642F2482400023B597 /* MyKidStatsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyKidStatsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F211111111111111111111111 /* MyKidStats/Features/LiveGame/LiveGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/Features/LiveGame/LiveGameViewModel.swift; sourceTree = "<group>"; };
-		F211111111111111111111112 /* MyKidStats/Features/LiveGame/LiveGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyKidStats/Features/LiveGame/LiveGameView.swift; sourceTree = "<group>"; };
-		F211111111111111111111113 /* Core/Domain/UseCases/CalculateCareerStatsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Domain/UseCases/CalculateCareerStatsUseCase.swift; sourceTree = "<group>"; };
-		F211111111111111111111114 /* Core/Domain/UseCases/ExportGameCSVUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Domain/UseCases/ExportGameCSVUseCase.swift; sourceTree = "<group>"; };
-		F211111111111111111111115 /* Core/Domain/UseCases/GenerateTextSummaryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core/Domain/UseCases/GenerateTextSummaryUseCase.swift; sourceTree = "<group>"; };
-		F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodeld */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = MyKidStats.xcdatamodeld; path = MyKidStats.xcdatamodeld/MyKidStats.xcdatamodel; sourceTree = "<group>"; };
+		F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = MyKidStats.xcdatamodel; path = MyKidStats.xcdatamodeld/MyKidStats.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -275,12 +265,7 @@
 		DE93DBCC2F2716A70023B597 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodeld */,
-				F211111111111111111111111 /* MyKidStats/Features/LiveGame/LiveGameViewModel.swift */,
-				F211111111111111111111112 /* MyKidStats/Features/LiveGame/LiveGameView.swift */,
-				F211111111111111111111113 /* Core/Domain/UseCases/CalculateCareerStatsUseCase.swift */,
-				F211111111111111111111114 /* Core/Domain/UseCases/ExportGameCSVUseCase.swift */,
-				F211111111111111111111115 /* Core/Domain/UseCases/GenerateTextSummaryUseCase.swift */,
+				V1V1V1V1V1V1V1V1V1V1V1V1 /* MyKidStats.xcdatamodeld */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -299,6 +284,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			/* removed fileSystemSynchronizedGroups to avoid copying project files into app bundle */
+			fileSystemSynchronizedGroups = (
 			);
 			name = MyKidStats;
 			packageProductDependencies = (
@@ -403,7 +391,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE93DF0A2F2725300023B597 /* MyKidStats.xcdatamodeld in Resources */,
+				B1B1B1B1B1B1B1B1B1B1B1B1 /* MyKidStats.xcdatamodeld in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,11 +416,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B211111111111111111111111 /* MyKidStats/Features/LiveGame/LiveGameViewModel.swift in Sources */,
-				B211111111111111111111112 /* MyKidStats/Features/LiveGame/LiveGameView.swift in Sources */,
-				B211111111111111111111113 /* Core/Domain/UseCases/CalculateCareerStatsUseCase.swift in Sources */,
-				B211111111111111111111114 /* Core/Domain/UseCases/ExportGameCSVUseCase.swift in Sources */,
-				B211111111111111111111115 /* Core/Domain/UseCases/GenerateTextSummaryUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +447,17 @@
 			targetProxy = DE93D5652F2482400023B597 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		V1V1V1V1V1V1V1V1V1V1V1V1 /* MyKidStats.xcdatamodeld */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodel */,
+			);
+			name = MyKidStats.xcdatamodeld;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		DE93D56C2F2482400023B597 /* Debug */ = {
