@@ -6,14 +6,14 @@
 	<integer>12</integer>
 	<key>logs</key>
 	<dict>
-		<key>89F9B313-886B-4F71-9197-A74DFCCE94A1</key>
+		<key>3F8A28B2-2B81-48B7-9ECA-1A0D40D10352</key>
 		<dict>
 			<key>auxiliaryLogUniqueIdentifier</key>
-			<string>AEA0C947-2506-4C2E-BA3D-E5FF78E66D12</string>
+			<string>D200CE39-A586-4016-87D8-36DC9A3ABCE1</string>
 			<key>auxiliaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 				<key>totalNumberOfAnalyzerIssues</key>
 				<integer>0</integer>
 				<key>totalNumberOfErrors</key>
@@ -21,7 +21,7 @@
 				<key>totalNumberOfTestFailures</key>
 				<integer>0</integer>
 				<key>totalNumberOfWarnings</key>
-				<integer>0</integer>
+				<integer>11</integer>
 			</dict>
 			<key>className</key>
 			<string>IDESchemeActionsInvocationRecord</string>
@@ -30,7 +30,7 @@
 			<key>domainType</key>
 			<string>com.apple.dt.unit.cocoaUnitTest</string>
 			<key>fileName</key>
-			<string>Test-MyKidStats-2026.01.25_21-16-29--0600.xcresult</string>
+			<string>Test-MyKidStats-2026.01.25_21-45-57--0600.xcresult</string>
 			<key>hasAuxiliaryLog</key>
 			<true/>
 			<key>hasCoverageData</key>
@@ -40,9 +40,9 @@
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 				<key>totalCodeCoverage</key>
-				<real>0.41112012987012986</real>
+				<real>0.4596167008898015</real>
 				<key>totalNumberOfAnalyzerIssues</key>
 				<integer>0</integer>
 				<key>totalNumberOfErrors</key>
@@ -50,7 +50,7 @@
 				<key>totalNumberOfTestFailures</key>
 				<integer>0</integer>
 				<key>totalNumberOfWarnings</key>
-				<integer>0</integer>
+				<integer>11</integer>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>MyKidStats project</string>
@@ -61,13 +61,13 @@
 			<key>signature</key>
 			<string>Test MyKidStats</string>
 			<key>timeStartedRecording</key>
-			<real>791090189.77125096</real>
+			<real>791091957.61945403</real>
 			<key>timeStoppedRecording</key>
-			<real>791090290.92108202</real>
+			<real>791092029.82260895</real>
 			<key>title</key>
 			<string>Test MyKidStats</string>
 			<key>uniqueIdentifier</key>
-			<string>89F9B313-886B-4F71-9197-A74DFCCE94A1</string>
+			<string>3F8A28B2-2B81-48B7-9ECA-1A0D40D10352</string>
 		</dict>
 	</dict>
 </dict>

@@ -1,0 +1,2 @@
+Target dependency graph (1 target)
+Target 'MyKidStats' in project 'MyKidStats' (no dependencies)

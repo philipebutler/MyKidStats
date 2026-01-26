@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Child" representedClassName="Child" syncable="YES" codeGenerationType="class">
+    <entity name="Child" representedClassName="Child" syncable="YES" codeGenerationType="none">
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="727995600" usesScalarValueType="NO"/>
         <attribute name="dateOfBirth" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
@@ -14,7 +14,7 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="Game" representedClassName="Game" syncable="YES" codeGenerationType="class">
+    <entity name="Game" representedClassName="Game" syncable="YES" codeGenerationType="none">
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="727995600" usesScalarValueType="NO"/>
         <attribute name="duration" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="focusChildId" attributeType="UUID" usesScalarValueType="NO"/>
@@ -35,7 +35,7 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="Player" representedClassName="Player" syncable="YES" codeGenerationType="class">
+    <entity name="Player" representedClassName="Player" syncable="YES" codeGenerationType="none">
         <attribute name="childId" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="727995600" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
@@ -51,7 +51,7 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="StatEvent" representedClassName="StatEvent" syncable="YES" codeGenerationType="class">
+    <entity name="StatEvent" representedClassName="StatEvent" syncable="YES" codeGenerationType="none">
         <attribute name="gameId" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isSoftDeleted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -67,7 +67,7 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="Team" representedClassName="Team" syncable="YES" codeGenerationType="class">
+    <entity name="Team" representedClassName="Team" syncable="YES" codeGenerationType="none">
         <attribute name="colorHex" optional="YES" attributeType="String"/>
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="727995600" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>

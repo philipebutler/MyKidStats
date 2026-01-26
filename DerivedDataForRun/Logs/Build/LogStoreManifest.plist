@@ -6,7 +6,7 @@
 	<integer>12</integer>
 	<key>logs</key>
 	<dict>
-		<key>58089BB5-B7ED-47E3-AB04-243934F86887</key>
+		<key>D200CE39-A586-4016-87D8-36DC9A3ABCE1</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -15,13 +15,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>58089BB5-B7ED-47E3-AB04-243934F86887.xcactivitylog</string>
+			<string>D200CE39-A586-4016-87D8-36DC9A3ABCE1.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 				<key>totalNumberOfAnalyzerIssues</key>
 				<integer>0</integer>
 				<key>totalNumberOfErrors</key>
@@ -29,133 +29,7 @@
 				<key>totalNumberOfTestFailures</key>
 				<integer>0</integer>
 				<key>totalNumberOfWarnings</key>
-				<integer>0</integer>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>MyKidStats project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>MyKidStats</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Cleaning project MyKidStats with scheme MyKidStats</string>
-			<key>timeStartedRecording</key>
-			<real>791090748.10461903</real>
-			<key>timeStoppedRecording</key>
-			<real>791090748.30016994</real>
-			<key>title</key>
-			<string>Cleaning project MyKidStats with scheme MyKidStats</string>
-			<key>uniqueIdentifier</key>
-			<string>58089BB5-B7ED-47E3-AB04-243934F86887</string>
-		</dict>
-		<key>6246772A-D897-42C3-BF6D-AC07A137A190</key>
-		<dict>
-			<key>className</key>
-			<string>IDECommandLineBuildLog</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>6246772A-D897-42C3-BF6D-AC07A137A190.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>S</string>
-				<key>totalNumberOfAnalyzerIssues</key>
-				<integer>0</integer>
-				<key>totalNumberOfErrors</key>
-				<integer>0</integer>
-				<key>totalNumberOfTestFailures</key>
-				<integer>0</integer>
-				<key>totalNumberOfWarnings</key>
-				<integer>0</integer>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>MyKidStats project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>MyKidStats</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Cleaning project MyKidStats with scheme MyKidStats</string>
-			<key>timeStartedRecording</key>
-			<real>791090423.11981297</real>
-			<key>timeStoppedRecording</key>
-			<real>791090423.39357698</real>
-			<key>title</key>
-			<string>Cleaning project MyKidStats with scheme MyKidStats</string>
-			<key>uniqueIdentifier</key>
-			<string>6246772A-D897-42C3-BF6D-AC07A137A190</string>
-		</dict>
-		<key>666A0100-2334-4881-A657-27CE9FD25930</key>
-		<dict>
-			<key>className</key>
-			<string>IDECommandLineBuildLog</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>666A0100-2334-4881-A657-27CE9FD25930.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>S</string>
-				<key>totalNumberOfAnalyzerIssues</key>
-				<integer>0</integer>
-				<key>totalNumberOfErrors</key>
-				<integer>0</integer>
-				<key>totalNumberOfTestFailures</key>
-				<integer>0</integer>
-				<key>totalNumberOfWarnings</key>
-				<integer>0</integer>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>MyKidStats project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>MyKidStats</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Cleaning project MyKidStats with scheme MyKidStats</string>
-			<key>timeStartedRecording</key>
-			<real>791090727.18864202</real>
-			<key>timeStoppedRecording</key>
-			<real>791090727.42708397</real>
-			<key>title</key>
-			<string>Cleaning project MyKidStats with scheme MyKidStats</string>
-			<key>uniqueIdentifier</key>
-			<string>666A0100-2334-4881-A657-27CE9FD25930</string>
-		</dict>
-		<key>AEA0C947-2506-4C2E-BA3D-E5FF78E66D12</key>
-		<dict>
-			<key>className</key>
-			<string>IDECommandLineBuildLog</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>AEA0C947-2506-4C2E-BA3D-E5FF78E66D12.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>S</string>
-				<key>totalNumberOfAnalyzerIssues</key>
-				<integer>0</integer>
-				<key>totalNumberOfErrors</key>
-				<integer>0</integer>
-				<key>totalNumberOfTestFailures</key>
-				<integer>0</integer>
-				<key>totalNumberOfWarnings</key>
-				<integer>0</integer>
+				<integer>11</integer>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>MyKidStats project</string>
@@ -166,55 +40,13 @@
 			<key>signature</key>
 			<string>Testing project MyKidStats with scheme MyKidStats</string>
 			<key>timeStartedRecording</key>
-			<real>791090189.77071404</real>
+			<real>791091957.61878705</real>
 			<key>timeStoppedRecording</key>
-			<real>791090190.97377098</real>
+			<real>791091961.28816295</real>
 			<key>title</key>
 			<string>Testing project MyKidStats with scheme MyKidStats</string>
 			<key>uniqueIdentifier</key>
-			<string>AEA0C947-2506-4C2E-BA3D-E5FF78E66D12</string>
-		</dict>
-		<key>AED09F71-714B-4DC7-9CD7-027181F615E1</key>
-		<dict>
-			<key>className</key>
-			<string>IDECommandLineBuildLog</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>AED09F71-714B-4DC7-9CD7-027181F615E1.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>S</string>
-				<key>totalNumberOfAnalyzerIssues</key>
-				<integer>0</integer>
-				<key>totalNumberOfErrors</key>
-				<integer>0</integer>
-				<key>totalNumberOfTestFailures</key>
-				<integer>0</integer>
-				<key>totalNumberOfWarnings</key>
-				<integer>0</integer>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>MyKidStats project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>MyKidStats</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Cleaning project MyKidStats with scheme MyKidStats</string>
-			<key>timeStartedRecording</key>
-			<real>791090764.52950597</real>
-			<key>timeStoppedRecording</key>
-			<real>791090764.69733906</real>
-			<key>title</key>
-			<string>Cleaning project MyKidStats with scheme MyKidStats</string>
-			<key>uniqueIdentifier</key>
-			<string>AED09F71-714B-4DC7-9CD7-027181F615E1</string>
+			<string>D200CE39-A586-4016-87D8-36DC9A3ABCE1</string>
 		</dict>
 	</dict>
 </dict>
