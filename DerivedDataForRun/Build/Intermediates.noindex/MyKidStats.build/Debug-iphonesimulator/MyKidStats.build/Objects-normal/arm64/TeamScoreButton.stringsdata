@@ -1,0 +1,24 @@
+{
+  "source": "/Users/philipbutler/Documents/GitHub/MyKidStats/MyKidStats/DesignSystem/Components/TeamScoreButton.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "+%lld",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 9
+        }
+      },
+      {
+        "comment": "",
+        "key": "Light Mode",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 35
+        }
+      }
+    ]
+  },
+  "version": 1
+}

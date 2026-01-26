@@ -146,6 +146,16 @@
     "swift-dependencies" : "/Users/philipbutler/Documents/GitHub/MyKidStats/DerivedDataForRun/Build/Intermediates.noindex/MyKidStats.build/Debug-iphonesimulator/MyKidStats.build/Objects-normal/arm64/StatButton.swiftdeps",
     "swiftmodule" : "/Users/philipbutler/Documents/GitHub/MyKidStats/DerivedDataForRun/Build/Intermediates.noindex/MyKidStats.build/Debug-iphonesimulator/MyKidStats.build/Objects-normal/arm64/StatButton~partial.swiftmodule"
   },
+  "/Users/philipbutler/Documents/GitHub/MyKidStats/MyKidStats/DesignSystem/Components/TeamScoreButton.swift" : {
+    "const-values" : "/Users/philipbutler/Documents/GitHub/MyKidStats/DerivedDataForRun/Build/Intermediates.noindex/MyKidStats.build/Debug-iphonesimulator/MyKidStats.build/Objects-normal/arm64/TeamScoreButton.swiftconstvalues",
+    "dependencies" : "/Users/philipbutler/Documents/GitHub/MyKidStats/DerivedDataForRun/Build/Intermediates.noindex/MyKidStats.build/Debug-iphonesimulator/MyKidStats.build/Objects-normal/arm64/TeamScoreButton.d",
+    "diagnostics" : "/Users/philipbutler/Documents/GitHub/MyKidStats/DerivedDataForRun/Build/Intermediates.noindex/MyKidStats.build/Debug-iphonesimulator/MyKidStats.build/Objects-normal/arm64/TeamScoreButton.dia",
+    "index-unit-output-path" : "/MyKidStats.build/Debug-iphonesimulator/MyKidStats.build/Objects-normal/arm64/TeamScoreButton.o",
+    "llvm-bc" : "/Users/philipbutler/Documents/GitHub/MyKidStats/DerivedDataForRun/Build/Intermediates.noindex/MyKidStats.build/Debug-iphonesimulator/MyKidStats.build/Objects-normal/arm64/TeamScoreButton.bc",
+    "object" : "/Users/philipbutler/Documents/GitHub/MyKidStats/DerivedDataForRun/Build/Intermediates.noindex/MyKidStats.build/Debug-iphonesimulator/MyKidStats.build/Objects-normal/arm64/TeamScoreButton.o",
+    "swift-dependencies" : "/Users/philipbutler/Documents/GitHub/MyKidStats/DerivedDataForRun/Build/Intermediates.noindex/MyKidStats.build/Debug-iphonesimulator/MyKidStats.build/Objects-normal/arm64/TeamScoreButton.swiftdeps",
+    "swiftmodule" : "/Users/philipbutler/Documents/GitHub/MyKidStats/DerivedDataForRun/Build/Intermediates.noindex/MyKidStats.build/Debug-iphonesimulator/MyKidStats.build/Objects-normal/arm64/TeamScoreButton~partial.swiftmodule"
+  },
   "/Users/philipbutler/Documents/GitHub/MyKidStats/MyKidStats/DesignSystemColors.swift" : {
     "const-values" : "/Users/philipbutler/Documents/GitHub/MyKidStats/DerivedDataForRun/Build/Intermediates.noindex/MyKidStats.build/Debug-iphonesimulator/MyKidStats.build/Objects-normal/arm64/DesignSystemColors.swiftconstvalues",
     "dependencies" : "/Users/philipbutler/Documents/GitHub/MyKidStats/DerivedDataForRun/Build/Intermediates.noindex/MyKidStats.build/Debug-iphonesimulator/MyKidStats.build/Objects-normal/arm64/DesignSystemColors.d",

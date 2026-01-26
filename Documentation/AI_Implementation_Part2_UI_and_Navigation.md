@@ -223,11 +223,12 @@ struct TeamScoreButton_Previews: PreviewProvider {
 ```
 
 **Testing Checklist:**
-- [ ] Button displays correctly
-- [ ] Size is exactly 48x48pt
-- [ ] Purple color scheme
-- [ ] Tap works
-- [ ] Preview shows all 3 point values
+**Testing Checklist:**
+- [x] Button displays correctly
+- [x] Size is exactly 48x48pt
+- [x] Purple color scheme
+- [x] Tap works
+- [x] Preview shows all 3 point values
 
 ---
 
