@@ -84,6 +84,8 @@
 				DesignSystemSpacing.swift,
 				Features/Home/HomeView.swift,
 				Features/Home/HomeViewModel.swift,
+				Features/Stats/StatsView.swift,
+				Features/Stats/StatsViewModel.swift,
 				Features/LiveGame/LiveGameView.swift,
 				Features/LiveGame/LiveGameViewModel.swift,
 				MyKidStats.xcdatamodeld,
