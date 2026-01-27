@@ -15,12 +15,6 @@ extension Game {
     }
 }
 
-extension StatEvent {
-    // Convenience property for backwards compatibility
-    // Note: The Core Data attribute is named 'isSoftDeleted'
-    var isSoftDeleted: Bool {
-        get { isDelete }
-        set { isDelete = newValue }
-    }
-}
+// Note: StatEvent uses the Core Data attribute 'isSoftDeleted' for soft-delete functionality
+// No computed property needed - access 'isSoftDeleted' directly
 

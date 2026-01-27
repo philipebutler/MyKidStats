@@ -36,7 +36,7 @@ class CalculateCareerStatsUseCase {
 
     private func fetchAllStats(for playerIds: [UUID]) throws -> [StatEvent] {
         let request = NSFetchRequest<StatEvent>(entityName: "StatEvent")
-        request.predicate = NSPredicate(format: "player.id IN %@ AND isDelete == false", playerIds)
+        request.predicate = NSPredicate(format: "player.id IN %@ AND isSoftDeleted == false", playerIds)
         return try context.fetch(request)
     }
 
