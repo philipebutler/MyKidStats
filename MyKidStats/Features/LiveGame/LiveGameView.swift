@@ -4,6 +4,7 @@ struct LiveGameView: View {
     @StateObject private var viewModel: LiveGameViewModel
     @Environment(\.dismiss) private var dismiss
     @State private var showEndGameAlert = false
+    @State private var showGameSummary = false
 
     init(game: Game, focusPlayer: Player) {
         _viewModel = StateObject(
@@ -42,10 +43,15 @@ struct LiveGameView: View {
             Button("Cancel", role: .cancel) { }
             Button("End Game", role: .destructive) {
                 viewModel.endGame()
-                dismiss()
+                showGameSummary = true
             }
         } message: {
             Text("Mark this game as complete?")
+        }
+        .sheet(isPresented: $showGameSummary) {
+            if let child = viewModel.focusPlayer.child {
+                GameSummaryView(game: viewModel.game, focusChild: child)
+            }
         }
     }
 

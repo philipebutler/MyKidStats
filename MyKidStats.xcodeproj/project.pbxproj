@@ -62,6 +62,7 @@
 				Core/Domain/UseCases/GenerateTextSummaryUseCase.swift,
 				Core/Navigation/NavigationCoordinator.swift,
 				Core/Utilities/TestDataHelper.swift,
+				Core/Utilities/ActivityViewController.swift,
 				Core/Data/CoreData/CoreDataStack.swift,
 				"Core/Data/CoreData/Extensions/Child+Extensions.swift",
 				"Core/Data/CoreData/Extensions/Game+Extensions.swift",
