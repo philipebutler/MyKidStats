@@ -21,7 +21,7 @@ final class LiveGameViewModelTests: XCTestCase {
         let vm = LiveGameViewModel(game: game, focusPlayer: player, context: context)
 
         XCTAssertEqual(vm.currentStats.points, 0)
-        XCTAssertEqual(vm.teamScore, Int(game.teamScore))
+        XCTAssertEqual(vm.teamScore, game.calculatedTeamScore)
 
         vm.recordFocusPlayerStat(.twoPointMade)
 

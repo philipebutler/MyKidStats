@@ -30,7 +30,7 @@ class GameFlowTests: XCTestCase {
 
         try context.save()
 
-        XCTAssertEqual(game.teamScore, 4)
+        XCTAssertEqual(game.calculatedTeamScore, 4)
 
         game.isComplete = true
         try context.save()

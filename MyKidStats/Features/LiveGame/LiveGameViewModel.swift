@@ -45,7 +45,7 @@ class LiveGameViewModel: ObservableObject {
     private func loadExistingStats() {
         guard let events = game.statEvents as? Set<StatEvent> else { return }
 
-        let focusEvents = events.filter { $0.playerId == focusPlayer.id && !$0.isDelete }
+        let focusEvents = events.filter { $0.playerId == focusPlayer.id && !$0.isSoftDeleted }
         currentStats = LiveStats()
         for event in focusEvents {
             guard let typeString = event.statType,
@@ -55,7 +55,7 @@ class LiveGameViewModel: ObservableObject {
 
         for player in teamPlayers where player.id != focusPlayer.id {
             guard let playerId = player.id else { continue }
-            let playerEvents = events.filter { $0.playerId == playerId && !$0.isDelete }
+            let playerEvents = events.filter { $0.playerId == playerId && !$0.isSoftDeleted }
             let score = playerEvents.reduce(0) { $0 + Int($1.value) }
             teamScores[playerId] = score
         }
@@ -71,7 +71,7 @@ class LiveGameViewModel: ObservableObject {
         event.timestamp = Date()
         event.statType = statType.rawValue
         event.value = Int32(statType.pointValue)
-        event.isDelete = false
+        event.isSoftDeleted = false
 
         currentStats.recordStat(statType)
         teamScore += statType.pointValue
@@ -99,7 +99,7 @@ class LiveGameViewModel: ObservableObject {
         event.timestamp = Date()
         event.statType = statType.rawValue
         event.value = Int32(points)
-        event.isDelete = false
+        event.isSoftDeleted = false
 
         teamScores[playerId, default: 0] += points
         teamScore += points
@@ -162,7 +162,7 @@ class LiveGameViewModel: ObservableObject {
         let request = NSFetchRequest<StatEvent>(entityName: "StatEvent")
         request.predicate = NSPredicate(format: "id == %@", eventId as CVarArg)
         if let event = try? context.fetch(request).first {
-            event.isDelete = true
+            event.isSoftDeleted = true
         }
     }
 }

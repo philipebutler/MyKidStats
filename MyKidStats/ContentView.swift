@@ -30,9 +30,9 @@ struct ContentView: View {
                 }
                 .tag(AppTab.teams)
 
-            SettingsView()
+            StatsView()
                 .tabItem {
-                    Label("Settings", systemImage: "gearshape.fill")
+                    Label("Stats", systemImage: "chart.bar.fill")
                 }
                 .tag(AppTab.stats)
         }
