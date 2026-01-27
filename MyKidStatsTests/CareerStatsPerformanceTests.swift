@@ -24,32 +24,30 @@ final class CareerStatsPerformanceTests: XCTestCase {
     func testCareerStatsCalculationSmallDataset() async throws {
         let child = try createChildWithGames(gameCount: 5, eventsPerGame: 20)
         
-        measure(metrics: [XCTClockMetric()]) {
-            Task {
-                do {
-                    let stats = try await useCase.execute(for: child.id!)
-                    XCTAssertGreaterThan(stats.totalGames, 0)
-                } catch {
-                    XCTFail("Failed to calculate stats: \(error)")
-                }
-            }
-        }
+        let startTime = CFAbsoluteTimeGetCurrent()
+        let stats = try await useCase.execute(for: child.id!)
+        let elapsedTime = (CFAbsoluteTimeGetCurrent() - startTime) * 1000
+        
+        print("📊 Career Stats Performance (5 games, ~100 events):")
+        print("   Time: \(String(format: "%.2f", elapsedTime))ms")
+        
+        XCTAssertGreaterThan(stats.totalGames, 0)
+        XCTAssertLessThan(elapsedTime, 500, "Small dataset calculation should complete in under 500ms")
     }
     
     /// Test career stats calculation with medium dataset (20 games)
     func testCareerStatsCalculationMediumDataset() async throws {
         let child = try createChildWithGames(gameCount: 20, eventsPerGame: 30)
         
-        measure(metrics: [XCTClockMetric()]) {
-            Task {
-                do {
-                    let stats = try await useCase.execute(for: child.id!)
-                    XCTAssertGreaterThan(stats.totalGames, 0)
-                } catch {
-                    XCTFail("Failed to calculate stats: \(error)")
-                }
-            }
-        }
+        let startTime = CFAbsoluteTimeGetCurrent()
+        let stats = try await useCase.execute(for: child.id!)
+        let elapsedTime = (CFAbsoluteTimeGetCurrent() - startTime) * 1000
+        
+        print("📊 Career Stats Performance (20 games, ~600 events):")
+        print("   Time: \(String(format: "%.2f", elapsedTime))ms")
+        
+        XCTAssertGreaterThan(stats.totalGames, 0)
+        XCTAssertLessThan(elapsedTime, 800, "Medium dataset calculation should complete in under 800ms")
     }
     
     /// Test career stats calculation with large dataset (50 games)
@@ -100,31 +98,25 @@ final class CareerStatsPerformanceTests: XCTestCase {
         
         try context.save()
         
-        measure(metrics: [XCTClockMetric()]) {
-            Task {
-                do {
-                    let stats = try await useCase.execute(for: child.id!)
-                    XCTAssertEqual(stats.teamStats.count, 3, "Should have stats for 3 teams")
-                } catch {
-                    XCTFail("Failed to calculate stats: \(error)")
-                }
-            }
-        }
+        let startTime = CFAbsoluteTimeGetCurrent()
+        let stats = try await useCase.execute(for: child.id!)
+        let elapsedTime = (CFAbsoluteTimeGetCurrent() - startTime) * 1000
+        
+        print("📊 Career Stats Performance (3 teams, 30 games):")
+        print("   Time: \(String(format: "%.2f", elapsedTime))ms")
+        
+        XCTAssertEqual(stats.teamStats.count, 3, "Should have stats for 3 teams")
+        XCTAssertLessThan(elapsedTime, 1000, "Multi-team calculation should complete in under 1 second")
     }
     
-    /// Test memory usage during career stats calculation
+    /// Test memory usage during career stats calculation  
     func testCareerStatsMemoryUsage() async throws {
         let child = try createChildWithGames(gameCount: 30, eventsPerGame: 35)
         
-        measure(metrics: [XCTMemoryMetric()]) {
-            Task {
-                do {
-                    _ = try await useCase.execute(for: child.id!)
-                } catch {
-                    XCTFail("Failed to calculate stats: \(error)")
-                }
-            }
-        }
+        // Memory test - just verify it doesn't crash with large dataset
+        let stats = try await useCase.execute(for: child.id!)
+        XCTAssertEqual(stats.totalGames, 30)
+        XCTAssertGreaterThan(stats.totalPoints, 0)
     }
     
     // MARK: - Helper Methods

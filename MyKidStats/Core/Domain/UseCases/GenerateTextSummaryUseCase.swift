@@ -18,7 +18,7 @@ class GenerateTextSummaryUseCase {
         return """
         🏀 \(focusChild.name ?? "")'s Game - \(formatDate(game.gameDate!))
 
-        \(team.name) \(game.teamScore), \(game.opponentName) \(game.opponentScore) \(game.result.emoji)
+        \(team.name) \(game.calculatedTeamScore), \(game.opponentName) \(game.opponentScore) \(game.result.emoji)
 
         \(focusChild.name ?? ""): \(stats.points) PTS, \(stats.rebounds) REB, \(stats.assists) AST
         \(stats.fgMade)-\(stats.fgAttempted) FG (\(Int(stats.fgPercentage))%) | \(stats.ftMade)-\(stats.ftAttempted) FT

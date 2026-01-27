@@ -13,6 +13,8 @@ struct GameSummaryView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showingShareSheet = false
     @State private var shareContent: [Any] = []
+    @State private var showingError = false
+    @State private var errorMessage = ""
     
     private let exportCSVUseCase = ExportGameCSVUseCase()
     private let textSummaryUseCase = GenerateTextSummaryUseCase()
@@ -40,6 +42,11 @@ struct GameSummaryView: View {
             }
             .sheet(isPresented: $showingShareSheet) {
                 ActivityViewController(activityItems: shareContent, applicationActivities: nil)
+            }
+            .alert("Export Error", isPresented: $showingError) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text(errorMessage)
             }
         }
     }
@@ -252,8 +259,8 @@ struct GameSummaryView: View {
             shareContent = [fileURL]
             showingShareSheet = true
         } catch {
-            // TODO: Show error alert
-            print("CSV export failed: \(error)")
+            errorMessage = "Failed to export CSV: \(error.localizedDescription)"
+            showingError = true
         }
     }
 }
