@@ -30,18 +30,18 @@ enum GameResult: String {
 extension Game {
     
     /// Computed team score from stat events
-    var teamScore: Int {
+    var calculatedTeamScore: Int {
         guard let events = statEvents as? Set<StatEvent> else { return 0 }
         return events
-            .filter { $0.isPointEvent && !$0.isSoftDeleted }
+            .filter { $0.isPointEvent && !$0.isDelete }
             .reduce(0) { $0 + Int($1.value) }
     }
     
     /// Game result
     var result: GameResult {
         guard isComplete else { return .inProgress }
-        if teamScore > opponentScore { return .win }
-        if teamScore < opponentScore { return .loss }
+        if calculatedTeamScore > opponentScore { return .win }
+        if calculatedTeamScore < opponentScore { return .loss }
         return .tie
     }
 }

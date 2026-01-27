@@ -154,6 +154,8 @@ Click the + button under Relationships section:
 
 **Attributes:**
 
+⚠️ **CRITICAL:** The attribute MUST be named `isDelete` (NOT `isDeleted`, NOT `isSoftDeleted`).
+
 | Name | Type | Optional | Default |
 |------|------|----------|---------|
 | id | UUID | ☐ No | - |
@@ -162,7 +164,9 @@ Click the + button under Relationships section:
 | timestamp | Date | ☐ No | - |
 | statType | String | ☐ No | - |
 | value | Integer 32 | ☐ No | 0 |
-| isDeleted | Boolean | ☐ No | NO |
+| isDelete | Boolean | ☐ No | NO |
+
+**You should have EXACTLY 7 attributes. Count them!**
 
 **Relationships:**
 

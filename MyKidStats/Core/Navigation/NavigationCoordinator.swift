@@ -33,6 +33,7 @@ enum PresentedSheet: Identifiable {
     case createTeam
     case addChild
     case settings
+    case selectTeam(Child)
 
     var id: String {
         switch self {
@@ -44,6 +45,8 @@ enum PresentedSheet: Identifiable {
             return "addChild"
         case .settings:
             return "settings"
+        case .selectTeam(let child):
+            return "selectTeam_\(child.id?.uuidString ?? "unknown")"
         }
     }
 }

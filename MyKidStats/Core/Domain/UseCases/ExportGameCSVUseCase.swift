@@ -14,12 +14,12 @@ class ExportGameCSVUseCase {
         let playerIds = Set(events.map { $0.playerId })
 
         for playerId in playerIds {
-            let playerEvents = events.filter { $0.playerId == playerId && !$0.isDeleted }
+            let playerEvents = events.filter { $0.playerId == playerId && !$0.isSoftDeleted }
             let stats = calculateStats(Array(playerEvents))
             let player = events.first { $0.playerId == playerId }?.player
 
-            csv += "\(formatDate(game.gameDate)),"
-            csv += "\(escape(game.opponentName)),"
+            csv += "\(formatDate(game.gameDate!)),"
+            csv += "\(escape(game.opponentName!)),"
                csv += "\(player?.child?.name ?? "Unknown"),"
             csv += "\(stats.points),"
             csv += "\(stats.fgMade),\(stats.fgAttempted),\(format(stats.fgPercentage)),"
@@ -32,7 +32,7 @@ class ExportGameCSVUseCase {
     private func calculateStats(_ events: [StatEvent]) -> LiveStats {
         var stats = LiveStats()
         for event in events {
-            guard let type = StatType(rawValue: event.statType) else { continue }
+            guard let statType = event.statType, let type = StatType(rawValue: statType) else { continue }
             stats.recordStat(type)
         }
         return stats
@@ -53,8 +53,8 @@ class ExportGameCSVUseCase {
     }
 
     private func makeFilename(_ game: Game) -> String {
-        let opponent = game.opponentName.replacingOccurrences(of: " ", with: "_")
-        let date = formatDate(game.gameDate).replacingOccurrences(of: "/", with: "-")
+        let opponent = game.opponentName!.replacingOccurrences(of: " ", with: "_")
+        let date = formatDate(game.gameDate!).replacingOccurrences(of: "/", with: "-")
         return "\(opponent)_\(date).csv"
     }
 

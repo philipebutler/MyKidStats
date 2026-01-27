@@ -1,6 +1,7 @@
 import Foundation
 import CoreData
 import UIKit
+import Combine
 
 @MainActor
 class LiveGameViewModel: ObservableObject {
@@ -31,30 +32,32 @@ class LiveGameViewModel: ObservableObject {
     }
 
     private func loadGameData() {
-        let request = Player.fetchRequest()
-        request.predicate = NSPredicate(format: "teamId == %@", game.teamId as CVarArg)
+        let request = NSFetchRequest<Player>(entityName: "Player")
+        request.predicate = NSPredicate(format: "teamId == %@", game.teamId! as CVarArg)
         teamPlayers = (try? context.fetch(request)) ?? []
 
         loadExistingStats()
 
         opponentScore = Int(game.opponentScore)
-        teamScore = Int(game.teamScore)
+        teamScore = game.calculatedTeamScore
     }
 
     private func loadExistingStats() {
         guard let events = game.statEvents as? Set<StatEvent> else { return }
 
-        let focusEvents = events.filter { $0.playerId == focusPlayer.id && !$0.isDeleted }
+        let focusEvents = events.filter { $0.playerId == focusPlayer.id && !$0.isDelete }
         currentStats = LiveStats()
         for event in focusEvents {
-            guard let type = StatType(rawValue: event.statType) else { continue }
+            guard let typeString = event.statType,
+                  let type = StatType(rawValue: typeString) else { continue }
             currentStats.recordStat(type)
         }
 
         for player in teamPlayers where player.id != focusPlayer.id {
-            let playerEvents = events.filter { $0.playerId == player.id && !$0.isDeleted }
+            guard let playerId = player.id else { continue }
+            let playerEvents = events.filter { $0.playerId == playerId && !$0.isDelete }
             let score = playerEvents.reduce(0) { $0 + Int($1.value) }
-            teamScores[player.id] = score
+            teamScores[playerId] = score
         }
     }
 
@@ -68,12 +71,12 @@ class LiveGameViewModel: ObservableObject {
         event.timestamp = Date()
         event.statType = statType.rawValue
         event.value = Int32(statType.pointValue)
-        event.isDeleted = false
+        event.isDelete = false
 
         currentStats.recordStat(statType)
         teamScore += statType.pointValue
 
-        lastAction = .focusPlayerStat(eventId: event.id, statType: statType)
+        lastAction = .focusPlayerStat(eventId: event.id!, statType: statType)
         canUndo = true
 
         Task.detached(priority: .userInitiated) { [weak self] in
@@ -96,11 +99,11 @@ class LiveGameViewModel: ObservableObject {
         event.timestamp = Date()
         event.statType = statType.rawValue
         event.value = Int32(points)
-        event.isDeleted = false
+        event.isDelete = false
 
         teamScores[playerId, default: 0] += points
         teamScore += points
-        lastAction = .teamScore(eventId: event.id, playerId: playerId, points: points)
+        lastAction = .teamScore(eventId: event.id!, playerId: playerId, points: points)
         canUndo = true
 
         Task.detached(priority: .userInitiated) { [weak self] in
@@ -156,10 +159,10 @@ class LiveGameViewModel: ObservableObject {
     }
 
     private func softDeleteEvent(_ eventId: UUID) {
-        let request = StatEvent.fetchRequest()
+        let request = NSFetchRequest<StatEvent>(entityName: "StatEvent")
         request.predicate = NSPredicate(format: "id == %@", eventId as CVarArg)
         if let event = try? context.fetch(request).first {
-            event.isDeleted = true
+            event.isDelete = true
         }
     }
 }

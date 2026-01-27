@@ -15,7 +15,7 @@ final class ExportUseCaseTests: XCTestCase {
         let child = TestDataHelper.createTestChild(name: "ExportChild", context: context)
         let team = TestDataHelper.createTestTeam(context: context)
         let player = TestDataHelper.createTestPlayer(child: child, team: team, context: context)
-        let game = TestDataHelper.createTestGame(team: team, focusChildId: child.id, context: context)
+        let game = TestDataHelper.createTestGame(team: team, focusChild: child, context: context)
 
         // Add a couple of stat events
         let e1 = StatEvent(context: context)
@@ -25,7 +25,7 @@ final class ExportUseCaseTests: XCTestCase {
         e1.timestamp = Date()
         e1.statType = StatType.twoPointMade.rawValue
         e1.value = Int32(2)
-        e1.isDeleted = false
+        e1.isSoftDeleted = false
 
         let e2 = StatEvent(context: context)
         e2.id = UUID()
@@ -34,7 +34,7 @@ final class ExportUseCaseTests: XCTestCase {
         e2.timestamp = Date()
         e2.statType = StatType.rebound.rawValue
         e2.value = Int32(0)
-        e2.isDeleted = false
+        e2.isSoftDeleted = false
 
         try context.save()
 
@@ -51,6 +51,6 @@ final class ExportUseCaseTests: XCTestCase {
         // Act - Text summary
         let summary = GenerateTextSummaryUseCase().execute(game: game, focusChild: child)
         XCTAssertTrue(summary.contains(child.name ?? ""))
-        XCTAssertTrue(summary.contains(game.opponentName))
+        XCTAssertTrue(summary.contains(game.opponentName ?? ""))
     }
 }

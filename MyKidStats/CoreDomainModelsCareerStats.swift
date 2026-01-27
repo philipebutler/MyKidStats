@@ -61,3 +61,4 @@ struct TeamSeasonStats {
     let reboundsPerGame: Double
     let assistsPerGame: Double
 }
+

@@ -12,11 +12,11 @@ class GenerateTextSummaryUseCase {
             return "Player not found"
         }
 
-        let playerEvents = events.filter { $0.playerId == focusPlayer.id && !$0.isDeleted }
+        let playerEvents = events.filter { $0.playerId == focusPlayer.id && !$0.isSoftDeleted }
         let stats = calculateStats(Array(playerEvents))
 
         return """
-        🏀 \(focusChild.name ?? "")'s Game - \(formatDate(game.gameDate))
+        🏀 \(focusChild.name ?? "")'s Game - \(formatDate(game.gameDate!))
 
         \(team.name) \(game.teamScore), \(game.opponentName) \(game.opponentScore) \(game.result.emoji)
 
@@ -28,7 +28,7 @@ class GenerateTextSummaryUseCase {
     private func calculateStats(_ events: [StatEvent]) -> LiveStats {
         var stats = LiveStats()
         for event in events {
-            guard let type = StatType(rawValue: event.statType) else { continue }
+            guard let statType = event.statType, let type = StatType(rawValue: statType) else { continue }
             stats.recordStat(type)
         }
         return stats

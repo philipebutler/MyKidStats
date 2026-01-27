@@ -187,13 +187,13 @@ struct LiveGameView: View {
             Text("Team Scoring")
                 .font(.headline)
 
-            ForEach(viewModel.teamPlayers.filter { $0.id != viewModel.focusPlayer.id }, id: \.id) { player in
+            ForEach(viewModel.teamPlayers.filter { $0.id != viewModel.focusPlayer.id && $0.id != nil }, id: \.id!) { player in
                 TeamScoringRow(
                     jerseyNumber: player.jerseyNumber ?? "?",
                     playerName: player.child?.name ?? "",
-                    currentScore: viewModel.teamScores[player.id] ?? 0
+                    currentScore: viewModel.teamScores[player.id!] ?? 0
                 ) { points in
-                    viewModel.recordTeamPlayerScore(player.id, points: points)
+                    viewModel.recordTeamPlayerScore(player.id!, points: points)
                 }
             }
         }

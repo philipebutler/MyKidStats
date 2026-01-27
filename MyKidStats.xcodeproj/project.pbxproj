@@ -7,7 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B1B1B1B1B1B1B1B1B1B1B1B1 /* MyKidStats.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = V1V1V1V1V1V1V1V1V1V1V1V1 /* MyKidStats.xcdatamodeld */; };
+		DE93E0132F2838230023B597 /* MyKidStats.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodeld */; };
+		DE93E0962F286B3B0023B597 /* ATTRIBUTE_RENAME_CHANGES.md in Resources */ = {isa = PBXBuildFile; fileRef = DE93E0952F286B3B0023B597 /* ATTRIBUTE_RENAME_CHANGES.md */; };
+		DE93E0982F286D7F0023B597 /* BUILD_FIXES_SUMMARY.md in Resources */ = {isa = PBXBuildFile; fileRef = DE93E0972F286D7F0023B597 /* BUILD_FIXES_SUMMARY.md */; };
+		DE93E09A2F286DC80023B597 /* CRITICAL_ATTRIBUTE_FIX.md in Resources */ = {isa = PBXBuildFile; fileRef = DE93E0992F286DC80023B597 /* CRITICAL_ATTRIBUTE_FIX.md */; };
+		DE93E09C2F286DF50023B597 /* FINAL_BUILD_FIX.md in Resources */ = {isa = PBXBuildFile; fileRef = DE93E09B2F286DF50023B597 /* FINAL_BUILD_FIX.md */; };
+		DE93E09F2F2870B30023B597 /* AddChildView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93E09E2F2870B30023B597 /* AddChildView.swift */; };
+		DE93E0A12F2870D70023B597 /* ADD_CHILD_FIX.md in Resources */ = {isa = PBXBuildFile; fileRef = DE93E0A02F2870D70023B597 /* ADD_CHILD_FIX.md */; };
+		DE93E0A42F2873560023B597 /* SelectTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93E0A32F2873560023B597 /* SelectTeamView.swift */; };
+		DE93E0A62F2873670023B597 /* CreateTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93E0A52F2873670023B597 /* CreateTeamView.swift */; };
+		DE93E0A82F2873E90023B597 /* PHASE_3_IMPLEMENTATION_COMPLETE.md in Resources */ = {isa = PBXBuildFile; fileRef = DE93E0A72F2873E90023B597 /* PHASE_3_IMPLEMENTATION_COMPLETE.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,8 +40,58 @@
 		DE93D54D2F24823E0023B597 /* MyKidStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyKidStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE93D55A2F2482400023B597 /* MyKidStatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyKidStatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE93D5642F2482400023B597 /* MyKidStatsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyKidStatsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = MyKidStats.xcdatamodel; path = MyKidStats.xcdatamodeld/MyKidStats.xcdatamodel; sourceTree = "<group>"; };
+		DE93E0952F286B3B0023B597 /* ATTRIBUTE_RENAME_CHANGES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ATTRIBUTE_RENAME_CHANGES.md; sourceTree = "<group>"; };
+		DE93E0972F286D7F0023B597 /* BUILD_FIXES_SUMMARY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = BUILD_FIXES_SUMMARY.md; sourceTree = "<group>"; };
+		DE93E0992F286DC80023B597 /* CRITICAL_ATTRIBUTE_FIX.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CRITICAL_ATTRIBUTE_FIX.md; sourceTree = "<group>"; };
+		DE93E09B2F286DF50023B597 /* FINAL_BUILD_FIX.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FINAL_BUILD_FIX.md; sourceTree = "<group>"; };
+		DE93E09E2F2870B30023B597 /* AddChildView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChildView.swift; sourceTree = "<group>"; };
+		DE93E0A02F2870D70023B597 /* ADD_CHILD_FIX.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ADD_CHILD_FIX.md; sourceTree = "<group>"; };
+		DE93E0A32F2873560023B597 /* SelectTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTeamView.swift; sourceTree = "<group>"; };
+		DE93E0A52F2873670023B597 /* CreateTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamView.swift; sourceTree = "<group>"; };
+		DE93E0A72F2873E90023B597 /* PHASE_3_IMPLEMENTATION_COMPLETE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PHASE_3_IMPLEMENTATION_COMPLETE.md; sourceTree = "<group>"; };
+		F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodeld */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = MyKidStats.xcdatamodeld; path = MyKidStats.xcdatamodeld/MyKidStats.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DE93E06D2F2838B80023B597 /* Exceptions for "MyKidStats" folder in "MyKidStats" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ContentView.swift,
+				Core/Domain/UseCases/CalculateCareerStatsUseCase.swift,
+				Core/Domain/UseCases/ExportGameCSVUseCase.swift,
+				Core/Domain/UseCases/GenerateTextSummaryUseCase.swift,
+				Core/Navigation/NavigationCoordinator.swift,
+				Core/Utilities/TestDataHelper.swift,
+				CoreDataCoreDataCoreDataStack.swift,
+				"CoreDataCoreDataExtensionsChild+Extensions.swift",
+				"CoreDataCoreDataExtensionsGame+Extensions.swift",
+				"CoreDataCoreDataExtensionsPlayer+Extensions.swift",
+				"CoreDataCoreDataExtensionsStatEvent+Extensions.swift",
+				"CoreDataCoreDataExtensionsTeam+Extensions.swift",
+				"CoreDataEntities+CoreDataClass.swift",
+				CoreDomainEnumsStatType.swift,
+				CoreDomainModelsCareerStats.swift,
+				CoreDomainModelsLiveStats.swift,
+				"CoreUtilitiesDateFormatter+Extensions.swift",
+				DesignSystem/Components/GameCard.swift,
+				DesignSystem/Components/PrimaryButton.swift,
+				DesignSystem/Components/StatButton.swift,
+				DesignSystem/Components/TeamScoreButton.swift,
+				DesignSystem/Components/TeamScoringRow.swift,
+				DesignSystemColors.swift,
+				DesignSystemDesignSystemPreview.swift,
+				DesignSystemFonts.swift,
+				DesignSystemSpacing.swift,
+				Features/Home/HomeView.swift,
+				Features/Home/HomeViewModel.swift,
+				Features/LiveGame/LiveGameView.swift,
+				Features/LiveGame/LiveGameViewModel.swift,
+				MyKidStats.xcdatamodeld,
+				MyKidStatsApp.swift,
+			);
+			target = DE93D54C2F24823E0023B597 /* MyKidStats */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DE93D55D2F2482400023B597 /* MyKidStatsTests */ = {
@@ -47,6 +106,9 @@
 		};
 		DE93D6082F25DA540023B597 /* MyKidStats */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DE93E06D2F2838B80023B597 /* Exceptions for "MyKidStats" folder in "MyKidStats" target */,
+			);
 			path = MyKidStats;
 			sourceTree = "<group>";
 		};
@@ -249,6 +311,15 @@
 				DE93D5672F2482400023B597 /* MyKidStatsUITests */,
 				DE93D54E2F24823E0023B597 /* Products */,
 				DE93DBCC2F2716A70023B597 /* Recovered References */,
+				DE93E0952F286B3B0023B597 /* ATTRIBUTE_RENAME_CHANGES.md */,
+				DE93E0972F286D7F0023B597 /* BUILD_FIXES_SUMMARY.md */,
+				DE93E0992F286DC80023B597 /* CRITICAL_ATTRIBUTE_FIX.md */,
+				DE93E09B2F286DF50023B597 /* FINAL_BUILD_FIX.md */,
+				DE93E09E2F2870B30023B597 /* AddChildView.swift */,
+				DE93E0A02F2870D70023B597 /* ADD_CHILD_FIX.md */,
+				DE93E0A32F2873560023B597 /* SelectTeamView.swift */,
+				DE93E0A52F2873670023B597 /* CreateTeamView.swift */,
+				DE93E0A72F2873E90023B597 /* PHASE_3_IMPLEMENTATION_COMPLETE.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -265,7 +336,7 @@
 		DE93DBCC2F2716A70023B597 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				V1V1V1V1V1V1V1V1V1V1V1V1 /* MyKidStats.xcdatamodeld */,
+				F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodeld */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -284,9 +355,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			/* removed fileSystemSynchronizedGroups to avoid copying project files into app bundle */
-			fileSystemSynchronizedGroups = (
 			);
 			name = MyKidStats;
 			packageProductDependencies = (
@@ -391,7 +459,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1B1B1B1B1B1B1B1B1B1B1B1 /* MyKidStats.xcdatamodeld in Resources */,
+				DE93E0132F2838230023B597 /* MyKidStats.xcdatamodeld in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +474,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE93E09C2F286DF50023B597 /* FINAL_BUILD_FIX.md in Resources */,
+				DE93E0A82F2873E90023B597 /* PHASE_3_IMPLEMENTATION_COMPLETE.md in Resources */,
+				DE93E09A2F286DC80023B597 /* CRITICAL_ATTRIBUTE_FIX.md in Resources */,
+				DE93E0982F286D7F0023B597 /* BUILD_FIXES_SUMMARY.md in Resources */,
+				DE93E0962F286B3B0023B597 /* ATTRIBUTE_RENAME_CHANGES.md in Resources */,
+				DE93E0A12F2870D70023B597 /* ADD_CHILD_FIX.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +504,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE93E0A62F2873670023B597 /* CreateTeamView.swift in Sources */,
+				DE93E09F2F2870B30023B597 /* AddChildView.swift in Sources */,
+				DE93E0A42F2873560023B597 /* SelectTeamView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,17 +524,6 @@
 			targetProxy = DE93D5652F2482400023B597 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		V1V1V1V1V1V1V1V1V1V1V1V1 /* MyKidStats.xcdatamodeld */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodel */,
-			);
-			name = MyKidStats.xcdatamodeld;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		DE93D56C2F2482400023B597 /* Debug */ = {

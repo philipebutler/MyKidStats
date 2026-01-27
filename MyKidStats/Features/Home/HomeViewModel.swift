@@ -11,10 +11,15 @@ class HomeViewModel: ObservableObject {
 
     private let context: NSManagedObjectContext
     private var cancellables = Set<AnyCancellable>()
+    private weak var coordinator: NavigationCoordinator?
 
     init(context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.context = context
         loadData()
+    }
+
+    func setCoordinator(_ coordinator: NavigationCoordinator) {
+        self.coordinator = coordinator
     }
 
     var hasMultipleChildren: Bool {
@@ -43,8 +48,7 @@ class HomeViewModel: ObservableObject {
     }
 
     func startGame(for child: Child) {
-        // TODO: Implement in Part 3
-        print("Starting game for \(child.name ?? "")")
+        coordinator?.presentedSheet = .selectTeam(child)
     }
 
     func toggleChild() {
@@ -63,30 +67,26 @@ class HomeViewModel: ObservableObject {
     }
 
     func showAddChild() {
-        // TODO: Implement in Part 3
-        print("Show add child")
+        coordinator?.presentedSheet = .addChild
     }
 
     func viewGameSummary(_ game: Game) {
-        // TODO: Implement in Part 3
-        print("View game summary")
+        coordinator?.showGameSummary(game)
     }
 
     func openSettings() {
-        // TODO: Implement in Part 3
-        print("Open settings")
+        coordinator?.presentedSheet = .settings
     }
 
     private func fetchLastGame(for childId: UUID) -> Game? {
-        let request = Game.fetchRequest()
+        let request = NSFetchRequest<Game>(entityName: "Game")
         request.predicate = NSPredicate(
             format: "focusChildId == %@ AND isComplete == true",
             childId as CVarArg
         )
         request.sortDescriptors = [NSSortDescriptor(key: "gameDate", ascending: false)]
         request.fetchLimit = 1
-        let results = try? context.fetch(request) as? [Game]
-        return results?.first
+        return try? context.fetch(request).first
     }
 }
 

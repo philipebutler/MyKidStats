@@ -15,7 +15,7 @@ final class LiveGameViewModelTests: XCTestCase {
         let child = TestDataHelper.createTestChild(name: "TestChild", context: context)
         let team = TestDataHelper.createTestTeam(context: context)
         let player = TestDataHelper.createTestPlayer(child: child, team: team, context: context)
-        let game = TestDataHelper.createTestGame(team: team, focusChildId: child.id, context: context)
+        let game = TestDataHelper.createTestGame(team: team, focusChild: child, context: context)
         try context.save()
 
         let vm = LiveGameViewModel(game: game, focusPlayer: player, context: context)

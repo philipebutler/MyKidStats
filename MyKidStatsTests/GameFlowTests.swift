@@ -14,7 +14,7 @@ class GameFlowTests: XCTestCase {
         let child = TestDataHelper.createTestChild(name: "Test", context: context)
         let team = TestDataHelper.createTestTeam(context: context)
         let player = TestDataHelper.createTestPlayer(child: child, team: team, context: context)
-        let game = TestDataHelper.createTestGame(team: team, focusChildId: child.id, context: context)
+        let game = TestDataHelper.createTestGame(team: team, focusChild: child, context: context)
 
         let stats: [StatType] = [.twoPointMade, .twoPointMade, .rebound]
         for type in stats {
@@ -25,7 +25,7 @@ class GameFlowTests: XCTestCase {
             event.timestamp = Date()
             event.statType = type.rawValue
             event.value = Int32(type.pointValue)
-            event.isDeleted = false
+            event.isSoftDeleted = false
         }
 
         try context.save()

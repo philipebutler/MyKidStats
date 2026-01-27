@@ -18,7 +18,7 @@ struct ContentView: View {
                 }
                 .tag(AppTab.home)
 
-            LiveGameView()
+            LiveGameTabView()
                 .tabItem {
                     Label("Live", systemImage: "play.circle.fill")
                 }
@@ -43,31 +43,117 @@ struct ContentView: View {
 // HomeView is provided in Features/Home/HomeView.swift
 
 // Placeholder views for tabs
-struct LiveGameView: View {
+
+struct TeamsView: View {
+    @Environment(\.managedObjectContext) private var context
+    @EnvironmentObject private var coordinator: NavigationCoordinator
+    @State private var teams: [Team] = []
+    
     var body: some View {
-        VStack {
-            Text("Live Game")
-                .font(.title2)
-            Text("Implement live game UI here")
-                .font(.caption)
-                .foregroundColor(.secondary)
+        NavigationStack {
+            List {
+                if teams.isEmpty {
+                    emptyState
+                } else {
+                    ForEach(teams, id: \.id) { team in
+                        TeamDetailRow(team: team)
+                    }
+                }
+            }
+            .navigationTitle("Teams")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: { coordinator.showCreateTeam() }) {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+            .onAppear {
+                loadTeams()
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)) { _ in
+                loadTeams()
+            }
         }
+    }
+    
+    private var emptyState: some View {
+        VStack(spacing: .spacingL) {
+            Image(systemName: "person.3.fill")
+                .font(.system(size: 60))
+                .foregroundColor(.secondaryText)
+            
+            Text("No Teams Yet")
+                .font(.title2)
+            
+            Text("Create teams to track games and stats")
+                .font(.subheadline)
+                .foregroundColor(.secondaryText)
+                .multilineTextAlignment(.center)
+            
+            Button(action: { coordinator.showCreateTeam() }) {
+                Label("Create Team", systemImage: "plus.circle.fill")
+                    .font(.headline)
+            }
+            .buttonStyle(.borderedProminent)
+        }
+        .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.appBackground)
+        .listRowBackground(Color.clear)
+    }
+    
+    private func loadTeams() {
+        let request = NSFetchRequest<Team>(entityName: "Team")
+        request.predicate = NSPredicate(format: "isActive == true")
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        
+        teams = (try? context.fetch(request)) ?? []
     }
 }
 
-struct TeamsView: View {
+struct TeamDetailRow: View {
+    let team: Team
+    
     var body: some View {
-        VStack {
-            Text("Teams")
-                .font(.title2)
-            Text("List teams and players here")
-                .font(.caption)
-                .foregroundColor(.secondary)
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Circle()
+                    .fill(team.colorHex != nil ? Color(hex: team.colorHex!) : Color.blue)
+                    .frame(width: 40, height: 40)
+                    .overlay(
+                        Text(team.name?.prefix(1).uppercased() ?? "T")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                    )
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(team.name ?? "Team")
+                        .font(.headline)
+                    
+                    if let org = team.organization {
+                        Text(org)
+                            .font(.subheadline)
+                            .foregroundColor(.secondaryText)
+                    }
+                }
+                
+                Spacer()
+            }
+            
+            HStack {
+                Label(team.season ?? "Season", systemImage: "calendar")
+                    .font(.caption)
+                    .foregroundColor(.secondaryText)
+                
+                Spacer()
+                
+                // Player count
+                Text("\(team.players?.count ?? 0) players")
+                    .font(.caption)
+                    .foregroundColor(.secondaryText)
+            }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.appBackground)
+        .padding(.vertical, 4)
     }
 }
 

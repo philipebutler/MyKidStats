@@ -6,10 +6,10 @@
 	<integer>12</integer>
 	<key>logs</key>
 	<dict>
-		<key>292FD5B9-B9BE-4D4F-B9BE-D45325897CA5</key>
+		<key>2F6260A3-413E-4D4F-8555-1BD300FA9171</key>
 		<dict>
 			<key>auxiliaryLogUniqueIdentifier</key>
-			<string>99A3D930-14EC-4BA3-9E0E-A2FDECDF7F42</string>
+			<string>81B98A2D-E2D0-400A-B4D8-1BEA18A075D9</string>
 			<key>auxiliaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
@@ -21,7 +21,7 @@
 				<key>totalNumberOfTestFailures</key>
 				<integer>0</integer>
 				<key>totalNumberOfWarnings</key>
-				<integer>0</integer>
+				<integer>9</integer>
 			</dict>
 			<key>className</key>
 			<string>IDESchemeActionsInvocationRecord</string>
@@ -30,7 +30,7 @@
 			<key>domainType</key>
 			<string>com.apple.dt.unit.cocoaUnitTest</string>
 			<key>fileName</key>
-			<string>Test-MyKidStats-2026.01.25_22-14-52--0600.xcresult</string>
+			<string>Test-MyKidStats-2026.01.26_21-59-34--0600.xcresult</string>
 			<key>hasAuxiliaryLog</key>
 			<true/>
 			<key>hasCoverageData</key>
@@ -48,6 +48,128 @@
 				<key>totalNumberOfTestFailures</key>
 				<integer>0</integer>
 				<key>totalNumberOfWarnings</key>
+				<integer>9</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MyKidStats project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MyKidStats</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Test MyKidStats</string>
+			<key>timeStartedRecording</key>
+			<real>791179174.46975601</real>
+			<key>timeStoppedRecording</key>
+			<real>791179175.29682398</real>
+			<key>title</key>
+			<string>Test MyKidStats</string>
+			<key>uniqueIdentifier</key>
+			<string>2F6260A3-413E-4D4F-8555-1BD300FA9171</string>
+		</dict>
+		<key>52B81CC2-3C38-45F6-8C5D-7A654918F915</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>99554673-A19B-426B-ADDC-AC30CCA04235</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>2</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>1</integer>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-MyKidStats-2026.01.26_21-59-25--0600.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>3</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>1</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MyKidStats project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MyKidStats</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Test MyKidStats</string>
+			<key>timeStartedRecording</key>
+			<real>791179165.36398804</real>
+			<key>timeStoppedRecording</key>
+			<real>791179166.23528302</real>
+			<key>title</key>
+			<string>Test MyKidStats</string>
+			<key>uniqueIdentifier</key>
+			<string>52B81CC2-3C38-45F6-8C5D-7A654918F915</string>
+		</dict>
+		<key>98876091-64AB-4A9A-950A-18EED3EE5C4F</key>
+		<dict>
+			<key>auxiliaryLogUniqueIdentifier</key>
+			<string>E82AA40E-CB0E-4945-92BA-0BF5630283F7</string>
+			<key>auxiliaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>12</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>className</key>
+			<string>IDESchemeActionsInvocationRecord</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>com.apple.dt.unit.cocoaUnitTest</string>
+			<key>fileName</key>
+			<string>Test-MyKidStats-2026.01.26_21-58-58--0600.xcresult</string>
+			<key>hasAuxiliaryLog</key>
+			<true/>
+			<key>hasCoverageData</key>
+			<true/>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>13</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
 				<integer>0</integer>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
@@ -59,13 +181,13 @@
 			<key>signature</key>
 			<string>Test MyKidStats</string>
 			<key>timeStartedRecording</key>
-			<real>791093692.44813502</real>
+			<real>791179138.16568804</real>
 			<key>timeStoppedRecording</key>
-			<real>791093693.18033302</real>
+			<real>791179140.85967302</real>
 			<key>title</key>
 			<string>Test MyKidStats</string>
 			<key>uniqueIdentifier</key>
-			<string>292FD5B9-B9BE-4D4F-B9BE-D45325897CA5</string>
+			<string>98876091-64AB-4A9A-950A-18EED3EE5C4F</string>
 		</dict>
 	</dict>
 </dict>
