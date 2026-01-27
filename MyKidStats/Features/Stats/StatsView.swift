@@ -10,6 +10,8 @@ import SwiftUI
 struct StatsView: View {
     @StateObject private var viewModel = StatsViewModel()
     @Environment(\.managedObjectContext) private var context
+    @State private var showingShareSheet = false
+    @State private var shareText: String = ""
     
     var body: some View {
         NavigationStack {
@@ -33,6 +35,17 @@ struct StatsView: View {
                         childSegmentedControl
                     }
                 }
+                
+                if viewModel.careerStats != nil {
+                    ToolbarItem(placement: .primaryAction) {
+                        Button(action: shareCareerStats) {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                    }
+                }
+            }
+            .sheet(isPresented: $showingShareSheet) {
+                ActivityViewController(activityItems: [shareText], applicationActivities: nil)
             }
         }
     }
@@ -314,6 +327,36 @@ struct StatsView: View {
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+    
+    // MARK: - Actions
+    
+    private func shareCareerStats() {
+        guard let stats = viewModel.careerStats else { return }
+        
+        shareText = """
+        🏀 \(stats.childName) - Career Stats
+        
+        📊 Overall Performance
+        Games Played: \(stats.totalGames)
+        PPG: \(String(format: "%.1f", stats.pointsPerGame)) | RPG: \(String(format: "%.1f", stats.reboundsPerGame)) | APG: \(String(format: "%.1f", stats.assistsPerGame))
+        
+        🎯 Shooting
+        FG: \(stats.fieldGoalMade)/\(stats.fieldGoalAttempted) (\(String(format: "%.1f%%", stats.fieldGoalPercentage)))
+        3PT: \(stats.threePointMade)/\(stats.threePointAttempted) (\(String(format: "%.1f%%", stats.threePointPercentage)))
+        FT: \(stats.freeThrowMade)/\(stats.freeThrowAttempted) (\(String(format: "%.1f%%", stats.freeThrowPercentage)))
+        
+        🏆 Career Highs
+        Points: \(stats.careerHighPoints) | Rebounds: \(stats.careerHighRebounds) | Assists: \(stats.careerHighAssists)
+        
+        📈 Total Stats
+        Points: \(stats.totalPoints) | Rebounds: \(stats.totalRebounds) | Assists: \(stats.totalAssists)
+        Steals: \(stats.totalSteals) | Blocks: \(stats.totalBlocks)
+        
+        Generated with MyKidStats
+        """
+        
+        showingShareSheet = true
     }
 }
 
