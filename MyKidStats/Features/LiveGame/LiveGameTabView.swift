@@ -67,11 +67,16 @@ struct LiveGameTabView: View {
     }
     
     private func getPlayer(for game: Game) -> Player? {
+        guard let focusChildId = game.focusChildId,
+              let teamId = game.teamId else {
+            return nil
+        }
+        
         let request = NSFetchRequest<Player>(entityName: "Player")
         request.predicate = NSPredicate(
             format: "childId == %@ AND teamId == %@",
-            game.focusChildId as CVarArg,
-            game.teamId as CVarArg
+            focusChildId as CVarArg,
+            teamId as CVarArg
         )
         request.fetchLimit = 1
         

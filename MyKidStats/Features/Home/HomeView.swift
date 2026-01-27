@@ -52,7 +52,7 @@ struct HomeView: View {
         case .gameSummary(let game):
             GameSummarySheet(game: game, coordinator: coordinator)
         case .createTeam:
-            Text("Create Team coming soon")
+            CreateTeamSheetWrapper(coordinator: coordinator)
         case .selectTeam(let child):
             SelectTeamSheet(child: child, coordinator: coordinator)
         }
@@ -186,7 +186,7 @@ struct SelectTeamSheet: View {
                         Button(action: { createGameAndNavigate(for: team) }) {
                             HStack {
                                 Circle()
-                                    .fill(team.colorHex != nil ? Color(hex: team.colorHex!) : Color.blue)
+                                    .fill((team.colorHex != nil ? Color(hex: team.colorHex!) : nil) ?? Color.blue)
                                     .frame(width: 40, height: 40)
                                     .overlay(
                                         Text(team.name?.prefix(1).uppercased() ?? "T")
@@ -249,8 +249,13 @@ struct SelectTeamSheet: View {
     }
     
     private func loadTeams() {
+        guard let childId = child.id else {
+            teams = []
+            return
+        }
+        
         let playerRequest = NSFetchRequest<Player>(entityName: "Player")
-        playerRequest.predicate = NSPredicate(format: "childId == %@", child.id as CVarArg)
+        playerRequest.predicate = NSPredicate(format: "childId == %@", childId as CVarArg)
         
         guard let players = try? context.fetch(playerRequest) else {
             teams = []
@@ -272,11 +277,13 @@ struct SelectTeamSheet: View {
     }
     
     private func createGameAndNavigate(for team: Team) {
+        guard let childId = child.id, let teamId = team.id else { return }
+        
         let playerRequest = NSFetchRequest<Player>(entityName: "Player")
         playerRequest.predicate = NSPredicate(
             format: "childId == %@ AND teamId == %@",
-            child.id as CVarArg,
-            team.id as CVarArg
+            childId as CVarArg,
+            teamId as CVarArg
         )
         
         guard let player = try? context.fetch(playerRequest).first else {
@@ -441,6 +448,84 @@ struct CreateTeamSheet: View {
     }
 }
 
+// MARK: - Create Team Wrapper (for Teams tab)
+
+struct CreateTeamSheetWrapper: View {
+    @Environment(\.managedObjectContext) private var context
+    let coordinator: NavigationCoordinator
+    @State private var children: [Child] = []
+    @State private var selectedChild: Child?
+    
+    var body: some View {
+        if let child = selectedChild {
+            // Show create team form for selected child
+            CreateTeamSheet(
+                child: child,
+                coordinator: coordinator,
+                onTeamCreated: { _ in
+                    coordinator.dismissSheet()
+                }
+            )
+        } else {
+            // Show child selection
+            NavigationStack {
+                List {
+                    if children.isEmpty {
+                        VStack(spacing: .spacingL) {
+                            Image(systemName: "person.crop.circle.badge.plus")
+                                .font(.system(size: 60))
+                                .foregroundColor(.secondaryText)
+                            
+                            Text("No Children Yet")
+                                .font(.title2)
+                            
+                            Text("Add a child first to create a team")
+                                .font(.subheadline)
+                                .foregroundColor(.secondaryText)
+                                .multilineTextAlignment(.center)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .listRowBackground(Color.clear)
+                    } else {
+                        ForEach(children, id: \.id) { child in
+                            Button(action: { selectedChild = child }) {
+                                HStack {
+                                    Text(child.name ?? "Unknown")
+                                        .font(.headline)
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                        }
+                    }
+                }
+                .navigationTitle("Select Child")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Cancel") {
+                            coordinator.dismissSheet()
+                        }
+                    }
+                }
+                .onAppear {
+                    loadChildren()
+                }
+            }
+        }
+    }
+    
+    private func loadChildren() {
+        let request = NSFetchRequest<Child>(entityName: "Child")
+        request.sortDescriptors = [
+            NSSortDescriptor(key: "lastUsed", ascending: false),
+            NSSortDescriptor(key: "name", ascending: true)
+        ]
+        children = (try? context.fetch(request)) ?? []
+    }
+}
+
 // MARK: - Color Extensions
 
 extension Color {
@@ -484,6 +569,8 @@ extension Color {
 
 // MARK: - Settings & Game Summary
 
+// TEMPORARY: Commented out until SelectTeamView is added to project
+/*
 struct SelectTeamSheet_Old: View {
     @Environment(\.managedObjectContext) private var context
     let child: Child
@@ -494,6 +581,7 @@ struct SelectTeamSheet_Old: View {
             .environment(\.managedObjectContext, context)
     }
 }
+*/
 
 struct SettingsSheet: View {
     let coordinator: NavigationCoordinator
@@ -695,3 +783,4 @@ struct HomeView_Previews: PreviewProvider {
             .environment(\.managedObjectContext, context)
     }
 }
+

@@ -39,7 +39,7 @@
     <entity name="StatEvent" representedClassName=".StatEvent" syncable="YES" codeGenerationType="class">
         <attribute name="gameId" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="isDelete" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isSoftDeleted" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="playerId" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="statType" attributeType="String"/>
         <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>

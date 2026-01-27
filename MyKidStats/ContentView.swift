@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ContentView: View {
     @StateObject private var coordinator = NavigationCoordinator()
@@ -118,7 +119,7 @@ struct TeamDetailRow: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Circle()
-                    .fill(team.colorHex != nil ? Color(hex: team.colorHex!) : Color.blue)
+                    .fill((team.colorHex != nil ? Color(hex: team.colorHex!) : nil) ?? Color.blue)
                     .frame(width: 40, height: 40)
                     .overlay(
                         Text(team.name?.prefix(1).uppercased() ?? "T")

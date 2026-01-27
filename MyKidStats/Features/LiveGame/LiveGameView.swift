@@ -63,11 +63,11 @@ struct LiveGameView: View {
 
             HStack {
                 Text("\(viewModel.game.team?.name ?? "Team") \(viewModel.teamScore)")
-                    .font(.scoreLarge)
+                    .font(.title2.weight(.semibold))
                 Text("•")
                     .foregroundColor(.secondaryText)
                 Text("\(viewModel.game.opponentName) \(viewModel.opponentScore)")
-                    .font(.scoreLarge)
+                    .font(.title2.weight(.semibold))
             }
 
             HStack(spacing: .spacingM) {

@@ -56,39 +56,42 @@
 		DE93E06D2F2838B80023B597 /* Exceptions for "MyKidStats" folder in "MyKidStats" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				AddChildView.swift,
 				ContentView.swift,
-				Core/Domain/UseCases/CalculateCareerStatsUseCase.swift,
-				Core/Domain/UseCases/ExportGameCSVUseCase.swift,
-				Core/Domain/UseCases/GenerateTextSummaryUseCase.swift,
-				Core/Navigation/NavigationCoordinator.swift,
-				Core/Utilities/TestDataHelper.swift,
-				Core/Utilities/ActivityViewController.swift,
 				Core/Data/CoreData/CoreDataStack.swift,
+				"Core/Data/CoreData/Entities/Entities+CoreDataClass.swift",
 				"Core/Data/CoreData/Extensions/Child+Extensions.swift",
 				"Core/Data/CoreData/Extensions/Game+Extensions.swift",
 				"Core/Data/CoreData/Extensions/Player+Extensions.swift",
 				"Core/Data/CoreData/Extensions/StatEvent+Extensions.swift",
 				"Core/Data/CoreData/Extensions/Team+Extensions.swift",
-				"Core/Data/CoreData/Entities/Entities+CoreDataClass.swift",
 				Core/Domain/Enums/StatType.swift,
 				Core/Domain/Models/CareerStats.swift,
 				Core/Domain/Models/LiveStats.swift,
+				Core/Domain/UseCases/CalculateCareerStatsUseCase.swift,
+				Core/Domain/UseCases/ExportGameCSVUseCase.swift,
+				Core/Domain/UseCases/GenerateTextSummaryUseCase.swift,
+				Core/Navigation/NavigationCoordinator.swift,
+				Core/Utilities/ActivityViewController.swift,
 				"Core/Utilities/DateFormatter+Extensions.swift",
+				Core/Utilities/TestDataHelper.swift,
+				DesignSystem/Colors.swift,
 				DesignSystem/Components/GameCard.swift,
 				DesignSystem/Components/PrimaryButton.swift,
 				DesignSystem/Components/StatButton.swift,
 				DesignSystem/Components/TeamScoreButton.swift,
 				DesignSystem/Components/TeamScoringRow.swift,
-				DesignSystem/Colors.swift,
 				DesignSystem/DesignSystemPreview.swift,
 				DesignSystem/Fonts.swift,
 				DesignSystem/Spacing.swift,
 				Features/Home/HomeView.swift,
 				Features/Home/HomeViewModel.swift,
-				Features/Stats/StatsView.swift,
-				Features/Stats/StatsViewModel.swift,
+				Features/LiveGame/GameSummaryView.swift,
+				Features/LiveGame/LiveGameTabView.swift,
 				Features/LiveGame/LiveGameView.swift,
 				Features/LiveGame/LiveGameViewModel.swift,
+				Features/Stats/StatsView.swift,
+				Features/Stats/StatsViewModel.swift,
 				MyKidStats.xcdatamodeld,
 				MyKidStatsApp.swift,
 			);
@@ -653,8 +656,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Add photos of your children to personalize their profiles";
@@ -668,8 +672,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = farpoint.MyKidStats;
+				PRODUCT_BUNDLE_IDENTIFIER = MyKidStats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -687,6 +692,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9U544AVZ57;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Add photos of your children to personalize their profiles";
@@ -700,7 +706,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = farpoint.MyKidStats;
+				PRODUCT_BUNDLE_IDENTIFIER = MyKidStats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
