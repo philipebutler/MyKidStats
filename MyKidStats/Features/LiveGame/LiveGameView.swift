@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreData
 
 struct LiveGameView: View {
     @StateObject private var viewModel: LiveGameViewModel
@@ -7,6 +8,7 @@ struct LiveGameView: View {
     @State private var showEndGameAlert = false
     @State private var showGameSummary = false
     @State private var showOpponentScoreEditor = false
+    @State private var showEditOpponentSheet = false
     @State private var opponentScoreInput = ""
 
     init(game: Game, focusPlayer: Player) {
@@ -58,6 +60,9 @@ struct LiveGameView: View {
                 GameSummaryView(game: viewModel.game, focusChild: child)
             }
         }
+        .sheet(isPresented: $showEditOpponentSheet) {
+            EditOpponentNameSheet(game: viewModel.game)
+        }
         .alert("Edit Opponent Score", isPresented: $showOpponentScoreEditor) {
             TextField("Score", text: $opponentScoreInput)
                 .keyboardType(.numberPad)
@@ -77,29 +82,33 @@ struct LiveGameView: View {
 
     private var opponentScoringSection: some View {
         VStack(spacing: .spacingM) {
-            Text("Opponent Scoring:")
-                .font(.headline)
-                .frame(maxWidth: .infinity, alignment: .leading)
-
             HStack {
                 Text("\(viewModel.game.team?.name ?? "Team") \(viewModel.teamScore)")
                     .font(.title2.weight(.semibold))
                 Text("•")
                     .foregroundColor(.secondaryText)
-                Text("\(viewModel.game.opponentName) \(viewModel.opponentScore)")
-                    .font(.title2.weight(.semibold))
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(Color.blue.opacity(0.1))
-                    .cornerRadius(8)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.blue.opacity(0.3), lineWidth: 1)
-                    )
-                    .onLongPressGesture {
-                        opponentScoreInput = "\(viewModel.opponentScore)"
-                        showOpponentScoreEditor = true
+                HStack(spacing: 4) {
+                    Text("\(viewModel.game.opponentName ?? "Opponent") \(viewModel.opponentScore)")
+                        .font(.title2.weight(.semibold))
+                    Button(action: { showEditOpponentSheet = true }) {
+                        Image(systemName: "pencil.circle.fill")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
                     }
+                    .buttonStyle(.borderless)
+                }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(Color.blue.opacity(0.1))
+                .cornerRadius(8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.blue.opacity(0.3), lineWidth: 1)
+                )
+                .onLongPressGesture {
+                    opponentScoreInput = "\(viewModel.opponentScore)"
+                    showOpponentScoreEditor = true
+                }
                 Image(systemName: "hand.tap")
                     .font(.caption2)
                     .foregroundColor(.blue.opacity(0.6))
@@ -283,6 +292,56 @@ struct LiveGameView: View {
         .accessibilityLabel("Undo last stat")
         .accessibilityHint("Remove the most recently recorded statistic")
         .accessibilityAddTraits(.isButton)
+    }
+}
+
+// MARK: - Edit Opponent Name Sheet
+
+struct EditOpponentNameSheet: View {
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.managedObjectContext) private var viewContext
+    @ObservedObject var game: Game
+    
+    @State private var opponentName: String
+    
+    init(game: Game) {
+        self.game = game
+        _opponentName = State(initialValue: game.opponentName ?? "")
+    }
+    
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section {
+                    TextField("Opponent Team Name", text: $opponentName)
+                        .autocapitalization(.words)
+                }
+            }
+            .navigationTitle("Edit Opponent")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Save") {
+                        game.opponentName = opponentName.trimmingCharacters(in: .whitespacesAndNewlines)
+                        game.updatedAt = Date()  // Trigger Core Data update
+                        do {
+                            try viewContext.save()
+                            // Force notification to update UI
+                            NotificationCenter.default.post(name: NSNotification.Name.NSManagedObjectContextDidSave, object: viewContext)
+                        } catch {
+                            print("Error saving opponent name: \(error)")
+                        }
+                        dismiss()
+                    }
+                    .disabled(opponentName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                }
+            }
+        }
     }
 }
 

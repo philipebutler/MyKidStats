@@ -68,6 +68,8 @@ class LiveGameViewModel: ObservableObject {
         event.id = UUID()
         event.playerId = focusPlayer.id
         event.gameId = game.id
+        event.player = focusPlayer  // Set relationship
+        event.game = game  // Set relationship
         event.timestamp = Date()
         event.statType = statType.rawValue
         event.value = Int32(statType.pointValue)
@@ -96,6 +98,11 @@ class LiveGameViewModel: ObservableObject {
         event.id = UUID()
         event.playerId = playerId
         event.gameId = game.id
+        event.game = game  // Set relationship
+        // Find and set player relationship
+        if let player = getPlayer(by: playerId) {
+            event.player = player
+        }
         event.timestamp = Date()
         event.statType = statType.rawValue
         event.value = Int32(points)
@@ -178,6 +185,13 @@ class LiveGameViewModel: ObservableObject {
         if let event = try? context.fetch(request).first {
             event.isSoftDeleted = true
         }
+    }
+    
+    private func getPlayer(by playerId: UUID) -> Player? {
+        let request = NSFetchRequest<Player>(entityName: "Player")
+        request.predicate = NSPredicate(format: "id == %@", playerId as CVarArg)
+        request.fetchLimit = 1
+        return try? context.fetch(request).first
     }
 }
 

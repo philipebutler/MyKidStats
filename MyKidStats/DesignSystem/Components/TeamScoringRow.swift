@@ -8,14 +8,16 @@ struct TeamScoringRow: View {
 
     var body: some View {
         HStack(spacing: .spacingM) {
-            Text("#\(jerseyNumber)")
-                .font(.body.bold())
-                .foregroundColor(.secondaryText)
-                .frame(width: 40, alignment: .leading)
-
-            Text(playerName)
-                .font(.teamRow)
-                .lineLimit(1)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("#\(jerseyNumber)")
+                    .font(.body.bold())
+                    .foregroundColor(.secondaryText)
+                
+                Text(playerName)
+                    .font(.teamRow)
+                    .lineLimit(1)
+            }
+            .frame(width: 80, alignment: .leading)
 
             Spacer()
 

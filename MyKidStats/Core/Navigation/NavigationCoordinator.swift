@@ -8,6 +8,7 @@ enum AppTab {
     case live
     case stats
     case teams
+    case players
 }
 
 @MainActor
@@ -34,6 +35,7 @@ enum PresentedSheet: Identifiable {
     case addChild
     case settings
     case selectTeam(Child)
+    case manageChildren
 
     var id: String {
         switch self {
@@ -47,6 +49,8 @@ enum PresentedSheet: Identifiable {
             return "settings"
         case .selectTeam(let child):
             return "selectTeam_\(child.id?.uuidString ?? "unknown")"
+        case .manageChildren:
+            return "manageChildren"
         }
     }
 }

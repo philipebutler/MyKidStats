@@ -133,6 +133,24 @@ struct GameSummaryView: View {
                         .font(.caption)
                         .foregroundColor(.secondaryText)
                 }
+                
+                VStack {
+                    Text("\(stats.steals)")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    Text("STL")
+                        .font(.caption)
+                        .foregroundColor(.secondaryText)
+                }
+                
+                VStack {
+                    Text("\(stats.blocks)")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    Text("BLK")
+                        .font(.caption)
+                        .foregroundColor(.secondaryText)
+                }
             }
             .frame(maxWidth: .infinity)
             
@@ -295,22 +313,56 @@ struct GameSummaryView: View {
     }
     
     private func calculateFocusPlayerStats() -> LiveStats {
-        guard let events = game.statEvents as? Set<StatEvent> else { return LiveStats() }
+        guard let events = game.statEvents as? Set<StatEvent> else { 
+            print("No stat events found for game")
+            return LiveStats() 
+        }
         
-        // Find the focus player
-        guard let team = game.team,
-              let players = team.players as? Set<Player>,
-              let focusPlayer = players.first(where: { $0.childId == focusChild.id }) else {
+        print("Found \(events.count) stat events for game")
+        
+        // Filter events directly by focusChildId using game's focusChildId
+        guard let focusChildId = game.focusChildId else {
+            print("No focusChildId on game")
             return LiveStats()
         }
         
-        let playerEvents = events.filter { $0.playerId == focusPlayer.id && !$0.isSoftDeleted }
+        // Find player for this child on this team
+        guard let teamId = game.teamId else {
+            print("No teamId on game")
+            return LiveStats()
+        }
+        
+        let context = game.managedObjectContext!
+        let playerRequest = NSFetchRequest<Player>(entityName: "Player")
+        playerRequest.predicate = NSPredicate(
+            format: "childId == %@ AND teamId == %@",
+            focusChildId as CVarArg,
+            teamId as CVarArg
+        )
+        
+        guard let focusPlayer = try? context.fetch(playerRequest).first,
+              let focusPlayerId = focusPlayer.id else {
+            print("Could not find focus player")
+            return LiveStats()
+        }
+        
+        print("Focus player ID: \(focusPlayerId)")
+        
+        let playerEvents = events.filter { $0.playerId == focusPlayerId && !$0.isSoftDeleted }
+        print("Found \(playerEvents.count) events for focus player")
+        
         var stats = LiveStats()
         
         for event in playerEvents {
-            guard let statType = event.statType, let type = StatType(rawValue: statType) else { continue }
+            guard let statType = event.statType, let type = StatType(rawValue: statType) else { 
+                print("Invalid stat type: \(event.statType ?? "nil")")
+                continue 
+            }
+            print("Recording stat: \(type.rawValue)")
             stats.recordStat(type)
         }
+        
+        print("Final stats - Points: \(stats.points), Rebounds: \(stats.rebounds), Assists: \(stats.assists)")
         
         return stats
     }

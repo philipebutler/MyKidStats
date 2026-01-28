@@ -45,15 +45,21 @@ struct LiveGameTabView: View {
     private var activeGamesList: some View {
         List {
             ForEach(activeGames, id: \.id) { game in
-                NavigationLink {
-                    if let player = getPlayer(for: game) {
-                        LiveGameView(game: game, focusPlayer: player)
-                    } else {
-                        Text("Error loading game")
+                ZStack {
+                    NavigationLink {
+                        if let player = getPlayer(for: game) {
+                            LiveGameView(game: game, focusPlayer: player)
+                        } else {
+                            Text("Error loading game")
+                        }
+                    } label: {
+                        EmptyView()
                     }
-                } label: {
+                    .opacity(0)
+                    
                     ActiveGameRow(game: game)
                 }
+                .listRowInsets(EdgeInsets())
             }
         }
     }
@@ -78,9 +84,23 @@ struct LiveGameTabView: View {
             focusChildId as CVarArg,
             teamId as CVarArg
         )
+        request.relationshipKeyPathsForPrefetching = ["child", "team"]  // Ensure relationships are loaded
         request.fetchLimit = 1
         
-        return try? context.fetch(request).first
+        guard let player = try? context.fetch(request).first else {
+            return nil
+        }
+        
+        // Ensure child relationship is set if not already
+        if player.child == nil {
+            let childRequest = NSFetchRequest<Child>(entityName: "Child")
+            childRequest.predicate = NSPredicate(format: "id == %@", focusChildId as CVarArg)
+            if let child = try? context.fetch(childRequest).first {
+                player.child = child
+            }
+        }
+        
+        return player
     }
 }
 struct ActiveGameRow: View {
@@ -112,11 +132,18 @@ struct ActiveGameRow: View {
             
             Spacer()
             
-            Image(systemName: "chevron.right")
-                .font(.caption)
-                .foregroundColor(.secondaryText)
+            Text("GO")
+                .font(.headline.weight(.bold))
+                .foregroundColor(.white)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 8)
+                .background(Color.accentColor)
+                .cornerRadius(8)
         }
-        .padding(.vertical, 8)
+        .padding(.vertical, 12)
+        .padding(.leading, 16)
+        .padding(.trailing, 16)
+        .contentShape(Rectangle())
     }
 }
 

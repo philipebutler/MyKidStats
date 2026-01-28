@@ -19,6 +19,6 @@ extension Font {
     static let statValue = Font.system(.title3, design: .rounded, weight: .bold)
     
     // MARK: - Body Text
-    static let teamRow = Font.system(.body, design: .default, weight: .regular)
+    static let teamRow = Font.system(.subheadline, design: .default, weight: .regular)
     static let summaryText = Font.system(.caption, design: .default, weight: .regular)
 }

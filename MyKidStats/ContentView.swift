@@ -25,17 +25,23 @@ struct ContentView: View {
                 }
                 .tag(AppTab.live)
 
+            StatsView()
+                .tabItem {
+                    Label("Stats", systemImage: "chart.bar.fill")
+                }
+                .tag(AppTab.stats)
+
             TeamsView()
                 .tabItem {
                     Label("Teams", systemImage: "person.3.fill")
                 }
                 .tag(AppTab.teams)
 
-            StatsView()
+            PlayersTabView()
                 .tabItem {
-                    Label("Stats", systemImage: "chart.bar.fill")
+                    Label("Players", systemImage: "person.2.fill")
                 }
-                .tag(AppTab.stats)
+                .tag(AppTab.players)
         }
         .environmentObject(coordinator)
     }
@@ -164,11 +170,12 @@ struct TeamDetailRow: View {
 
 struct TeamDetailView: View {
     @Environment(\.managedObjectContext) private var context
-    let team: Team
+    @ObservedObject var team: Team
     @State private var players: [Player] = []
     @State private var allChildren: [Child] = []
     @State private var showingAddPlayer = false
     @State private var showingAddChild = false
+    @State private var showingEditTeam = false
     @State private var editingPlayer: Player?
     @State private var playerToDelete: Player?
     @State private var showDeleteAlert = false
@@ -260,18 +267,22 @@ struct TeamDetailView: View {
                     Label("Add Player to Team", systemImage: "person.badge.plus")
                 }
             }
-            
-            Section {
-                Button(action: { showingAddChild = true }) {
-                    Label("Manage All Children", systemImage: "person.2")
-                }
-            }
         }
         .navigationTitle(team.name ?? "Team")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button(action: { showingEditTeam = true }) {
+                    Text("Edit")
+                }
+            }
+        }
         .onAppear {
             loadPlayers()
             loadChildren()
+        }
+        .sheet(isPresented: $showingEditTeam) {
+            EditTeamSheet(team: team)
         }
         .sheet(isPresented: $showingAddPlayer) {
             AddPlayerToTeamView(team: team, availableChildren: availableChildren) {
@@ -397,6 +408,68 @@ struct EditPlayerView: View {
     }
 }
 
+// MARK: - Edit Team Sheet
+
+struct EditTeamSheet: View {
+    @Environment(\.managedObjectContext) private var context
+    @Environment(\.dismiss) private var dismiss
+    @ObservedObject var team: Team
+    
+    @State private var teamName: String
+    @State private var season: String
+    @State private var organization: String
+    
+    init(team: Team) {
+        self.team = team
+        _teamName = State(initialValue: team.name ?? "")
+        _season = State(initialValue: team.season ?? "")
+        _organization = State(initialValue: team.organization ?? "")
+    }
+    
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section(header: Text("Team Information")) {
+                    TextField("Team Name", text: $teamName)
+                        .autocapitalization(.words)
+                    TextField("Season", text: $season)
+                        .autocapitalization(.words)
+                    TextField("Organization (optional)", text: $organization)
+                        .autocapitalization(.words)
+                }
+            }
+            .navigationTitle("Edit Team")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Save") {
+                        saveTeam()
+                    }
+                    .disabled(teamName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || season.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                }
+            }
+        }
+    }
+    
+    private func saveTeam() {
+        team.name = teamName.trimmingCharacters(in: .whitespacesAndNewlines)
+        team.season = season.trimmingCharacters(in: .whitespacesAndNewlines)
+        team.organization = organization.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : organization.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        do {
+            try context.save()
+            dismiss()
+        } catch {
+            print("Error saving team: \(error)")
+        }
+    }
+}
+
 // MARK: - Manage Children View
 
 struct ManageChildrenView: View {
@@ -407,87 +480,86 @@ struct ManageChildrenView: View {
     @State private var editingChild: Child?
     @State private var childToDelete: Child?
     @State private var showDeleteAlert = false
+    var showDoneButton: Bool = true  // Allow customization
     
     var body: some View {
-        NavigationStack {
-            List {
-                if children.isEmpty {
-                    VStack(spacing: 12) {
-                        Text("No children added yet")
-                            .foregroundColor(.secondaryText)
-                            .italic()
-                        Text("Add your child and their teammates")
-                            .font(.caption)
-                            .foregroundColor(.secondaryText)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 8)
-                } else {
-                    ForEach(children, id: \.id) { child in
-                        HStack {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(child.name ?? "")
-                                    .font(.headline)
-                                if let dob = child.dateOfBirth {
-                                    Text(dob, style: .date)
-                                        .font(.caption)
-                                        .foregroundColor(.secondaryText)
-                                }
+        List {
+            if children.isEmpty {
+                VStack(spacing: 12) {
+                    Text("No children added yet")
+                        .foregroundColor(.secondaryText)
+                        .italic()
+                    Text("Add your child and their teammates")
+                        .font(.caption)
+                        .foregroundColor(.secondaryText)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 8)
+            } else {
+                ForEach(children, id: \.id) { child in
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(child.name ?? "")
+                                .font(.headline)
+                            if let dob = child.dateOfBirth {
+                                Text(dob, style: .date)
+                                    .font(.caption)
+                                    .foregroundColor(.secondaryText)
                             }
-                            Spacer()
-                            Button(action: { editingChild = child }) {
-                                Image(systemName: "pencil")
-                                    .foregroundColor(.blue)
-                            }
-                            .buttonStyle(.borderless)
                         }
-                        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                            Button(role: .destructive) {
-                                childToDelete = child
-                                showDeleteAlert = true
-                            } label: {
-                                Label("Delete", systemImage: "trash")
-                            }
+                        Spacer()
+                        Button(action: { editingChild = child }) {
+                            Image(systemName: "pencil")
+                                .foregroundColor(.blue)
+                        }
+                        .buttonStyle(.borderless)
+                    }
+                    .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                        Button(role: .destructive) {
+                            childToDelete = child
+                            showDeleteAlert = true
+                        } label: {
+                            Label("Delete", systemImage: "trash")
                         }
                     }
                 }
             }
-            .navigationTitle("Manage Children")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
+        }
+        .toolbar {
+            if showDoneButton {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Done") { dismiss() }
                 }
-                ToolbarItem(placement: .primaryAction) {
-                    Button(action: { showingAddChild = true }) {
-                        Image(systemName: "plus")
-                    }
+            }
+            ToolbarItem(placement: .primaryAction) {
+                Button(action: { showingAddChild = true }) {
+                    Image(systemName: "plus")
                 }
             }
-            .onAppear {
+        }
+        .onAppear {
+            loadChildren()
+        }
+        .sheet(isPresented: $showingAddChild) {
+            AddOrEditChildView(mode: .add) {
                 loadChildren()
             }
-            .sheet(isPresented: $showingAddChild) {
-                AddOrEditChildView(mode: .add) {
-                    loadChildren()
-                }
+        }
+        .sheet(item: $editingChild) { child in
+            AddOrEditChildView(mode: .edit(child)) {
+                loadChildren()
             }
-            .sheet(item: $editingChild) { child in
-                AddOrEditChildView(mode: .edit(child)) {
-                    loadChildren()
-                }
-            }
-            .alert("Delete Child", isPresented: $showDeleteAlert) {
-                Button("Cancel", role: .cancel) { }
-                Button("Delete", role: .destructive) {
-                    if let child = childToDelete {
-                        deleteChild(child)
-                    }
-                }
-            } message: {
+        }
+        .alert("Delete Child", isPresented: $showDeleteAlert) {
+            Button("Cancel", role: .cancel) { }
+            Button("Delete", role: .destructive) {
                 if let child = childToDelete {
-                    Text("Delete \(child.name ?? "this child")? This will also remove them from all teams.")
+                    deleteChild(child)
                 }
+            }
+        } message: {
+            if let child = childToDelete {
+                Text("Delete \(child.name ?? "this child")? This will also remove them from all teams.")
             }
         }
     }
@@ -732,6 +804,18 @@ struct SettingsView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.appBackground)
+    }
+}
+
+// MARK: - Players Tab View
+
+struct PlayersTabView: View {
+    var body: some View {
+        NavigationStack {
+            ManageChildrenView()
+                .navigationTitle("Players")
+                .navigationBarTitleDisplayMode(.large)
+        }
     }
 }
 

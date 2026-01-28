@@ -57,6 +57,8 @@ struct HomeView: View {
             CreateTeamSheetWrapper(coordinator: coordinator)
         case .selectTeam(let child):
             SelectTeamSheet(child: child, coordinator: coordinator)
+        case .manageChildren:
+            ManageChildrenView()
         }
     }
 
@@ -297,8 +299,9 @@ struct SelectTeamSheet: View {
         let game = Game(context: context)
         game.id = UUID()
         game.teamId = team.id
+        game.team = team  // Set the relationship
         game.focusChildId = child.id
-        game.opponentName = "Opponent"
+        game.opponentName = "Opponent" // User can edit in live game
         game.opponentScore = 0
         game.gameDate = Date()
         game.isComplete = false

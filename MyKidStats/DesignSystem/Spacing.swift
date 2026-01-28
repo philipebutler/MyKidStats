@@ -22,7 +22,7 @@ extension CGFloat {
     static let cornerRadiusCard: CGFloat = 16
     
     // MARK: - Button Sizes
-    static let buttonSizeFocus: CGFloat = 56
+    static let buttonSizeFocus: CGFloat = 75  // Increased for better touch targets
     static let buttonSizeTeam: CGFloat = 48
     static let buttonSizeOpponent: CGFloat = 52
     static let buttonSizeUndo: CGFloat = 50
