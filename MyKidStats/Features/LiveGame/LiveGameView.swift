@@ -3,8 +3,11 @@ import SwiftUI
 struct LiveGameView: View {
     @StateObject private var viewModel: LiveGameViewModel
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var showEndGameAlert = false
     @State private var showGameSummary = false
+    @State private var showOpponentScoreEditor = false
+    @State private var opponentScoreInput = ""
 
     init(game: Game, focusPlayer: Player) {
         _viewModel = StateObject(
@@ -27,7 +30,7 @@ struct LiveGameView: View {
 
             if viewModel.canUndo {
                 undoButton
-                    .transition(.scale.combined(with: .opacity))
+                    .transition(reduceMotion ? .opacity : .scale.combined(with: .opacity))
             }
         }
         .navigationTitle("\(viewModel.game.team?.name ?? "Team") vs \(viewModel.game.opponentName)")
@@ -37,6 +40,8 @@ struct LiveGameView: View {
                 Button("End Game", role: .destructive) {
                     showEndGameAlert = true
                 }
+                .accessibilityLabel("End game")
+                .accessibilityHint("Mark this game as complete and view summary")
             }
         }
         .alert("End Game?", isPresented: $showEndGameAlert) {
@@ -53,6 +58,21 @@ struct LiveGameView: View {
                 GameSummaryView(game: viewModel.game, focusChild: child)
             }
         }
+        .alert("Edit Opponent Score", isPresented: $showOpponentScoreEditor) {
+            TextField("Score", text: $opponentScoreInput)
+                .keyboardType(.numberPad)
+            Button("Cancel", role: .cancel) {
+                opponentScoreInput = ""
+            }
+            Button("Update") {
+                if let newScore = Int(opponentScoreInput), newScore >= 0 {
+                    viewModel.setOpponentScore(newScore)
+                }
+                opponentScoreInput = ""
+            }
+        } message: {
+            Text("Enter the new score for \(viewModel.game.opponentName)")
+        }
     }
 
     private var opponentScoringSection: some View {
@@ -68,7 +88,25 @@ struct LiveGameView: View {
                     .foregroundColor(.secondaryText)
                 Text("\(viewModel.game.opponentName) \(viewModel.opponentScore)")
                     .font(.title2.weight(.semibold))
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Color.blue.opacity(0.1))
+                    .cornerRadius(8)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.blue.opacity(0.3), lineWidth: 1)
+                    )
+                    .onLongPressGesture {
+                        opponentScoreInput = "\(viewModel.opponentScore)"
+                        showOpponentScoreEditor = true
+                    }
+                Image(systemName: "hand.tap")
+                    .font(.caption2)
+                    .foregroundColor(.blue.opacity(0.6))
             }
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("Current score: \(viewModel.game.team?.name ?? "Team") \(viewModel.teamScore), \(viewModel.game.opponentName) \(viewModel.opponentScore)")
+            .accessibilityHint("Long press opponent score to edit manually")
 
             HStack(spacing: .spacingM) {
                 TeamScoreButton(points: 1) {
@@ -99,6 +137,8 @@ struct LiveGameView: View {
                     .font(.title3)
                     .foregroundColor(.secondaryText)
             }
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("\(viewModel.focusPlayer.child?.name ?? "Player"), jersey number \(viewModel.focusPlayer.jerseyNumber ?? "unknown")")
 
             VStack(spacing: .spacingM) {
                 HStack(spacing: .spacingM) {
@@ -159,10 +199,17 @@ struct LiveGameView: View {
             Text(summaryText)
                 .font(.summaryText.bold())
                 .foregroundColor(.secondaryText)
+                .accessibilityLabel(accessibilitySummaryText)
         }
         .padding()
         .background(Color.cardBackground)
         .cornerRadius(.cornerRadiusCard)
+    }
+    
+    private var accessibilitySummaryText: String {
+        let stats = viewModel.currentStats
+        let fgPercentageText = stats.fgAttempted > 0 ? ", field goal percentage \(Int(stats.fgPercentage))%" : ""
+        return "\(stats.points) points, \(stats.fgMade) of \(stats.fgAttempted) field goals\(fgPercentageText), \(stats.ftMade) of \(stats.ftAttempted) free throws"
     }
 
     private var twoMadeCount: Int {
@@ -220,6 +267,9 @@ struct LiveGameView: View {
             .shadow(radius: 4)
         }
         .padding(.spacingL)
+        .accessibilityLabel("Undo last stat")
+        .accessibilityHint("Remove the most recently recorded statistic")
+        .accessibilityAddTraits(.isButton)
     }
 }
 

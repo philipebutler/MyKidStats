@@ -16,9 +16,11 @@ struct GameSummaryView: View {
     @State private var shareContent: [Any] = []
     @State private var showingError = false
     @State private var errorMessage = ""
+    @State private var careerStats: CareerStats?
     
     private let exportCSVUseCase = ExportGameCSVUseCase()
     private let textSummaryUseCase = GenerateTextSummaryUseCase()
+    private let careerStatsUseCase = CalculateCareerStatsUseCase()
     
     var body: some View {
         NavigationStack {
@@ -26,6 +28,11 @@ struct GameSummaryView: View {
                 VStack(spacing: .spacingL) {
                     gameResultHeader
                     focusPlayerStats
+                    
+                    if let careerStats = careerStats {
+                        seasonComparisonSection(gameStats: calculateFocusPlayerStats(), careerStats: careerStats)
+                    }
+                    
                     gameDetails
                     exportButtons
                 }
@@ -48,6 +55,9 @@ struct GameSummaryView: View {
                 Button("OK", role: .cancel) { }
             } message: {
                 Text(errorMessage)
+            }
+            .task {
+                await loadCareerStats()
             }
         }
     }
@@ -210,6 +220,69 @@ struct GameSummaryView: View {
         }
     }
     
+    private func seasonComparisonSection(gameStats: LiveStats, careerStats: CareerStats) -> some View {
+        VStack(alignment: .leading, spacing: .spacingM) {
+            Text("Season Comparison")
+                .font(.headline)
+            
+            VStack(spacing: .spacingS) {
+                comparisonRow(label: "Points", gameValue: gameStats.points, seasonAvg: careerStats.pointsPerGame)
+                comparisonRow(label: "Rebounds", gameValue: gameStats.rebounds, seasonAvg: careerStats.reboundsPerGame)
+                comparisonRow(label: "Assists", gameValue: gameStats.assists, seasonAvg: careerStats.assistsPerGame)
+                comparisonRow(label: "Steals", gameValue: gameStats.steals, seasonAvg: careerStats.stealsPerGame)
+                comparisonRow(label: "Blocks", gameValue: gameStats.blocks, seasonAvg: careerStats.blocksPerGame)
+            }
+        }
+        .padding()
+        .background(Color.cardBackground)
+        .cornerRadius(12)
+    }
+    
+    private func comparisonRow(label: String, gameValue: Int, seasonAvg: Double) -> some View {
+        HStack {
+            Text(label)
+                .font(.subheadline)
+                .frame(width: 80, alignment: .leading)
+            
+            VStack(alignment: .leading, spacing: 2) {
+                Text("This Game: \(gameValue)")
+                    .font(.caption)
+                    .foregroundColor(.primary)
+                
+                Text(String(format: "Season Avg: %.1f", seasonAvg))
+                    .font(.caption)
+                    .foregroundColor(.secondaryText)
+            }
+            
+            Spacer()
+            
+            if Double(gameValue) > seasonAvg {
+                Image(systemName: "arrow.up.circle.fill")
+                    .foregroundColor(.green)
+            } else if Double(gameValue) < seasonAvg {
+                Image(systemName: "arrow.down.circle.fill")
+                    .foregroundColor(.orange)
+            } else {
+                Image(systemName: "equal.circle.fill")
+                    .foregroundColor(.gray)
+            }
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(comparisonAccessibilityLabel(label: label, gameValue: gameValue, seasonAvg: seasonAvg))
+    }
+    
+    private func comparisonAccessibilityLabel(label: String, gameValue: Int, seasonAvg: Double) -> String {
+        let comparison: String
+        if Double(gameValue) > seasonAvg {
+            comparison = "above average"
+        } else if Double(gameValue) < seasonAvg {
+            comparison = "below average"
+        } else {
+            comparison = "equal to average"
+        }
+        return "\(label): \(gameValue) this game, \(String(format: "%.1f", seasonAvg)) season average, \(comparison)"
+    }
+    
     // MARK: - Helper Functions
     
     private var resultText: String {
@@ -262,6 +335,16 @@ struct GameSummaryView: View {
         } catch {
             errorMessage = "Failed to export CSV: \(error.localizedDescription)"
             showingError = true
+        }
+    }
+    
+    private func loadCareerStats() async {
+        guard let childId = focusChild.id else { return }
+        do {
+            careerStats = try await careerStatsUseCase.execute(for: childId)
+        } catch {
+            // Silently fail - comparison section just won't show
+            print("Failed to load career stats: \(error)")
         }
     }
 }

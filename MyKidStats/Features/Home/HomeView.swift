@@ -28,6 +28,8 @@ struct HomeView: View {
                     Button(action: viewModel.openSettings) {
                         Image(systemName: "gear")
                     }
+                    .accessibilityLabel("Settings")
+                    .accessibilityHint("Open app settings and preferences")
                 }
             }
             .sheet(item: $coordinator.presentedSheet) { sheet in
@@ -83,6 +85,8 @@ struct HomeView: View {
                         .background(Color.cardBackground)
                         .cornerRadius(.cornerRadiusButton)
                     }
+                    .accessibilityLabel("Switch to \(viewModel.otherChildName)")
+                    .accessibilityHint("Make \(viewModel.otherChildName) the default player for starting games")
                 }
             } else {
                 VStack(spacing: .spacingL) {
@@ -526,47 +530,6 @@ struct CreateTeamSheetWrapper: View {
     }
 }
 
-// MARK: - Color Extensions
-
-extension Color {
-    init?(hex: String) {
-        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-        var int: UInt64 = 0
-        Scanner(string: hex).scanHexInt64(&int)
-        let a, r, g, b: UInt64
-        switch hex.count {
-        case 3:
-            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6:
-            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8:
-            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
-        default:
-            return nil
-        }
-        self.init(
-            .sRGB,
-            red: Double(r) / 255,
-            green: Double(g) / 255,
-            blue: Double(b) / 255,
-            opacity: Double(a) / 255
-        )
-    }
-    
-    func toHex() -> String? {
-        guard let components = UIColor(self).cgColor.components else { return nil }
-        
-        let r = components[0]
-        let g = components.count > 1 ? components[1] : components[0]
-        let b = components.count > 2 ? components[2] : components[0]
-        
-        return String(format: "#%02lX%02lX%02lX",
-                     lroundf(Float(r * 255)),
-                     lroundf(Float(g * 255)),
-                     lroundf(Float(b * 255)))
-    }
-}
-
 // MARK: - Settings & Game Summary
 
 // TEMPORARY: Commented out until SelectTeamView is added to project
@@ -585,24 +548,58 @@ struct SelectTeamSheet_Old: View {
 
 struct SettingsSheet: View {
     let coordinator: NavigationCoordinator
+    @Environment(\.managedObjectContext) private var context
+    @State private var showResetConfirmation = false
+    @State private var showResetSuccess = false
+    @State private var showingError = false
+    @State private var errorMessage = ""
     
     var body: some View {
         NavigationStack {
             List {
                 Section(header: Text("About")) {
                     HStack {
+                        Text("App Name")
+                        Spacer()
+                        Text("MyKidStats")
+                            .foregroundColor(.secondaryText)
+                    }
+                    
+                    HStack {
                         Text("Version")
                         Spacer()
-                        Text("1.0.0")
+                        Text(appVersion)
+                            .foregroundColor(.secondaryText)
+                    }
+                    
+                    HStack {
+                        Text("Build")
+                        Spacer()
+                        Text(buildNumber)
                             .foregroundColor(.secondaryText)
                     }
                 }
                 
-                Section(header: Text("Data")) {
+                Section(header: Text("Support")) {
+                    Link(destination: URL(string: "https://github.com/philipebutler/MyKidStats")!) {
+                        HStack {
+                            Image(systemName: "link")
+                            Text("GitHub Repository")
+                            Spacer()
+                            Image(systemName: "arrow.up.right")
+                                .font(.caption)
+                        }
+                    }
+                }
+                
+                Section(header: Text("Data Management"), footer: Text("This action cannot be undone. All children, teams, games, and statistics will be permanently deleted.")) {
                     Button(role: .destructive) {
-                        // TODO: Implement data reset
+                        showResetConfirmation = true
                     } label: {
-                        Text("Reset All Data")
+                        HStack {
+                            Image(systemName: "trash.fill")
+                            Text("Reset All Data")
+                        }
                     }
                 }
             }
@@ -615,6 +612,69 @@ struct SettingsSheet: View {
                     }
                 }
             }
+            .alert("Reset All Data?", isPresented: $showResetConfirmation) {
+                Button("Cancel", role: .cancel) { }
+                Button("Reset Everything", role: .destructive) {
+                    resetAllData()
+                }
+            } message: {
+                Text("Are you sure you want to delete all data? This action cannot be undone and will remove all children, teams, games, and statistics.")
+            }
+            .alert("Data Reset Complete", isPresented: $showResetSuccess) {
+                Button("OK") {
+                    coordinator.dismissSheet()
+                }
+            } message: {
+                Text("All data has been successfully deleted.")
+            }
+            .alert("Error", isPresented: $showingError) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text(errorMessage)
+            }
+        }
+    }
+    
+    private var appVersion: String {
+        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0"
+    }
+    
+    private var buildNumber: String {
+        Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
+    }
+    
+    private func resetAllData() {
+        let entitiesToDelete = ["Child", "Team", "Player", "Game", "StatEvent"]
+        var failedEntities: [String] = []
+        
+        // Attempt to delete all entities
+        for entityName in entitiesToDelete {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            
+            do {
+                try context.execute(deleteRequest)
+            } catch {
+                print("Failed to delete \(entityName): \(error)")
+                failedEntities.append(entityName)
+            }
+        }
+        
+        // Only save if all deletions succeeded
+        guard failedEntities.isEmpty else {
+            errorMessage = "Failed to delete some data: \(failedEntities.joined(separator: ", "))"
+            showingError = true
+            return
+        }
+        
+        // Save context
+        do {
+            try context.save()
+            context.reset()
+            showResetSuccess = true
+        } catch {
+            errorMessage = "Failed to complete data reset: \(error.localizedDescription)"
+            showingError = true
         }
     }
 }
