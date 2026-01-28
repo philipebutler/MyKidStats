@@ -11,6 +11,14 @@ xcuserdata/
 *.xcodeproj/project.xcworkspace/xcshareddata
 *.swiftpm
 *.DS_Store
+
+# Code Coverage
+coverage.json
+coverage.txt
+test-results.html
+*.profdata
+*.coverage
+
 # CocoaPods
 Pods/
 # Carthage
