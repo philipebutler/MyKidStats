@@ -6,6 +6,8 @@ struct LiveGameView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var showEndGameAlert = false
     @State private var showGameSummary = false
+    @State private var showOpponentScoreEditor = false
+    @State private var opponentScoreInput = ""
 
     init(game: Game, focusPlayer: Player) {
         _viewModel = StateObject(
@@ -56,6 +58,21 @@ struct LiveGameView: View {
                 GameSummaryView(game: viewModel.game, focusChild: child)
             }
         }
+        .alert("Edit Opponent Score", isPresented: $showOpponentScoreEditor) {
+            TextField("Score", text: $opponentScoreInput)
+                .keyboardType(.numberPad)
+            Button("Cancel", role: .cancel) {
+                opponentScoreInput = ""
+            }
+            Button("Update") {
+                if let newScore = Int(opponentScoreInput), newScore >= 0 {
+                    viewModel.setOpponentScore(newScore)
+                }
+                opponentScoreInput = ""
+            }
+        } message: {
+            Text("Enter the new score for \(viewModel.game.opponentName)")
+        }
         .accessibilityElement(children: .contain)
     }
 
@@ -72,9 +89,14 @@ struct LiveGameView: View {
                     .foregroundColor(.secondaryText)
                 Text("\(viewModel.game.opponentName) \(viewModel.opponentScore)")
                     .font(.title2.weight(.semibold))
+                    .onLongPressGesture {
+                        opponentScoreInput = "\(viewModel.opponentScore)"
+                        showOpponentScoreEditor = true
+                    }
             }
             .accessibilityElement(children: .combine)
             .accessibilityLabel("Current score: \(viewModel.game.team?.name ?? "Team") \(viewModel.teamScore), \(viewModel.game.opponentName) \(viewModel.opponentScore)")
+            .accessibilityHint("Long press opponent score to edit")
 
             HStack(spacing: .spacingM) {
                 TeamScoreButton(points: 1) {
