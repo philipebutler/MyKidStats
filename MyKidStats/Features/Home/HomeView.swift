@@ -589,24 +589,56 @@ struct SelectTeamSheet_Old: View {
 
 struct SettingsSheet: View {
     let coordinator: NavigationCoordinator
+    @Environment(\.managedObjectContext) private var context
+    @State private var showResetConfirmation = false
+    @State private var showResetSuccess = false
     
     var body: some View {
         NavigationStack {
             List {
                 Section(header: Text("About")) {
                     HStack {
+                        Text("App Name")
+                        Spacer()
+                        Text("MyKidStats")
+                            .foregroundColor(.secondaryText)
+                    }
+                    
+                    HStack {
                         Text("Version")
                         Spacer()
-                        Text("1.0.0")
+                        Text(appVersion)
+                            .foregroundColor(.secondaryText)
+                    }
+                    
+                    HStack {
+                        Text("Build")
+                        Spacer()
+                        Text(buildNumber)
                             .foregroundColor(.secondaryText)
                     }
                 }
                 
-                Section(header: Text("Data")) {
+                Section(header: Text("Support")) {
+                    Link(destination: URL(string: "https://github.com/philipebutler/MyKidStats")!) {
+                        HStack {
+                            Image(systemName: "link")
+                            Text("GitHub Repository")
+                            Spacer()
+                            Image(systemName: "arrow.up.right")
+                                .font(.caption)
+                        }
+                    }
+                }
+                
+                Section(header: Text("Data Management"), footer: Text("This action cannot be undone. All children, teams, games, and statistics will be permanently deleted.")) {
                     Button(role: .destructive) {
-                        // TODO: Implement data reset
+                        showResetConfirmation = true
                     } label: {
-                        Text("Reset All Data")
+                        HStack {
+                            Image(systemName: "trash.fill")
+                            Text("Reset All Data")
+                        }
                     }
                 }
             }
@@ -619,6 +651,60 @@ struct SettingsSheet: View {
                     }
                 }
             }
+            .alert("Reset All Data?", isPresented: $showResetConfirmation) {
+                Button("Cancel", role: .cancel) { }
+                Button("Reset Everything", role: .destructive) {
+                    resetAllData()
+                }
+            } message: {
+                Text("Are you sure you want to delete all data? This action cannot be undone and will remove all children, teams, games, and statistics.")
+            }
+            .alert("Data Reset Complete", isPresented: $showResetSuccess) {
+                Button("OK") {
+                    coordinator.dismissSheet()
+                }
+            } message: {
+                Text("All data has been successfully deleted.")
+            }
+        }
+    }
+    
+    private var appVersion: String {
+        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0"
+    }
+    
+    private var buildNumber: String {
+        Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
+    }
+    
+    private func resetAllData() {
+        // Delete all entities
+        let entitiesToDelete = ["Child", "Team", "Player", "Game", "StatEvent"]
+        
+        for entityName in entitiesToDelete {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            
+            do {
+                try context.execute(deleteRequest)
+            } catch {
+                print("Failed to delete \(entityName): \(error)")
+            }
+        }
+        
+        // Save context
+        do {
+            try context.save()
+            
+            // Reset context
+            context.reset()
+            
+            // Post notification to refresh views
+            NotificationCenter.default.post(name: .NSManagedObjectContextDidSave, object: context)
+            
+            showResetSuccess = true
+        } catch {
+            print("Failed to save after reset: \(error)")
         }
     }
 }
