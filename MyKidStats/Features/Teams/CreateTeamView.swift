@@ -143,22 +143,6 @@ struct CreateTeamView: View {
     }
 }
 
-// Color to Hex extension
-extension Color {
-    func toHex() -> String? {
-        guard let components = UIColor(self).cgColor.components else { return nil }
-        
-        let r = components[0]
-        let g = components.count > 1 ? components[1] : components[0]
-        let b = components.count > 2 ? components[2] : components[0]
-        
-        return String(format: "#%02lX%02lX%02lX",
-                     lroundf(Float(r * 255)),
-                     lroundf(Float(g * 255)),
-                     lroundf(Float(b * 255)))
-    }
-}
-
 #Preview {
     let context = CoreDataStack.createInMemoryStack().mainContext
     let coordinator = NavigationCoordinator()

@@ -4,6 +4,8 @@ struct PrimaryButton: View {
     let title: String
     let icon: String?
     let action: () -> Void
+    
+    @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
 
     init(title: String, icon: String? = nil, action: @escaping () -> Void) {
         self.title = title
@@ -20,18 +22,22 @@ struct PrimaryButton: View {
                 }
                 Text(title)
                     .font(.body.bold())
+                    .minimumScaleFactor(0.8)
+                    .lineLimit(1)
             }
             .frame(maxWidth: .infinity)
             .frame(height: 56)
-            .background(Color.blue.opacity(0.15))
+            .background(Color.blue.opacity(reduceTransparency ? 0.25 : 0.15))
             .foregroundColor(.blue)
             .cornerRadius(.cornerRadiusButton)
             .overlay(
                 RoundedRectangle(cornerRadius: .cornerRadiusButton)
-                    .stroke(Color.blue, lineWidth: 2)
+                    .stroke(Color.blue, lineWidth: reduceTransparency ? 3 : 2)
             )
         }
         .buttonStyle(.plain)
+        .accessibilityLabel(title)
+        .accessibilityAddTraits(.isButton)
     }
 }
 

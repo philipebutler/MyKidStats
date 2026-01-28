@@ -1,0 +1,183 @@
+name: Tests & Code Coverage
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    name: Run Tests with Coverage
+    runs-on: macos-14
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '15.2'
+    
+    - name: Cache DerivedData
+      uses: actions/cache@v3
+      with:
+        path: ~/Library/Developer/Xcode/DerivedData
+        key: ${{ runner.os }}-deriveddata-${{ hashFiles('**/*.swift') }}
+        restore-keys: |
+          ${{ runner.os }}-deriveddata-
+    
+    - name: Run unit tests with coverage
+      run: |
+        xcodebuild test \
+          -scheme MyKidStats \
+          -destination 'platform=iOS Simulator,name=iPhone 15 Pro' \
+          -enableCodeCoverage YES \
+          -derivedDataPath ./DerivedData \
+          | xcpretty --color --report html --output ./test-results.html
+      continue-on-error: false
+    
+    - name: Generate coverage report
+      if: always()
+      run: |
+        # Find the most recent xcresult bundle
+        XCRESULT_PATH=$(find ./DerivedData/Logs/Test -name "*.xcresult" -type d | head -n 1)
+        
+        if [ -z "$XCRESULT_PATH" ]; then
+          echo "No test results found"
+          exit 1
+        fi
+        
+        echo "Found test results at: $XCRESULT_PATH"
+        
+        # Generate JSON coverage report
+        xcrun xccov view --report --json "$XCRESULT_PATH" > coverage.json
+        
+        # Generate human-readable report
+        xcrun xccov view --report "$XCRESULT_PATH" > coverage.txt
+        
+        # Display coverage summary
+        echo "=== Code Coverage Summary ==="
+        cat coverage.txt
+    
+    - name: Parse and display coverage
+      if: always()
+      run: |
+        # Extract overall coverage percentage
+        COVERAGE=$(cat coverage.txt | grep -E "^\s+[0-9]+\.[0-9]+%" | head -1 | awk '{print $1}')
+        echo "Overall Coverage: $COVERAGE"
+        
+        # Create a simple badge-style output
+        echo "## Code Coverage Report" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+        echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Overall Coverage | $COVERAGE |" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "See full report in artifacts." >> $GITHUB_STEP_SUMMARY
+    
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: |
+          test-results.html
+          coverage.json
+          coverage.txt
+          ./DerivedData/Logs/Test/*.xcresult
+    
+    - name: Check coverage threshold
+      if: always()
+      run: |
+        # Extract coverage percentage (remove % sign)
+        COVERAGE=$(cat coverage.txt | grep -E "^\s+[0-9]+\.[0-9]+%" | head -1 | awk '{print $1}' | sed 's/%//')
+        
+        # Set minimum threshold (adjust as needed)
+        THRESHOLD=70
+        
+        echo "Coverage: $COVERAGE% (Threshold: $THRESHOLD%)"
+        
+        # Compare using bc for floating point
+        if (( $(echo "$COVERAGE < $THRESHOLD" | bc -l) )); then
+          echo "⚠️  Warning: Coverage $COVERAGE% is below threshold $THRESHOLD%"
+          # Don't fail the build, just warn
+          # exit 1
+        else
+          echo "✅ Coverage $COVERAGE% meets threshold $THRESHOLD%"
+        fi
+    
+    - name: Comment PR with coverage
+      if: github.event_name == 'pull_request' && always()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          
+          // Read coverage report
+          let coverageText = '';
+          try {
+            coverageText = fs.readFileSync('coverage.txt', 'utf8');
+          } catch (err) {
+            console.log('Could not read coverage report');
+            return;
+          }
+          
+          // Extract key metrics
+          const lines = coverageText.split('\n');
+          const summaryLines = lines.slice(0, 20).join('\n');
+          
+          // Create comment body
+          const body = `## 📊 Code Coverage Report
+          
+          <details>
+          <summary>Coverage Summary</summary>
+          
+          \`\`\`
+          ${summaryLines}
+          \`\`\`
+          
+          </details>
+          
+          View full report in the workflow artifacts.
+          `;
+          
+          // Post comment
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: body
+          });
+
+  ui-tests:
+    name: Run UI Tests (Optional)
+    runs-on: macos-14
+    if: github.event_name == 'push' || contains(github.event.pull_request.labels.*.name, 'ui-tests')
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '15.2'
+    
+    - name: Run UI tests
+      run: |
+        xcodebuild test \
+          -scheme MyKidStats \
+          -destination 'platform=iOS Simulator,name=iPhone 15 Pro' \
+          -only-testing:MyKidStatsUITests \
+          -enableCodeCoverage YES \
+          | xcpretty --color
+      continue-on-error: true
+    
+    - name: Upload UI test results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: ui-test-results
+        path: ~/Library/Developer/Xcode/DerivedData/*/Logs/Test/*.xcresult

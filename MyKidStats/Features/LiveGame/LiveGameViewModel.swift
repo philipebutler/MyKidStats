@@ -122,6 +122,20 @@ class LiveGameViewModel: ObservableObject {
             try? self?.context.save()
         }
     }
+    
+    func setOpponentScore(_ newScore: Int) {
+        hapticGenerator.impactOccurred()
+        opponentScore = newScore
+        game.opponentScore = Int32(opponentScore)
+        
+        // Don't set undo action for direct edits to avoid confusion
+        lastAction = nil
+        canUndo = false
+        
+        Task.detached(priority: .userInitiated) { [weak self] in
+            try? self?.context.save()
+        }
+    }
 
     func undoLastAction() {
         guard let action = lastAction else { return }
