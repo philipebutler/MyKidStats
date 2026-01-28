@@ -4,6 +4,9 @@ struct StatButton: View {
     let type: StatType
     let count: Int
     let action: () -> Void
+    
+    @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
+    @Environment(\.sizeCategory) private var sizeCategory
 
     var body: some View {
         Button(action: action) {
@@ -15,20 +18,32 @@ struct StatButton: View {
                 Text(type.displayName)
                     .font(.statLabel)
                     .foregroundColor(type.color)
+                    .minimumScaleFactor(0.6)
+                    .lineLimit(1)
 
                 Text("\(count)")
                     .font(.statValue)
                     .foregroundColor(.secondaryText)
             }
             .frame(width: .buttonSizeFocus, height: .buttonSizeFocus)
-            .background(type.color.opacity(0.15))
+            .background(type.color.opacity(reduceTransparency ? 0.25 : 0.15))
             .cornerRadius(.cornerRadiusButton)
             .overlay(
                 RoundedRectangle(cornerRadius: .cornerRadiusButton)
-                    .stroke(type.color, lineWidth: 2)
+                    .stroke(type.color, lineWidth: reduceTransparency ? 3 : 2)
             )
         }
         .buttonStyle(.plain)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(accessibilityLabelText)
+        .accessibilityHint("Tap to record \(type.displayName.lowercased())")
+        .accessibilityAddTraits(.isButton)
+    }
+    
+    private var accessibilityLabelText: String {
+        let statName = type.displayName
+        let countDescription = count == 1 ? "1 time" : "\(count) times"
+        return "\(statName), recorded \(countDescription)"
     }
 }
 

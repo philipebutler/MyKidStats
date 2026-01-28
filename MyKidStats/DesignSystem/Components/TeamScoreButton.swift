@@ -3,17 +3,22 @@ import SwiftUI
 struct TeamScoreButton: View {
     let points: Int
     let action: () -> Void
+    
+    @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
 
     var body: some View {
         Button(action: action) {
             Text("+\(points)")
                 .font(.body.bold())
                 .frame(width: .buttonSizeTeam, height: .buttonSizeTeam)
-                .background(Color.statTeam.opacity(0.15))
+                .background(Color.statTeam.opacity(reduceTransparency ? 0.25 : 0.15))
                 .foregroundColor(.statTeam)
                 .cornerRadius(.cornerRadiusSmall)
         }
         .buttonStyle(.plain)
+        .accessibilityLabel("Add \(points) point\(points == 1 ? "" : "s") to opponent score")
+        .accessibilityHint("Tap to record \(points) point\(points == 1 ? "" : "s") for the opposing team")
+        .accessibilityAddTraits(.isButton)
     }
 }
 

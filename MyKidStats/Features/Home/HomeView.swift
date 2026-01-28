@@ -28,6 +28,8 @@ struct HomeView: View {
                     Button(action: viewModel.openSettings) {
                         Image(systemName: "gear")
                     }
+                    .accessibilityLabel("Settings")
+                    .accessibilityHint("Open app settings and preferences")
                 }
             }
             .sheet(item: $coordinator.presentedSheet) { sheet in
@@ -83,6 +85,8 @@ struct HomeView: View {
                         .background(Color.cardBackground)
                         .cornerRadius(.cornerRadiusButton)
                     }
+                    .accessibilityLabel("Switch to \(viewModel.otherChildName)")
+                    .accessibilityHint("Make \(viewModel.otherChildName) the default player for starting games")
                 }
             } else {
                 VStack(spacing: .spacingL) {
