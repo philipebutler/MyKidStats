@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE8F050A2F2995D10012C5CF /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F05092F2995D10012C5CF /* Spacing.swift */; };
+		DE8F050C2F2995EC0012C5CF /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F050B2F2995EC0012C5CF /* Fonts.swift */; };
+		DE8F050E2F2996060012C5CF /* Child+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F050D2F2996060012C5CF /* Child+Extensions.swift */; };
+		DE8F05102F2996150012C5CF /* Game+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F050F2F2996150012C5CF /* Game+Extensions.swift */; };
+		DE8F05122F2996240012C5CF /* StatEvent+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F05112F2996240012C5CF /* StatEvent+Extensions.swift */; };
+		DE8F05142F2996340012C5CF /* StatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F05132F2996340012C5CF /* StatType.swift */; };
+		DE8F05162F2996420012C5CF /* LiveStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8F05152F2996420012C5CF /* LiveStats.swift */; };
 		DE93E0132F2838230023B597 /* MyKidStats.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = F2F2F2F2F2F2F2F2F2F2F2F2 /* MyKidStats.xcdatamodeld */; };
 		DE93E0962F286B3B0023B597 /* ATTRIBUTE_RENAME_CHANGES.md in Resources */ = {isa = PBXBuildFile; fileRef = DE93E0952F286B3B0023B597 /* ATTRIBUTE_RENAME_CHANGES.md */; };
 		DE93E0982F286D7F0023B597 /* BUILD_FIXES_SUMMARY.md in Resources */ = {isa = PBXBuildFile; fileRef = DE93E0972F286D7F0023B597 /* BUILD_FIXES_SUMMARY.md */; };
@@ -37,6 +44,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DE8F05092F2995D10012C5CF /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
+		DE8F050B2F2995EC0012C5CF /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		DE8F050D2F2996060012C5CF /* Child+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Child+Extensions.swift"; sourceTree = "<group>"; };
+		DE8F050F2F2996150012C5CF /* Game+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+Extensions.swift"; sourceTree = "<group>"; };
+		DE8F05112F2996240012C5CF /* StatEvent+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StatEvent+Extensions.swift"; sourceTree = "<group>"; };
+		DE8F05132F2996340012C5CF /* StatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatType.swift; sourceTree = "<group>"; };
+		DE8F05152F2996420012C5CF /* LiveStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveStats.swift; sourceTree = "<group>"; };
 		DE93D54D2F24823E0023B597 /* MyKidStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyKidStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE93D55A2F2482400023B597 /* MyKidStatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyKidStatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE93D5642F2482400023B597 /* MyKidStatsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyKidStatsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -326,6 +340,13 @@
 				DE93E0A32F2873560023B597 /* SelectTeamView.swift */,
 				DE93E0A52F2873670023B597 /* CreateTeamView.swift */,
 				DE93E0A72F2873E90023B597 /* PHASE_3_IMPLEMENTATION_COMPLETE.md */,
+				DE8F05092F2995D10012C5CF /* Spacing.swift */,
+				DE8F050B2F2995EC0012C5CF /* Fonts.swift */,
+				DE8F050D2F2996060012C5CF /* Child+Extensions.swift */,
+				DE8F050F2F2996150012C5CF /* Game+Extensions.swift */,
+				DE8F05112F2996240012C5CF /* StatEvent+Extensions.swift */,
+				DE8F05132F2996340012C5CF /* StatType.swift */,
+				DE8F05152F2996420012C5CF /* LiveStats.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -510,9 +531,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE8F050C2F2995EC0012C5CF /* Fonts.swift in Sources */,
+				DE8F050A2F2995D10012C5CF /* Spacing.swift in Sources */,
+				DE8F05122F2996240012C5CF /* StatEvent+Extensions.swift in Sources */,
+				DE8F05162F2996420012C5CF /* LiveStats.swift in Sources */,
+				DE8F050E2F2996060012C5CF /* Child+Extensions.swift in Sources */,
+				DE8F05142F2996340012C5CF /* StatType.swift in Sources */,
 				DE93E0A62F2873670023B597 /* CreateTeamView.swift in Sources */,
 				DE93E09F2F2870B30023B597 /* AddChildView.swift in Sources */,
 				DE93E0A42F2873560023B597 /* SelectTeamView.swift in Sources */,
+				DE8F05102F2996150012C5CF /* Game+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

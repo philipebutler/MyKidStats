@@ -452,77 +452,112 @@ struct CreateTeamSheet: View {
 
 struct CreateTeamSheetWrapper: View {
     @Environment(\.managedObjectContext) private var context
+    @Environment(\.dismiss) private var dismiss
     let coordinator: NavigationCoordinator
-    @State private var children: [Child] = []
-    @State private var selectedChild: Child?
+    
+    @State private var teamName: String = ""
+    @State private var season: String = ""
+    @State private var organization: String = ""
+    @State private var selectedColor: Color = .blue
+    @State private var showError: Bool = false
+    @State private var errorMessage: String = ""
+    
+    private let colorOptions: [Color] = [
+        .blue, .red, .green, .orange, .purple, .pink, .yellow, .cyan, .indigo
+    ]
     
     var body: some View {
-        if let child = selectedChild {
-            // Show create team form for selected child
-            CreateTeamSheet(
-                child: child,
-                coordinator: coordinator,
-                onTeamCreated: { _ in
-                    coordinator.dismissSheet()
+        NavigationStack {
+            Form {
+                Section(header: Text("Team Information")) {
+                    TextField("Team Name", text: $teamName)
+                        .autocapitalization(.words)
+                    
+                    TextField("Season (e.g., Fall 2026)", text: $season)
+                    
+                    TextField("Organization (Optional)", text: $organization)
+                        .autocapitalization(.words)
                 }
-            )
-        } else {
-            // Show child selection
-            NavigationStack {
-                List {
-                    if children.isEmpty {
-                        VStack(spacing: .spacingL) {
-                            Image(systemName: "person.crop.circle.badge.plus")
-                                .font(.system(size: 60))
-                                .foregroundColor(.secondaryText)
-                            
-                            Text("No Children Yet")
-                                .font(.title2)
-                            
-                            Text("Add a child first to create a team")
-                                .font(.subheadline)
-                                .foregroundColor(.secondaryText)
-                                .multilineTextAlignment(.center)
-                        }
-                        .frame(maxWidth: .infinity)
-                        .listRowBackground(Color.clear)
-                    } else {
-                        ForEach(children, id: \.id) { child in
-                            Button(action: { selectedChild = child }) {
-                                HStack {
-                                    Text(child.name ?? "Unknown")
-                                        .font(.headline)
-                                    Spacer()
-                                    Image(systemName: "chevron.right")
-                                        .foregroundColor(.secondary)
-                                }
+                
+                Section(header: Text("Team Colors")) {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 16) {
+                            ForEach(colorOptions, id: \.self) { color in
+                                Circle()
+                                    .fill(color)
+                                    .frame(width: 44, height: 44)
+                                    .overlay(
+                                        Circle()
+                                            .stroke(Color.white, lineWidth: selectedColor == color ? 3 : 0)
+                                    )
+                                    .shadow(radius: selectedColor == color ? 4 : 0)
+                                    .onTapGesture {
+                                        selectedColor = color
+                                    }
                             }
                         }
+                        .padding(.vertical, 8)
                     }
                 }
-                .navigationTitle("Select Child")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button("Cancel") {
-                            coordinator.dismissSheet()
-                        }
+                
+                Section {
+                    Text("After creating the team, you can add players in the team details.")
+                        .font(.caption)
+                        .foregroundColor(.secondaryText)
+                }
+            }
+            .navigationTitle("Create Team")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        dismiss()
                     }
                 }
-                .onAppear {
-                    loadChildren()
+                
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Create") {
+                        createTeam()
+                    }
+                    .disabled(teamName.trimmingCharacters(in: .whitespaces).isEmpty ||
+                             season.trimmingCharacters(in: .whitespaces).isEmpty)
                 }
+            }
+            .alert("Error", isPresented: $showError) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text(errorMessage)
             }
         }
     }
     
-    private func loadChildren() {
-        let request = NSFetchRequest<Child>(entityName: "Child")
-        request.sortDescriptors = [
-            NSSortDescriptor(key: "lastUsed", ascending: false),
-            NSSortDescriptor(key: "name", ascending: true)
-        ]
-        children = (try? context.fetch(request)) ?? []
+    private func createTeam() {
+        let trimmedName = teamName.trimmingCharacters(in: .whitespaces)
+        let trimmedSeason = season.trimmingCharacters(in: .whitespaces)
+        
+        guard !trimmedName.isEmpty, !trimmedSeason.isEmpty else {
+            errorMessage = "Please enter team name and season"
+            showError = true
+            return
+        }
+        
+        let team = Team(context: context)
+        team.id = UUID()
+        team.name = trimmedName
+        team.season = trimmedSeason
+        team.organization = organization.isEmpty ? nil : organization
+        team.isActive = true
+        team.createdAt = Date()
+        team.colorHex = selectedColor.toHex()
+        
+        do {
+            try context.save()
+            coordinator.dismissSheet()
+            dismiss()
+        } catch {
+            errorMessage = "Failed to create team: \(error.localizedDescription)"
+            showError = true
+        }
     }
 }
 

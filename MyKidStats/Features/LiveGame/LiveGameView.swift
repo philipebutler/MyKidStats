@@ -192,17 +192,30 @@ struct LiveGameView: View {
         VStack(alignment: .leading, spacing: .spacingM) {
             Text("Team Scoring")
                 .font(.headline)
+                .frame(maxWidth: .infinity, alignment: .leading)
 
-            ForEach(viewModel.teamPlayers.filter { $0.id != viewModel.focusPlayer.id && $0.id != nil }, id: \.id!) { player in
-                TeamScoringRow(
-                    jerseyNumber: player.jerseyNumber ?? "?",
-                    playerName: player.child?.name ?? "",
-                    currentScore: viewModel.teamScores[player.id!] ?? 0
-                ) { points in
-                    viewModel.recordTeamPlayerScore(player.id!, points: points)
+            if viewModel.teamPlayers.filter({ $0.id != viewModel.focusPlayer.id && $0.id != nil }).isEmpty {
+                Text("No other players on this team yet.\nAdd teammates in the Teams tab.")
+                    .font(.subheadline)
+                    .foregroundColor(.secondaryText)
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, .spacingL)
+            } else {
+                ForEach(viewModel.teamPlayers.filter { $0.id != viewModel.focusPlayer.id && $0.id != nil }, id: \.id!) { player in
+                    TeamScoringRow(
+                        jerseyNumber: player.jerseyNumber ?? "?",
+                        playerName: player.child?.name ?? "",
+                        currentScore: viewModel.teamScores[player.id!] ?? 0
+                    ) { points in
+                        viewModel.recordTeamPlayerScore(player.id!, points: points)
+                    }
                 }
             }
         }
+        .padding()
+        .background(Color.cardBackground)
+        .cornerRadius(.cornerRadiusCard)
     }
 
     private var undoButton: some View {
