@@ -36,7 +36,6 @@ struct StatButton: View {
         .buttonStyle(.plain)
         .accessibilityElement(children: .combine)
         .accessibilityLabel(accessibilityLabelText)
-        .accessibilityHint("Tap to record \(type.displayName.lowercased())")
         .accessibilityAddTraits(.isButton)
     }
     

@@ -73,7 +73,6 @@ struct LiveGameView: View {
         } message: {
             Text("Enter the new score for \(viewModel.game.opponentName)")
         }
-        .accessibilityElement(children: .contain)
     }
 
     private var opponentScoringSection: some View {
@@ -89,14 +88,25 @@ struct LiveGameView: View {
                     .foregroundColor(.secondaryText)
                 Text("\(viewModel.game.opponentName) \(viewModel.opponentScore)")
                     .font(.title2.weight(.semibold))
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Color.blue.opacity(0.1))
+                    .cornerRadius(8)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.blue.opacity(0.3), lineWidth: 1)
+                    )
                     .onLongPressGesture {
                         opponentScoreInput = "\(viewModel.opponentScore)"
                         showOpponentScoreEditor = true
                     }
+                Image(systemName: "hand.tap")
+                    .font(.caption2)
+                    .foregroundColor(.blue.opacity(0.6))
             }
             .accessibilityElement(children: .combine)
             .accessibilityLabel("Current score: \(viewModel.game.team?.name ?? "Team") \(viewModel.teamScore), \(viewModel.game.opponentName) \(viewModel.opponentScore)")
-            .accessibilityHint("Long press opponent score to edit")
+            .accessibilityHint("Long press opponent score to edit manually")
 
             HStack(spacing: .spacingM) {
                 TeamScoreButton(points: 1) {

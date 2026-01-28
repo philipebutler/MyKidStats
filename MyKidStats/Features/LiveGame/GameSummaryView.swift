@@ -267,6 +267,20 @@ struct GameSummaryView: View {
                     .foregroundColor(.gray)
             }
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(comparisonAccessibilityLabel(label: label, gameValue: gameValue, seasonAvg: seasonAvg))
+    }
+    
+    private func comparisonAccessibilityLabel(label: String, gameValue: Int, seasonAvg: Double) -> String {
+        let comparison: String
+        if Double(gameValue) > seasonAvg {
+            comparison = "above average"
+        } else if Double(gameValue) < seasonAvg {
+            comparison = "below average"
+        } else {
+            comparison = "equal to average"
+        }
+        return "\(label): \(gameValue) this game, \(String(format: "%.1f", seasonAvg)) season average, \(comparison)"
     }
     
     // MARK: - Helper Functions

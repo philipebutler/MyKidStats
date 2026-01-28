@@ -17,7 +17,6 @@ struct TeamScoreButton: View {
         }
         .buttonStyle(.plain)
         .accessibilityLabel("Add \(points) point\(points == 1 ? "" : "s") to opponent score")
-        .accessibilityHint("Tap to record \(points) point\(points == 1 ? "" : "s") for the opposing team")
         .accessibilityAddTraits(.isButton)
     }
 }
