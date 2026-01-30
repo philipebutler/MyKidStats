@@ -1,17 +1,16 @@
 //
-//  GameSummaryView.swift
+//  PastGameSummaryView.swift
 //  MyKidStats
 //
-//  Created by Copilot on 1/27/26.
+//  Created by Copilot on 1/28/26.
 //
 
 import SwiftUI
 import CoreData
 
-struct GameSummaryView: View {
+struct PastGameSummaryView: View {
     let game: Game
-    let focusChild: Child
-    @Environment(\.dismiss) private var dismiss
+    @Environment(\.managedObjectContext) private var context
     @State private var showingShareSheet = false
     @State private var shareContent: [Any] = []
     @State private var showingError = false
@@ -23,42 +22,44 @@ struct GameSummaryView: View {
     private let careerStatsUseCase = CalculateCareerStatsUseCase()
     
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(spacing: .spacingL) {
+        ScrollView {
+            VStack(spacing: .spacingL) {
+                if let focusChild = getFocusChild() {
                     gameResultHeader
-                    focusPlayerStats
+                    focusPlayerStats(focusChild: focusChild)
                     
                     if let careerStats = careerStats {
-                        seasonComparisonSection(gameStats: calculateFocusPlayerStats(), careerStats: careerStats)
+                        let stats = calculateFocusPlayerStats()
+                        seasonComparisonSection(gameStats: stats, careerStats: careerStats)
                     }
                     
                     gameDetails
-                    exportButtons
-                }
-                .padding()
-            }
-            .background(Color.appBackground)
-            .navigationTitle("Game Summary")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
-                        dismiss()
-                    }
+                    exportButtons(focusChild: focusChild)
+                } else {
+                    Text("Unable to load game data")
+                        .foregroundColor(.secondaryText)
                 }
             }
-            .sheet(isPresented: $showingShareSheet) {
+            .padding()
+        }
+        .background(Color.appBackground)
+        .navigationTitle("Game Summary")
+        .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showingShareSheet) {
+            if !shareContent.isEmpty {
                 ActivityViewController(activityItems: shareContent, applicationActivities: nil)
+            } else {
+                Text("No content to share")
+                    .padding()
             }
-            .alert("Export Error", isPresented: $showingError) {
-                Button("OK", role: .cancel) { }
-            } message: {
-                Text(errorMessage)
-            }
-            .task {
-                await loadCareerStats()
-            }
+        }
+        .alert("Export Error", isPresented: $showingError) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text(errorMessage)
+        }
+        .task {
+            await loadCareerStats()
         }
     }
     
@@ -99,7 +100,7 @@ struct GameSummaryView: View {
         .cornerRadius(12)
     }
     
-    private var focusPlayerStats: some View {
+    private func focusPlayerStats(focusChild: Child) -> some View {
         VStack(alignment: .leading, spacing: .spacingM) {
             Text("\(focusChild.name ?? "Player") Stats")
                 .font(.headline)
@@ -210,9 +211,9 @@ struct GameSummaryView: View {
         .cornerRadius(12)
     }
     
-    private var exportButtons: some View {
+    private func exportButtons(focusChild: Child) -> some View {
         VStack(spacing: .spacingM) {
-            Button(action: shareTextSummary) {
+            Button(action: { shareTextSummary(focusChild: focusChild) }) {
                 HStack {
                     Image(systemName: "square.and.arrow.up")
                     Text("Share Text Summary")
@@ -285,20 +286,6 @@ struct GameSummaryView: View {
                     .foregroundColor(.gray)
             }
         }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(comparisonAccessibilityLabel(label: label, gameValue: gameValue, seasonAvg: seasonAvg))
-    }
-    
-    private func comparisonAccessibilityLabel(label: String, gameValue: Int, seasonAvg: Double) -> String {
-        let comparison: String
-        if Double(gameValue) > seasonAvg {
-            comparison = "above average"
-        } else if Double(gameValue) < seasonAvg {
-            comparison = "below average"
-        } else {
-            comparison = "equal to average"
-        }
-        return "\(label): \(gameValue) this game, \(String(format: "%.1f", seasonAvg)) season average, \(comparison)"
     }
     
     // MARK: - Helper Functions
@@ -312,27 +299,22 @@ struct GameSummaryView: View {
         }
     }
     
+    private func getFocusChild() -> Child? {
+        guard let focusChildId = game.focusChildId else { return nil }
+        
+        let request: NSFetchRequest<Child> = NSFetchRequest(entityName: "Child")
+        request.predicate = NSPredicate(format: "id == %@", focusChildId as CVarArg)
+        request.fetchLimit = 1
+        return try? context.fetch(request).first
+    }
+    
     private func calculateFocusPlayerStats() -> LiveStats {
-        guard let events = game.statEvents as? Set<StatEvent> else { 
-            print("No stat events found for game")
-            return LiveStats() 
-        }
-        
-        print("Found \(events.count) stat events for game")
-        
-        // Filter events directly by focusChildId using game's focusChildId
-        guard let focusChildId = game.focusChildId else {
-            print("No focusChildId on game")
+        guard let events = game.statEvents as? Set<StatEvent>,
+              let focusChildId = game.focusChildId,
+              let teamId = game.teamId else {
             return LiveStats()
         }
         
-        // Find player for this child on this team
-        guard let teamId = game.teamId else {
-            print("No teamId on game")
-            return LiveStats()
-        }
-        
-        let context = game.managedObjectContext!
         let playerRequest = NSFetchRequest<Player>(entityName: "Player")
         playerRequest.predicate = NSPredicate(
             format: "childId == %@ AND teamId == %@",
@@ -342,27 +324,17 @@ struct GameSummaryView: View {
         
         guard let focusPlayer = try? context.fetch(playerRequest).first,
               let focusPlayerId = focusPlayer.id else {
-            print("Could not find focus player")
             return LiveStats()
         }
         
-        print("Focus player ID: \(focusPlayerId)")
-        
         let playerEvents = events.filter { $0.playerId == focusPlayerId && !$0.isSoftDeleted }
-        print("Found \(playerEvents.count) events for focus player")
         
         var stats = LiveStats()
-        
         for event in playerEvents {
-            guard let statType = event.statType, let type = StatType(rawValue: statType) else { 
-                print("Invalid stat type: \(event.statType ?? "nil")")
-                continue 
-            }
-            print("Recording stat: \(type.rawValue)")
+            guard let statType = event.statType, let type = StatType(rawValue: statType) else { continue }
             stats.recordStat(type)
         }
-        
-        print("Final stats - Points: \(stats.points), Rebounds: \(stats.rebounds), Assists: \(stats.assists)")
+        stats.updatePercentages()
         
         return stats
     }
@@ -373,13 +345,17 @@ struct GameSummaryView: View {
         return formatter.string(from: date)
     }
     
-    private func shareTextSummary() {
+    private func shareTextSummary(focusChild: Child) {
         let summary = textSummaryUseCase.execute(game: game, focusChild: focusChild)
-        print("📤 Share summary generated: \(summary)")
+        print("📤 PastGame Share summary generated: \(summary)")
         print("📤 Summary length: \(summary.count) characters")
         shareContent = [summary]
         print("📤 Share content array: \(shareContent)")
-        showingShareSheet = true
+        
+        // Delay to ensure state is updated before showing sheet
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.showingShareSheet = true
+        }
     }
     
     private func shareCSVExport() {
@@ -394,11 +370,11 @@ struct GameSummaryView: View {
     }
     
     private func loadCareerStats() async {
-        guard let childId = focusChild.id else { return }
+        guard let focusChild = getFocusChild(),
+              let childId = focusChild.id else { return }
         do {
             careerStats = try await careerStatsUseCase.execute(for: childId)
         } catch {
-            // Silently fail - comparison section just won't show
             print("Failed to load career stats: \(error)")
         }
     }
@@ -413,9 +389,8 @@ struct GameSummaryView: View {
     game.isComplete = true
     game.gameDate = Date()
     
-    let child = Child(context: context)
-    child.id = UUID()
-    child.name = "Johnny"
-    
-    return GameSummaryView(game: game, focusChild: child)
+    return NavigationStack {
+        PastGameSummaryView(game: game)
+            .environment(\.managedObjectContext, context)
+    }
 }

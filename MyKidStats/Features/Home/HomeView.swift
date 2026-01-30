@@ -18,8 +18,27 @@ struct HomeView: View {
                     if !viewModel.recentActivities.isEmpty {
                         recentActivitySection
                     }
+                    
+                    // Past Games Button
+                    NavigationLink(destination: GameHistoryView()) {
+                        HStack {
+                            Image(systemName: "clock.arrow.circlepath")
+                                .font(.title3)
+                            Text("View Past Games")
+                                .font(.headline)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.secondaryText)
+                        }
+                        .padding()
+                        .background(Color.cardBackground)
+                        .foregroundColor(.primary)
+                        .cornerRadius(.cornerRadiusCard)
+                    }
+                    .buttonStyle(.plain)
                 }
                 .padding(.spacingL)
+                .padding(.bottom, .spacingXL)
             }
             .background(Color.appBackground)
             .navigationTitle("Basketball Stats")

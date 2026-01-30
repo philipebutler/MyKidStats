@@ -98,6 +98,8 @@
 				DesignSystem/DesignSystemPreview.swift,
 				DesignSystem/Fonts.swift,
 				DesignSystem/Spacing.swift,
+				Features/GameHistory/GameHistoryView.swift,
+				Features/GameHistory/PastGameSummaryView.swift,
 				Features/Home/HomeView.swift,
 				Features/Home/HomeViewModel.swift,
 				Features/LiveGame/GameSummaryView.swift,
