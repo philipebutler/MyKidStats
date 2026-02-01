@@ -37,12 +37,6 @@ struct SelectTeamView: View {
                         coordinator.dismissSheet()
                     }
                 }
-                
-                ToolbarItem(placement: .primaryAction) {
-                    Button(action: { showCreateTeam = true }) {
-                        Image(systemName: "plus")
-                    }
-                }
             }
             .sheet(isPresented: $showCreateTeam) {
                 CreateTeamView(child: child, coordinator: coordinator) { newTeam in

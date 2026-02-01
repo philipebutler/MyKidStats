@@ -53,16 +53,27 @@ struct StatsView: View {
     // MARK: - Child Selector
     
     private var childSegmentedControl: some View {
-        Picker("Child", selection: Binding(
-            get: { viewModel.selectedChild },
-            set: { if let child = $0 { viewModel.selectChild(child) } }
-        )) {
+        Menu {
             ForEach(viewModel.children, id: \.id) { child in
-                Text(child.name ?? "Unknown").tag(child as Child?)
+                Button(action: {
+                    viewModel.selectChild(child)
+                }) {
+                    HStack {
+                        Text(child.name ?? "Unknown")
+                        if child.id == viewModel.selectedChild?.id {
+                            Image(systemName: "checkmark")
+                        }
+                    }
+                }
+            }
+        } label: {
+            HStack(spacing: 4) {
+                Text(viewModel.selectedChild?.name ?? "Select Player")
+                    .font(.headline)
+                Image(systemName: "chevron.down")
+                    .font(.caption)
             }
         }
-        .pickerStyle(.segmented)
-        .frame(maxWidth: 300)
     }
     
     // MARK: - Stats Content

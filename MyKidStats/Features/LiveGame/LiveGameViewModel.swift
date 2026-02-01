@@ -81,7 +81,7 @@ class LiveGameViewModel: ObservableObject {
         lastAction = .focusPlayerStat(eventId: event.id!, statType: statType)
         canUndo = true
 
-        Task.detached(priority: .userInitiated) { [weak self] in
+        Task { @MainActor [weak self] in
             guard let self = self else { return }
             if self.context.hasChanges {
                 try? self.context.save()
@@ -113,8 +113,9 @@ class LiveGameViewModel: ObservableObject {
         lastAction = .teamScore(eventId: event.id!, playerId: playerId, points: points)
         canUndo = true
 
-        Task.detached(priority: .userInitiated) { [weak self] in
-            try? self?.context.save()
+        Task { @MainActor [weak self] in
+            guard let self = self else { return }
+            try? self.context.save()
         }
     }
 
@@ -125,8 +126,9 @@ class LiveGameViewModel: ObservableObject {
         canUndo = true
 
         game.opponentScore = Int32(opponentScore)
-        Task.detached(priority: .userInitiated) { [weak self] in
-            try? self?.context.save()
+        Task { @MainActor [weak self] in
+            guard let self = self else { return }
+            try? self.context.save()
         }
     }
     
@@ -139,8 +141,9 @@ class LiveGameViewModel: ObservableObject {
         lastAction = nil
         canUndo = false
         
-        Task.detached(priority: .userInitiated) { [weak self] in
-            try? self?.context.save()
+        Task { @MainActor [weak self] in
+            guard let self = self else { return }
+            try? self.context.save()
         }
     }
 
@@ -168,8 +171,9 @@ class LiveGameViewModel: ObservableObject {
         lastAction = nil
         canUndo = false
 
-        Task.detached(priority: .userInitiated) { [weak self] in
-            try? self?.context.save()
+        Task { @MainActor [weak self] in
+            guard let self = self else { return }
+            try? self.context.save()
         }
     }
 

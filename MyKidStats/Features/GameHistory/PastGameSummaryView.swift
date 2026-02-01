@@ -11,8 +11,6 @@ import CoreData
 struct PastGameSummaryView: View {
     let game: Game
     @Environment(\.managedObjectContext) private var context
-    @State private var showingShareSheet = false
-    @State private var shareContent: [Any] = []
     @State private var showingError = false
     @State private var errorMessage = ""
     @State private var careerStats: CareerStats?
@@ -45,12 +43,16 @@ struct PastGameSummaryView: View {
         .background(Color.appBackground)
         .navigationTitle("Game Summary")
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(isPresented: $showingShareSheet) {
-            if !shareContent.isEmpty {
-                ActivityViewController(activityItems: shareContent, applicationActivities: nil)
-            } else {
-                Text("No content to share")
-                    .padding()
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    if let focusChild = getFocusChild() {
+                        shareTextSummary(focusChild: focusChild)
+                    }
+                }) {
+                    Image(systemName: "square.and.arrow.up")
+                }
+                .accessibilityLabel("Share game summary")
             }
         }
         .alert("Export Error", isPresented: $showingError) {
@@ -213,18 +215,6 @@ struct PastGameSummaryView: View {
     
     private func exportButtons(focusChild: Child) -> some View {
         VStack(spacing: .spacingM) {
-            Button(action: { shareTextSummary(focusChild: focusChild) }) {
-                HStack {
-                    Image(systemName: "square.and.arrow.up")
-                    Text("Share Text Summary")
-                }
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.accentColor)
-                .foregroundColor(.white)
-                .cornerRadius(12)
-            }
-            
             Button(action: shareCSVExport) {
                 HStack {
                     Image(systemName: "tablecells")
@@ -232,7 +222,7 @@ struct PastGameSummaryView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .padding()
-                .background(Color.accentColor.opacity(0.8))
+                .background(Color.accentColor)
                 .foregroundColor(.white)
                 .cornerRadius(12)
             }
@@ -347,22 +337,18 @@ struct PastGameSummaryView: View {
     
     private func shareTextSummary(focusChild: Child) {
         let summary = textSummaryUseCase.execute(game: game, focusChild: focusChild)
-        print("📤 PastGame Share summary generated: \(summary)")
-        print("📤 Summary length: \(summary.count) characters")
-        shareContent = [summary]
-        print("📤 Share content array: \(shareContent)")
         
-        // Delay to ensure state is updated before showing sheet
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.showingShareSheet = true
+        guard !summary.isEmpty && summary != "Game summary unavailable" && summary != "Player not found" else {
+            return
         }
+        
+        ShareHelper.share(items: [summary])
     }
     
     private func shareCSVExport() {
         do {
             let fileURL = try exportCSVUseCase.execute(game)
-            shareContent = [fileURL]
-            showingShareSheet = true
+            ShareHelper.share(items: [fileURL])
         } catch {
             errorMessage = "Failed to export CSV: \(error.localizedDescription)"
             showingError = true

@@ -100,6 +100,7 @@
 				DesignSystem/Spacing.swift,
 				Features/GameHistory/GameHistoryView.swift,
 				Features/GameHistory/PastGameSummaryView.swift,
+				Features/Games/NewGameView.swift,
 				Features/Home/HomeView.swift,
 				Features/Home/HomeViewModel.swift,
 				Features/LiveGame/GameSummaryView.swift,

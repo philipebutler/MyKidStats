@@ -48,7 +48,7 @@ class HomeViewModel: ObservableObject {
     }
 
     func startGame(for child: Child) {
-        coordinator?.presentedSheet = .selectTeam(child)
+        coordinator?.presentedSheet = .newGame(child)
     }
 
     func toggleChild() {

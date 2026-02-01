@@ -5,6 +5,7 @@ struct LiveGameView: View {
     @StateObject private var viewModel: LiveGameViewModel
     @Environment(\.dismiss) private var dismiss
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @EnvironmentObject private var coordinator: NavigationCoordinator
     @State private var showEndGameAlert = false
     @State private var showGameSummary = false
     @State private var showOpponentScoreEditor = false
@@ -24,6 +25,7 @@ struct LiveGameView: View {
                     opponentScoringSection
                     focusPlayerSection
                     teamScoringSection
+                    endGameButton
                     Color.clear.frame(height: 80)
                 }
                 .padding(.spacingL)
@@ -35,15 +37,14 @@ struct LiveGameView: View {
                     .transition(reduceMotion ? .opacity : .scale.combined(with: .opacity))
             }
         }
-        .navigationTitle("\(viewModel.game.team?.name ?? "Team") vs \(viewModel.game.opponentName)")
+        .navigationTitle("\(viewModel.game.team?.name ?? "Team"): \(viewModel.teamScore) • \(viewModel.game.opponentName ?? "Opponent"): \(viewModel.opponentScore)")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button("End Game", role: .destructive) {
-                    showEndGameAlert = true
+                Button(action: shareCurrentStats) {
+                    Image(systemName: "square.and.arrow.up")
                 }
-                .accessibilityLabel("End game")
-                .accessibilityHint("Mark this game as complete and view summary")
+                .accessibilityLabel("Share current stats")
             }
         }
         .alert("End Game?", isPresented: $showEndGameAlert) {
@@ -58,6 +59,7 @@ struct LiveGameView: View {
         .sheet(isPresented: $showGameSummary) {
             if let child = viewModel.focusPlayer.child {
                 GameSummaryView(game: viewModel.game, focusChild: child)
+                    .environmentObject(coordinator)
             }
         }
         .sheet(isPresented: $showEditOpponentSheet) {
@@ -79,43 +81,52 @@ struct LiveGameView: View {
             Text("Enter the new score for \(viewModel.game.opponentName)")
         }
     }
+    
+    // MARK: - Sticky Score Header
+    
+    private var scoreHeader: some View {
+        HStack {
+            Text("\(viewModel.game.team?.name ?? "Team") \(viewModel.teamScore)")
+                .font(.title2.weight(.semibold))
+            Text("•")
+                .foregroundColor(.secondaryText)
+            HStack(spacing: 4) {
+                Text("\(viewModel.game.opponentName ?? "Opponent") \(viewModel.opponentScore)")
+                    .font(.title2.weight(.semibold))
+                Button(action: { showEditOpponentSheet = true }) {
+                    Image(systemName: "pencil.circle.fill")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+                .buttonStyle(.borderless)
+            }
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+            .background(Color.blue.opacity(0.1))
+            .cornerRadius(8)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.blue.opacity(0.3), lineWidth: 1)
+            )
+            .onLongPressGesture {
+                opponentScoreInput = "\(viewModel.opponentScore)"
+                showOpponentScoreEditor = true
+            }
+            Image(systemName: "hand.tap")
+                .font(.caption2)
+                .foregroundColor(.blue.opacity(0.6))
+        }
+        .padding()
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Current score: \(viewModel.game.team?.name ?? "Team") \(viewModel.teamScore), \(viewModel.game.opponentName ?? "Opponent") \(viewModel.opponentScore)")
+        .accessibilityHint("Long press opponent score to edit manually")
+    }
 
     private var opponentScoringSection: some View {
         VStack(spacing: .spacingM) {
-            HStack {
-                Text("\(viewModel.game.team?.name ?? "Team") \(viewModel.teamScore)")
-                    .font(.title2.weight(.semibold))
-                Text("•")
-                    .foregroundColor(.secondaryText)
-                HStack(spacing: 4) {
-                    Text("\(viewModel.game.opponentName ?? "Opponent") \(viewModel.opponentScore)")
-                        .font(.title2.weight(.semibold))
-                    Button(action: { showEditOpponentSheet = true }) {
-                        Image(systemName: "pencil.circle.fill")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                    .buttonStyle(.borderless)
-                }
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                .background(Color.blue.opacity(0.1))
-                .cornerRadius(8)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.blue.opacity(0.3), lineWidth: 1)
-                )
-                .onLongPressGesture {
-                    opponentScoreInput = "\(viewModel.opponentScore)"
-                    showOpponentScoreEditor = true
-                }
-                Image(systemName: "hand.tap")
-                    .font(.caption2)
-                    .foregroundColor(.blue.opacity(0.6))
-            }
-            .accessibilityElement(children: .combine)
-            .accessibilityLabel("Current score: \(viewModel.game.team?.name ?? "Team") \(viewModel.teamScore), \(viewModel.game.opponentName) \(viewModel.opponentScore)")
-            .accessibilityHint("Long press opponent score to edit manually")
+            Text("\(viewModel.game.opponentName ?? "Opponent") Scoring")
+                .font(.headline)
+                .frame(maxWidth: .infinity, alignment: .leading)
 
             HStack(spacing: .spacingM) {
                 TeamScoreButton(points: 1) {
@@ -273,6 +284,23 @@ struct LiveGameView: View {
         .background(Color.cardBackground)
         .cornerRadius(.cornerRadiusCard)
     }
+    
+    private var endGameButton: some View {
+        Button(action: { showEndGameAlert = true }) {
+            HStack {
+                Image(systemName: "flag.checkered")
+                Text("End Game")
+                    .font(.headline)
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.red)
+            .foregroundColor(.white)
+            .cornerRadius(.cornerRadiusButton)
+        }
+        .accessibilityLabel("End game")
+        .accessibilityHint("Mark this game as complete and view summary")
+    }
 
     private var undoButton: some View {
         Button(action: viewModel.undoLastAction) {
@@ -292,6 +320,58 @@ struct LiveGameView: View {
         .accessibilityLabel("Undo last stat")
         .accessibilityHint("Remove the most recently recorded statistic")
         .accessibilityAddTraits(.isButton)
+    }
+    
+    private func shareCurrentStats() {
+        // Fetch the child from the game's focusChildId
+        guard let childId = viewModel.game.focusChildId,
+              let teamId = viewModel.game.teamId,
+              let context = viewModel.game.managedObjectContext else {
+            return
+        }
+        
+        // Fetch the child
+        let childRequest = NSFetchRequest<Child>(entityName: "Child")
+        childRequest.predicate = NSPredicate(format: "id == %@", childId as CVarArg)
+        childRequest.fetchLimit = 1
+        
+        guard let child = try? context.fetch(childRequest).first else {
+            return
+        }
+        
+        // Fetch the team with all players
+        let teamRequest = NSFetchRequest<Team>(entityName: "Team")
+        teamRequest.predicate = NSPredicate(format: "id == %@", teamId as CVarArg)
+        teamRequest.relationshipKeyPathsForPrefetching = ["players"]
+        teamRequest.fetchLimit = 1
+        
+        guard let team = try? context.fetch(teamRequest).first else {
+            return
+        }
+        
+        // Ensure the game has the team relationship set
+        if viewModel.game.team == nil {
+            viewModel.game.team = team
+        }
+        
+        // Fetch all players for this team to ensure they're fully loaded
+        let playersRequest = NSFetchRequest<Player>(entityName: "Player")
+        playersRequest.predicate = NSPredicate(format: "teamId == %@", teamId as CVarArg)
+        let allPlayers = (try? context.fetch(playersRequest)) ?? []
+        
+        // Ensure the team's players relationship includes all players
+        team.players = NSSet(array: allPlayers)
+        
+        let useCase = GenerateTextSummaryUseCase()
+        let text = useCase.execute(game: viewModel.game, focusChild: child)
+        
+        // Only share if we have valid text
+        guard !text.isEmpty && text != "Game summary unavailable" && text != "Player not found" else {
+            return
+        }
+        
+        // Use ShareHelper to present the share sheet directly
+        ShareHelper.share(items: [text])
     }
 }
 

@@ -76,6 +76,8 @@ struct HomeView: View {
             CreateTeamSheetWrapper(coordinator: coordinator)
         case .selectTeam(let child):
             SelectTeamSheet(child: child, coordinator: coordinator)
+        case .newGame(let child):
+            NewGameView(coordinator: coordinator, child: child)
         case .manageChildren:
             ManageChildrenView()
         }
@@ -742,64 +744,14 @@ struct GameSummarySheet: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: .spacingL) {
-                    // Score
-                    HStack {
-                        VStack {
-                            Text("\(game.calculatedTeamScore)")
-                                .font(.system(size: 48, weight: .bold))
-                            Text(game.team?.name ?? "Team")
-                                .font(.headline)
+            PastGameSummaryView(game: game)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Done") {
+                            coordinator.dismissSheet()
                         }
-                        .frame(maxWidth: .infinity)
-                        
-                        Text("VS")
-                            .font(.headline)
-                            .foregroundColor(.secondaryText)
-                        
-                        VStack {
-                            Text("\(game.opponentScore)")
-                                .font(.system(size: 48, weight: .bold))
-                            Text(game.opponentName ?? "Opponent")
-                                .font(.headline)
-                        }
-                        .frame(maxWidth: .infinity)
-                    }
-                    .padding()
-                    .background(Color.cardBackground)
-                    .cornerRadius(.cornerRadiusCard)
-                    
-                    // Result
-                    HStack {
-                        Text("Result:")
-                            .font(.headline)
-                        Spacer()
-                        Text(game.result.emoji + " " + game.result.rawValue)
-                            .font(.title2)
-                    }
-                    .padding()
-                    .background(Color.cardBackground)
-                    .cornerRadius(.cornerRadiusCard)
-                    
-                    // Stats would go here
-                    Text("Detailed stats coming soon")
-                        .font(.caption)
-                        .foregroundColor(.secondaryText)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding()
-                }
-                .padding()
-            }
-            .navigationTitle("Game Summary")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Done") {
-                        coordinator.dismissSheet()
                     }
                 }
-            }
         }
     }
 }
