@@ -80,6 +80,8 @@ struct HomeView: View {
             NewGameView(coordinator: coordinator, child: child)
         case .manageChildren:
             ManageChildrenView()
+        case .help:
+            HelpView()
         }
     }
 
@@ -639,6 +641,26 @@ struct SettingsSheet: View {
                     }
                 }
                 
+                Section(header: Text("Help")) {
+                    Button(action: {
+                        coordinator.dismissSheet()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            coordinator.presentedSheet = .help
+                        }
+                    }) {
+                        HStack {
+                            Image(systemName: "book.fill")
+                                .foregroundColor(.accentColor)
+                            Text("Help & User Guide")
+                                .foregroundColor(.primary)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .font(.caption)
+                                .foregroundColor(.secondaryText)
+                        }
+                    }
+                }
+                
                 Section(header: Text("Support")) {
                     Link(destination: URL(string: "https://github.com/philipebutler/MyKidStats")!) {
                         HStack {
@@ -852,4 +874,3 @@ struct HomeView_Previews: PreviewProvider {
             .environment(\.managedObjectContext, context)
     }
 }
-

@@ -37,6 +37,7 @@ enum PresentedSheet: Identifiable {
     case selectTeam(Child)
     case newGame(Child)
     case manageChildren
+    case help
 
     var id: String {
         switch self {
@@ -54,6 +55,8 @@ enum PresentedSheet: Identifiable {
             return "newGame_\(child.id?.uuidString ?? "unknown")"
         case .manageChildren:
             return "manageChildren"
+        case .help:
+            return "help"
         }
     }
 }
