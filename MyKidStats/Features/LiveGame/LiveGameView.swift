@@ -20,15 +20,22 @@ struct LiveGameView: View {
 
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            ScrollView {
-                VStack(spacing: .spacingXL) {
-                    opponentScoringSection
-                    focusPlayerSection
-                    teamScoringSection
-                    endGameButton
-                    Color.clear.frame(height: 80)
+            VStack(spacing: 0) {
+                // Fixed opponent scoring section at top
+                opponentScoringSection
+                    .background(Color.appBackground)
+                    .zIndex(1)
+                
+                // Scrollable content
+                ScrollView {
+                    VStack(spacing: .spacingM) {
+                        focusPlayerSection
+                        teamScoringSection
+                        endGameButton
+                        Color.clear.frame(height: 40)
+                    }
+                    .padding(.spacingM)
                 }
-                .padding(.spacingL)
             }
             .background(Color.appBackground)
 
@@ -123,7 +130,7 @@ struct LiveGameView: View {
     }
 
     private var opponentScoringSection: some View {
-        VStack(spacing: .spacingM) {
+        VStack(spacing: .spacingXS) {
             Text("\(viewModel.game.opponentName ?? "Opponent") Scoring")
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -140,9 +147,11 @@ struct LiveGameView: View {
                 }
             }
         }
-        .padding()
+        .padding(.horizontal, .spacingL)
+        .padding(.top, -10)
+        .padding(.bottom, .spacingS)
         .background(Color.fill)
-        .cornerRadius(.cornerRadiusCard)
+        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
     }
 
     private var focusPlayerSection: some View {
