@@ -43,7 +43,7 @@ class GenerateTextSummaryUseCase {
         var otherPlayersText = ""
         for playerStat in otherPlayerStats {
             if playerStat.points > 0 {
-                otherPlayersText += "\n\(playerStat.name): \(playerStat.points) PTS"
+                otherPlayersText += "\n\(playerStat.name): \(playerStat.points) PTS: \(playerStat.fgMade) FG | \(playerStat.threeMade) 3PT | \(playerStat.ftMade) FT"
             }
         }
 
@@ -66,15 +66,15 @@ class GenerateTextSummaryUseCase {
         return stats
     }
     
-    private func calculateOtherPlayersPoints(players: [Player], events: [StatEvent]) -> [(name: String, points: Int)] {
-        var playerPoints: [(name: String, points: Int)] = []
+    private func calculateOtherPlayersPoints(players: [Player], events: [StatEvent]) -> [(name: String, points: Int, fgMade: Int, threeMade: Int, ftMade: Int)] {
+        var playerPoints: [(name: String, points: Int, fgMade: Int, threeMade: Int, ftMade: Int)] = []
         
         for player in players {
             guard let playerId = player.id else { continue }
             let playerEvents = events.filter { $0.playerId == playerId && !$0.isSoftDeleted }
             let stats = calculateStats(playerEvents)
             let playerName = player.child?.name ?? "Player #\(player.jerseyNumber ?? "?")"
-            playerPoints.append((name: playerName, points: stats.points))
+            playerPoints.append((name: playerName, points: stats.points, fgMade: stats.fgMade, threeMade: stats.threeMade, ftMade: stats.ftMade))
         }
         
         // Sort by points descending
